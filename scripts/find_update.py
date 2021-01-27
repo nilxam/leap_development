@@ -45,6 +45,9 @@ class FindUpdate(object):
 
         return packages
 
+    def get_request_list(self, project, package):
+        return osc.core.get_request_list(self.apiurl, project, package, req_state=('new', 'review', 'declined', 'revoked'))
+
     def item_exists(self, project, package=None):
         """
         Return true if the given project or package exists
@@ -111,7 +114,11 @@ class FindUpdate(object):
             if pkg in bp_pkglist:
                 target_pkg = self.parse_package_link(OPENSUSE_UPDATE, pkg)
                 if target_pkg and not self.parse_package_link(OPENSUSE_UPDATE, target_pkg, True) and self.has_diff(BACKPORTS, pkg, OPENSUSE_UPDATE, target_pkg):
-                    print("osc sr -m 'updated package in openSUSE:Leap:15.2:Update' %s %s %s %s" % (OPENSUSE_UPDATE, target_pkg, OPENSUSE, pkg))
+                    pending_request = self.get_request_list(BACKPORTS, pkg)
+                    if pending_request:
+                        logging.debug("There is a request to %s / %s already or it has been declined/revoked, skip!" % (BACKPORTS, pkg))
+                    else:
+                        print("osc sr -m 'updated package in openSUSE:Leap:15.2:Update' %s %s %s %s" % (OPENSUSE_UPDATE, target_pkg, OPENSUSE, pkg))
                 else:
                     weird_pkglist.append(pkg)
             else:
