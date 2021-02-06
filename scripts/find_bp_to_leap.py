@@ -27,7 +27,7 @@ http_GET = osc.core.http_GET
 http_POST = osc.core.http_POST
 http_PUT = osc.core.http_PUT
 
-class FindSLE(object):
+class FindBP(object):
     def __init__(self, project, verbose):
         self.project = project
         self.verbose = verbose
@@ -82,7 +82,7 @@ class FindSLE(object):
 
         return None, None
 
-    def parse_package_link(self, project, package, reverse=False):
+    def is_links(self, project, package, reverse=False):
         query = {'withlinked': 1}
         u = makeurl(self.apiurl, ['source', project, package], query=query)
         root = ET.parse(http_GET(u)).getroot()
@@ -94,34 +94,28 @@ class FindSLE(object):
             return False
 
         for linked in links:
-            linkinfo = linked.get('package')
-            if linked.get('project') == project and linked.get('package').startswith("%s." % package):
-                return linkinfo
-            else:
-                return None
+            if linked.get('project') == project:
+                return True
         return False
 
     def crawl(self):
         """Main method"""
         # get souce packages from SLE
-        sle_pkglist = self.get_source_packages(SLE, True)
-        # get souce packages from backports
         bp_pkglist = self.get_source_packages(BACKPORTS)
+        # get souce packages from backports
+        os_pkglist = self.get_source_packages(OPENSUSE)
         weird_pkglist = []
         new_pkglist = []
 
-        for pkg in bp_pkglist:
-            if pkg.startswith('patchinfo') or "." in pkg:
+        for pkg in os_pkglist:
+            if pkg.startswith('patchinfo') or "." in pkg or pkg.startswith('00'):
                 continue
-            if pkg in sle_pkglist:
-                if self.has_diff(SLE, pkg, BACKPORTS, pkg):
-                    orig_prj, orig_pkg = self.origin_metadata_get(SLE, pkg)
-                    if orig_prj != SLE:
-                        src_pkg = self.parse_package_link(orig_prj, orig_pkg)
-                        if src_pkg:
-                            print("osc copypac -m 'updated package in SLE' %s %s %s %s" % (orig_prj, src_pkg, BACKPORTS, pkg))
+            if pkg in bp_pkglist:
+                if self.has_diff(BACKPORTS, pkg, OPENSUSE, pkg):
+                    if self.is_links(OPENSUSE, pkg):
+                        continue
                     else:
-                        print("osc copypac -m 'updated package in SLE' %s %s %s %s" % (SLE, pkg, BACKPORTS, pkg))
+                        print("osc copypac -m 'updated package in Backports' %s %s %s %s" % (BACKPORTS, pkg, OPENSUSE, pkg))
 
 
 def main(args):
@@ -129,7 +123,7 @@ def main(args):
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = FindSLE(args.project, args.verbose)
+    uc = FindBP(args.project, args.verbose)
     uc.crawl()
 
 if __name__ == '__main__':
