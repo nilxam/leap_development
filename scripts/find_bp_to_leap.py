@@ -108,7 +108,7 @@ class FindBP(object):
         new_pkglist = []
 
         for pkg in os_pkglist:
-            if pkg.startswith('patchinfo') or "." in pkg or pkg.startswith('00'):
+            if pkg.startswith('patchinfo') or pkg.startswith('00'):
                 continue
             if pkg in bp_pkglist:
                 if self.has_diff(BACKPORTS, pkg, OPENSUSE, pkg):

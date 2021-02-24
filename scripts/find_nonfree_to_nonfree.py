@@ -18,16 +18,15 @@ import osc.core
 from osc import oscerr
 
 OPENSUSE = 'openSUSE:Leap:15.3'
-OPENSUSE_UPDATE = 'openSUSE:Leap:15.2:Update'
-BACKPORTS = 'openSUSE:Backports:SLE-15-SP3'
-SLE = 'SUSE:SLE-15-SP3:GA'
+LEAP_NF = 'openSUSE:Leap:15.3:NonFree'
+FACTORY_NF = 'openSUSE:Factory:NonFree'
 
 makeurl = osc.core.makeurl
 http_GET = osc.core.http_GET
 http_POST = osc.core.http_POST
 http_PUT = osc.core.http_PUT
 
-class FindSLE(object):
+class FindNF(object):
     def __init__(self, project, verbose):
         self.project = project
         self.verbose = verbose
@@ -82,7 +81,7 @@ class FindSLE(object):
 
         return None, None
 
-    def parse_package_link(self, project, package, reverse=False):
+    def is_links(self, project, package, reverse=False):
         query = {'withlinked': 1}
         u = makeurl(self.apiurl, ['source', project, package], query=query)
         root = ET.parse(http_GET(u)).getroot()
@@ -94,34 +93,26 @@ class FindSLE(object):
             return False
 
         for linked in links:
-            linkinfo = linked.get('package')
-            if linked.get('project') == project and linked.get('package').startswith("%s." % package):
-                return linkinfo
-            else:
-                return None
+            if linked.get('project') == project:
+                return True
         return False
 
     def crawl(self):
         """Main method"""
-        # get souce packages from SLE
-        sle_pkglist = self.get_source_packages(SLE, True)
-        # get souce packages from backports
-        bp_pkglist = self.get_source_packages(BACKPORTS)
-        weird_pkglist = []
-        new_pkglist = []
+        leap_pkglist = self.get_source_packages(LEAP_NF)
+        factory_pkglist = self.get_source_packages(FACTORY_NF)
 
-        for pkg in bp_pkglist:
-            if pkg.startswith('patchinfo'):
+        for pkg in factory_pkglist:
+            if pkg.startswith('patchinfo') or "." in pkg or pkg.startswith('00'):
                 continue
-            if pkg in sle_pkglist:
-                if self.has_diff(SLE, pkg, BACKPORTS, pkg):
-                    orig_prj, orig_pkg = self.origin_metadata_get(SLE, pkg)
-                    if orig_prj != SLE:
-                        src_pkg = self.parse_package_link(orig_prj, orig_pkg)
-                        if src_pkg:
-                            print("osc copypac -m 'updated package in SLE' %s %s %s %s" % (orig_prj, src_pkg, BACKPORTS, pkg))
+            if pkg in leap_pkglist:
+                if self.has_diff(FACTORY_NF, pkg, LEAP_NF, pkg):
+                    if self.is_links(FACTORY_NF, pkg):
+                        continue
                     else:
-                        print("osc copypac -m 'updated package in SLE' %s %s %s %s" % (SLE, pkg, BACKPORTS, pkg))
+                        print("osc copypac -m 'updated package in NonFree' %s %s %s %s" % (FACTORY_NF, pkg, LEAP_NF, pkg))
+            else:
+                print("New package: %s" % pkg)
 
 
 def main(args):
@@ -129,7 +120,7 @@ def main(args):
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = FindSLE(args.project, args.verbose)
+    uc = FindNF(args.project, args.verbose)
     uc.crawl()
 
 if __name__ == '__main__':

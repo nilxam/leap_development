@@ -106,22 +106,22 @@ class FindSLE(object):
         # get souce packages from SLE
         sle_pkglist = self.get_source_packages(SLE, True)
         # get souce packages from backports
-        bp_pkglist = self.get_source_packages(BACKPORTS)
+        os_pkglist = self.get_source_packages(OPENSUSE)
         weird_pkglist = []
         new_pkglist = []
 
-        for pkg in bp_pkglist:
+        for pkg in os_pkglist:
             if pkg.startswith('patchinfo'):
                 continue
             if pkg in sle_pkglist:
-                if self.has_diff(SLE, pkg, BACKPORTS, pkg):
+                if self.has_diff(SLE, pkg, OPENSUSE, pkg):
                     orig_prj, orig_pkg = self.origin_metadata_get(SLE, pkg)
                     if orig_prj != SLE:
                         src_pkg = self.parse_package_link(orig_prj, orig_pkg)
                         if src_pkg:
-                            print("osc copypac -m 'updated package in SLE' %s %s %s %s" % (orig_prj, src_pkg, BACKPORTS, pkg))
+                            print("osc copypac -m 'updated package in SLE' %s %s %s %s" % (orig_prj, src_pkg, OPENSUSE, pkg))
                     else:
-                        print("osc copypac -m 'updated package in SLE' %s %s %s %s" % (SLE, pkg, BACKPORTS, pkg))
+                        print("osc copypac -m 'updated package in SLE' %s %s %s %s" % (SLE, pkg, OPENSUSE, pkg))
 
 
 def main(args):

@@ -27,10 +27,11 @@ http_GET = osc.core.http_GET
 http_POST = osc.core.http_POST
 http_PUT = osc.core.http_PUT
 
-class FindSLE(object):
-    def __init__(self, project, verbose):
+class FindBP(object):
+    def __init__(self, project, verbose, wipe):
         self.project = project
         self.verbose = verbose
+        self.wipe = wipe
         self.apiurl = osc.conf.config['apiurl']
         self.debug = osc.conf.config['debug']
 
@@ -59,47 +60,48 @@ class FindSLE(object):
             return False
         return True
 
-    def has_diff(self, project, package, target_prj, target_pkg):
-        changes_file = package + ".changes"
-        query = {'cmd': 'diff',
-                 'view': 'xml',
-                 'file': changes_file,
-                 'oproject': project,
-                 'opackage': package}
-        u = makeurl(self.apiurl, ['source', target_prj, target_pkg], query=query)
-        root = ET.parse(http_POST(u)).getroot()
-        if root:
-            # check if it has diff element
-            diffs = root.findall('files/file/diff')
-            if diffs:
-                return True
-        return False
+    def src_rpm_only(self, project, package, repo, arch):
+        root = ET.parse(http_GET(makeurl(self.apiurl, ['build', project, repo, arch, package]))).getroot()
+        rpms = [i.get('filename') for i in root.findall('binary')]
+        result = True
 
-    def origin_metadata_get(self, project, package):
-        meta = ET.fromstringlist(osc.core.show_package_meta(self.apiurl, project, package))
-        if meta is not None:
-            return meta.get('project'), meta.get('name')
+        if len(rpms) > 0:
+            for r in rpms:
+                if not r.endswith('.rpm') or r.startswith('::'):
+                    continue
+                else:
+                    if not (r.endswith('.src.rpm') or '-doc' in r or '-lang' in r or r.startswith('python2')):
+                        result = False
+        else:
+            result = False
 
-        return None, None
+        return result
 
-    def parse_package_link(self, project, package, reverse=False):
-        query = {'withlinked': 1}
-        u = makeurl(self.apiurl, ['source', project, package], query=query)
-        root = ET.parse(http_GET(u)).getroot()
-        links = root.findall('linkinfo/linked')
-        linkinfo = None
-        if reverse and links:
-            return True
-        if not links:
-            return False
+    def _wipe_package(self, project, package, repository):
+        url = makeurl(self.apiurl, ['build', project], {'cmd': 'wipe', 'package': package, 'repository': repository})
+        try:
+            http_POST(url)
+        except HTTPError as e:
+            print(e.read())
+            raise e
 
-        for linked in links:
-            linkinfo = linked.get('package')
-            if linked.get('project') == project and linked.get('package').startswith("%s." % package):
-                return linkinfo
-            else:
-                return None
-        return False
+    def do_wipe_package(self, project, package, repository=None):
+        self._wipe_package(project, package, repository)
+
+        url = makeurl(self.apiurl, ['source', project, package], { 'view': 'getmultibuild' })
+        f = http_GET(url)
+        root = ET.parse(f).getroot()
+        for entry in root.findall('entry'):
+            self._wipe_package(project, package + ":" + entry.get('name'), repository)
+
+    def switch_flag_in_pkg(self, project, package, flag='build', state='disable', repository=None, arch=None):
+        query = { 'cmd': 'set_flag', 'flag': flag, 'status': state }
+        if repository:
+            query['repository'] = repository
+        if arch:
+            query['arch'] = arch
+        url = makeurl(self.apiurl, ['source', project, package], query)
+        http_POST(url)
 
     def crawl(self):
         """Main method"""
@@ -107,21 +109,18 @@ class FindSLE(object):
         sle_pkglist = self.get_source_packages(SLE, True)
         # get souce packages from backports
         bp_pkglist = self.get_source_packages(BACKPORTS)
-        weird_pkglist = []
-        new_pkglist = []
 
         for pkg in bp_pkglist:
-            if pkg.startswith('patchinfo'):
+            if pkg.startswith('patchinfo') or pkg.startswith('preinstallimage') or pkg.startswith('elixir') or \
+                    pkg.startswith('python2'):
                 continue
             if pkg in sle_pkglist:
-                if self.has_diff(SLE, pkg, BACKPORTS, pkg):
-                    orig_prj, orig_pkg = self.origin_metadata_get(SLE, pkg)
-                    if orig_prj != SLE:
-                        src_pkg = self.parse_package_link(orig_prj, orig_pkg)
-                        if src_pkg:
-                            print("osc copypac -m 'updated package in SLE' %s %s %s %s" % (orig_prj, src_pkg, BACKPORTS, pkg))
-                    else:
-                        print("osc copypac -m 'updated package in SLE' %s %s %s %s" % (SLE, pkg, BACKPORTS, pkg))
+                if self.src_rpm_only(BACKPORTS, pkg, 'standard', 'x86_64') and \
+                        self.src_rpm_only(BACKPORTS, pkg, 'standard', 'aarch64'):
+                    if self.wipe:
+                        self.switch_flag_in_pkg(BACKPORTS, pkg, flag='build', state='disable', repository='standard')
+                        self.do_wipe_package(BACKPORTS, pkg, repository='standard')
+                    print("Package exists in SLE and src_rpm only %s %s" % (BACKPORTS, pkg))
 
 
 def main(args):
@@ -129,7 +128,7 @@ def main(args):
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = FindSLE(args.project, args.verbose)
+    uc = FindBP(args.project, args.verbose, args.wipe)
     uc.crawl()
 
 if __name__ == '__main__':
@@ -143,6 +142,8 @@ if __name__ == '__main__':
                         default=OPENSUSE)
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='show the diff')
+    parser.add_argument('-f', '--wipe', action='store_true',
+                        help='disable package and wipe binaries')
 
     args = parser.parse_args()
 
