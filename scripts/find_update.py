@@ -118,7 +118,7 @@ class FindUpdate(object):
                     if pending_request:
                         logging.debug("There is a request to %s / %s already or it has been declined/revoked, skip!" % (BACKPORTS, pkg))
                     else:
-                        print("osc sr -m 'updated package in openSUSE:Leap:15.2:Update' %s %s %s %s" % (OPENSUSE_UPDATE, target_pkg, OPENSUSE, pkg))
+                        print("osc sr -m 'updated package in openSUSE:Leap:15.2:Update' %s %s %s %s" % (OPENSUSE_UPDATE, target_pkg, BACKPORTS, pkg))
                 else:
                     weird_pkglist.append(pkg)
             else:
