@@ -134,7 +134,7 @@ class FindBP(object):
                         for r in binarylist:
                             print(r)
         # dump drop_list
-        print('Package need to drop or being disabled in Backports')
+        print("\n-----\nPackage need to drop or being disabled in Backports\n-----\n")
         for d in drop_list:
             print(d)
 

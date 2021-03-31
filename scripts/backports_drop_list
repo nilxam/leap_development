@@ -1,0 +1,2477 @@
+=== baobab/ppc64le ===
+baobab
+baobab-lang
+=== baobab/s390x ===
+baobab
+baobab-lang
+=== baobab/aarch64 ===
+baobab
+baobab-lang
+=== bogofilter/ppc64le ===
+bogofilter-common
+bogofilter-db
+bogofilter-doc
+bogofilter-kyotocabinet
+bogofilter-sqlite3
+=== bogofilter/s390x ===
+bogofilter-common
+bogofilter-db
+bogofilter-doc
+bogofilter-kyotocabinet
+bogofilter-sqlite3
+=== bogofilter/aarch64 ===
+bogofilter-common
+bogofilter-db
+bogofilter-doc
+bogofilter-kyotocabinet
+bogofilter-sqlite3
+=== color-filesystem/ppc64le ===
+color-filesystem
+=== color-filesystem/s390x ===
+color-filesystem
+=== color-filesystem/aarch64 ===
+color-filesystem
+=== deja-dup/ppc64le ===
+deja-dup
+deja-dup-lang
+nautilus-deja-dup
+=== deja-dup/s390x ===
+deja-dup
+deja-dup-lang
+nautilus-deja-dup
+=== deja-dup/aarch64 ===
+deja-dup
+deja-dup-lang
+nautilus-deja-dup
+=== dia/ppc64le ===
+dia
+dia-lang
+=== dia/s390x ===
+dia
+dia-lang
+=== dia/aarch64 ===
+dia
+dia-lang
+=== duplicity/ppc64le ===
+duplicity
+duplicity-lang
+=== duplicity/s390x ===
+duplicity
+duplicity-lang
+=== duplicity/aarch64 ===
+duplicity
+duplicity-lang
+=== eiciel/ppc64le ===
+eiciel
+eiciel-lang
+nautilus-eiciel
+=== eiciel/s390x ===
+eiciel
+eiciel-lang
+nautilus-eiciel
+=== eiciel/aarch64 ===
+eiciel
+eiciel-lang
+nautilus-eiciel
+=== evolution/ppc64le ===
+evolution
+evolution-devel
+evolution-lang
+evolution-plugin-bogofilter
+evolution-plugin-pst-import
+evolution-plugin-spamassassin
+evolution-plugin-text-highlight
+glade-catalog-evolution
+=== evolution/s390x ===
+evolution
+evolution-devel
+evolution-lang
+evolution-plugin-bogofilter
+evolution-plugin-pst-import
+evolution-plugin-spamassassin
+evolution-plugin-text-highlight
+glade-catalog-evolution
+=== evolution/aarch64 ===
+evolution
+evolution-devel
+evolution-lang
+evolution-plugin-bogofilter
+evolution-plugin-pst-import
+evolution-plugin-spamassassin
+evolution-plugin-text-highlight
+glade-catalog-evolution
+=== evolution-data-server/ppc64le ===
+evolution-data-server
+evolution-data-server-devel
+evolution-data-server-lang
+libcamel-1_2-62
+libebackend-1_2-10
+libebook-1_2-20
+libebook-contacts-1_2-3
+libecal-2_0-1
+libedata-book-1_2-26
+libedata-cal-2_0-1
+libedataserver-1_2-24
+libedataserverui-1_2-2
+typelib-1_0-Camel-1_2
+typelib-1_0-EBackend-1_2
+typelib-1_0-EBook-1_2
+typelib-1_0-EBookContacts-1_2
+typelib-1_0-ECal-2_0
+typelib-1_0-EDataBook-1_2
+typelib-1_0-EDataCal-2_0
+typelib-1_0-EDataServer-1_2
+typelib-1_0-EDataServerUI-1_2
+=== evolution-data-server/s390x ===
+evolution-data-server
+evolution-data-server-devel
+evolution-data-server-lang
+libcamel-1_2-62
+libebackend-1_2-10
+libebook-1_2-20
+libebook-contacts-1_2-3
+libecal-2_0-1
+libedata-book-1_2-26
+libedata-cal-2_0-1
+libedataserver-1_2-24
+libedataserverui-1_2-2
+typelib-1_0-Camel-1_2
+typelib-1_0-EBackend-1_2
+typelib-1_0-EBook-1_2
+typelib-1_0-EBookContacts-1_2
+typelib-1_0-ECal-2_0
+typelib-1_0-EDataBook-1_2
+typelib-1_0-EDataCal-2_0
+typelib-1_0-EDataServer-1_2
+typelib-1_0-EDataServerUI-1_2
+=== evolution-data-server/aarch64 ===
+evolution-data-server
+evolution-data-server-64bit
+evolution-data-server-devel
+evolution-data-server-lang
+libcamel-1_2-62
+libcamel-1_2-62-64bit
+libebackend-1_2-10
+libebackend-1_2-10-64bit
+libebook-1_2-20
+libebook-1_2-20-64bit
+libebook-contacts-1_2-3
+libebook-contacts-1_2-3-64bit
+libecal-2_0-1
+libecal-2_0-1-64bit
+libedata-book-1_2-26
+libedata-book-1_2-26-64bit
+libedata-cal-2_0-1
+libedata-cal-2_0-1-64bit
+libedataserver-1_2-24
+libedataserver-1_2-24-64bit
+libedataserverui-1_2-2
+libedataserverui-1_2-2-64bit
+typelib-1_0-Camel-1_2
+typelib-1_0-EBackend-1_2
+typelib-1_0-EBook-1_2
+typelib-1_0-EBookContacts-1_2
+typelib-1_0-ECal-2_0
+typelib-1_0-EDataBook-1_2
+typelib-1_0-EDataCal-2_0
+typelib-1_0-EDataServer-1_2
+typelib-1_0-EDataServerUI-1_2
+=== evolution-ews/ppc64le ===
+evolution-ews
+evolution-ews-lang
+=== evolution-ews/s390x ===
+evolution-ews
+evolution-ews-lang
+=== evolution-ews/aarch64 ===
+evolution-ews
+evolution-ews-lang
+=== farstream/ppc64le ===
+farstream-data
+farstream-devel
+gstreamer-plugins-farstream
+libfarstream-0_2-5
+typelib-1_0-Farstream-0_2
+=== farstream/s390x ===
+farstream-data
+farstream-devel
+gstreamer-plugins-farstream
+libfarstream-0_2-5
+typelib-1_0-Farstream-0_2
+=== farstream/aarch64 ===
+farstream-data
+farstream-devel
+gstreamer-plugins-farstream
+gstreamer-plugins-farstream-64bit
+libfarstream-0_2-5
+libfarstream-0_2-5-64bit
+typelib-1_0-Farstream-0_2
+=== flute/ppc64le ===
+flute
+flute-javadoc
+=== flute/s390x ===
+flute
+flute-javadoc
+=== flute/aarch64 ===
+flute
+flute-javadoc
+=== folks/ppc64le ===
+folks-devel
+folks-lang
+folks-tools
+libfolks-data
+libfolks-eds25
+libfolks-telepathy25
+libfolks-tracker25
+libfolks25
+typelib-1_0-Folks-0_6
+typelib-1_0-FolksEds-0_6
+typelib-1_0-FolksTelepathy-0_6
+typelib-1_0-FolksTracker-0_6
+=== folks/s390x ===
+folks-devel
+folks-lang
+folks-tools
+libfolks-data
+libfolks-eds25
+libfolks-telepathy25
+libfolks-tracker25
+libfolks25
+typelib-1_0-Folks-0_6
+typelib-1_0-FolksEds-0_6
+typelib-1_0-FolksTelepathy-0_6
+typelib-1_0-FolksTracker-0_6
+=== folks/aarch64 ===
+folks-devel
+folks-lang
+folks-tools
+libfolks-data
+libfolks-eds25
+libfolks-telepathy25
+libfolks-tracker25
+libfolks25
+typelib-1_0-Folks-0_6
+typelib-1_0-FolksEds-0_6
+typelib-1_0-FolksTelepathy-0_6
+typelib-1_0-FolksTracker-0_6
+=== ganglia-web/ppc64le ===
+ganglia-web
+=== ganglia-web/s390x ===
+ganglia-web
+=== gdl/ppc64le ===
+gdl-devel
+gdl-lang
+libgdl-3-5
+typelib-1_0-Gdl-3
+=== gdl/s390x ===
+gdl-devel
+gdl-lang
+libgdl-3-5
+typelib-1_0-Gdl-3
+=== gdl/aarch64 ===
+gdl-devel
+gdl-lang
+libgdl-3-5
+typelib-1_0-Gdl-3
+=== gegl/ppc64le ===
+gegl
+gegl-0_4
+gegl-0_4-lang
+gegl-devel
+gegl-doc
+libgegl-0_4-0
+typelib-1_0-Gegl-0_4
+=== gegl/s390x ===
+gegl
+gegl-0_4
+gegl-0_4-lang
+gegl-devel
+gegl-doc
+libgegl-0_4-0
+typelib-1_0-Gegl-0_4
+=== gegl/aarch64 ===
+gegl
+gegl-0_4
+gegl-0_4-lang
+gegl-devel
+gegl-doc
+libgegl-0_4-0
+libgegl-0_4-0-64bit
+typelib-1_0-Gegl-0_4
+=== ghex/ppc64le ===
+ghex
+ghex-devel
+ghex-lang
+libgtkhex-3-0
+=== ghex/s390x ===
+ghex
+ghex-devel
+ghex-lang
+libgtkhex-3-0
+=== ghex/aarch64 ===
+ghex
+ghex-devel
+ghex-lang
+libgtkhex-3-0
+=== gimp/ppc64le ===
+gimp
+gimp-devel
+gimp-lang
+gimp-plugin-aa
+libgimp-2_0-0
+libgimpui-2_0-0
+=== gimp/s390x ===
+gimp
+gimp-devel
+gimp-lang
+gimp-plugin-aa
+libgimp-2_0-0
+libgimpui-2_0-0
+=== gimp/aarch64 ===
+gimp
+gimp-devel
+gimp-lang
+gimp-plugin-aa
+libgimp-2_0-0
+libgimp-2_0-0-64bit
+libgimpui-2_0-0
+libgimpui-2_0-0-64bit
+=== gnome-backgrounds/ppc64le ===
+gnome-backgrounds
+gnome-backgrounds-lang
+=== gnome-backgrounds/s390x ===
+gnome-backgrounds
+gnome-backgrounds-lang
+=== gnome-backgrounds/aarch64 ===
+gnome-backgrounds
+gnome-backgrounds-lang
+=== gnome-clocks/ppc64le ===
+gnome-clocks
+gnome-clocks-lang
+gnome-shell-search-provider-gnome-clocks
+=== gnome-clocks/s390x ===
+gnome-clocks
+gnome-clocks-lang
+gnome-shell-search-provider-gnome-clocks
+=== gnome-clocks/aarch64 ===
+gnome-clocks
+gnome-clocks-lang
+gnome-shell-search-provider-gnome-clocks
+=== gnome-contacts/ppc64le ===
+gnome-contacts
+gnome-contacts-lang
+gnome-shell-search-provider-contacts
+=== gnome-contacts/s390x ===
+gnome-contacts
+gnome-contacts-lang
+gnome-shell-search-provider-contacts
+=== gnome-contacts/aarch64 ===
+gnome-contacts
+gnome-contacts-lang
+gnome-shell-search-provider-contacts
+=== gnome-documents/ppc64le ===
+gnome-documents
+gnome-documents-lang
+gnome-shell-search-provider-documents
+=== gnome-documents/s390x ===
+gnome-documents
+gnome-documents-lang
+gnome-shell-search-provider-documents
+=== gnome-documents/aarch64 ===
+gnome-documents
+gnome-documents-lang
+gnome-shell-search-provider-documents
+=== gnome-music/ppc64le ===
+gnome-music
+gnome-music-lang
+=== gnome-music/s390x ===
+gnome-music
+gnome-music-lang
+=== gnome-music/aarch64 ===
+gnome-music
+gnome-music-lang
+=== gnome-photos/ppc64le ===
+gnome-photos
+gnome-photos-lang
+gnome-shell-search-provider-gnome-photos
+=== gnome-photos/s390x ===
+gnome-photos
+gnome-photos-lang
+gnome-shell-search-provider-gnome-photos
+=== gnome-photos/aarch64 ===
+gnome-photos
+gnome-photos-lang
+gnome-shell-search-provider-gnome-photos
+=== gnome-video-effects/ppc64le ===
+gnome-video-effects
+gnome-video-effects-devel
+=== gnome-video-effects/s390x ===
+gnome-video-effects
+gnome-video-effects-devel
+=== gnome-video-effects/aarch64 ===
+gnome-video-effects
+gnome-video-effects-devel
+=== gnome-weather/ppc64le ===
+gnome-shell-search-provider-gnome-weather
+gnome-weather
+gnome-weather-lang
+=== gnome-weather/s390x ===
+gnome-shell-search-provider-gnome-weather
+gnome-weather
+gnome-weather-lang
+=== gnome-weather/aarch64 ===
+gnome-shell-search-provider-gnome-weather
+gnome-weather
+gnome-weather-lang
+=== grilo-plugins/ppc64le ===
+grilo-plugin-dleyna
+grilo-plugin-tracker
+grilo-plugin-youtube
+grilo-plugins
+grilo-plugins-devel
+grilo-plugins-lang
+=== grilo-plugins/s390x ===
+grilo-plugin-dleyna
+grilo-plugin-tracker
+grilo-plugin-youtube
+grilo-plugins
+grilo-plugins-devel
+grilo-plugins-lang
+=== grilo-plugins/aarch64 ===
+grilo-plugin-dleyna
+grilo-plugin-tracker
+grilo-plugin-youtube
+grilo-plugins
+grilo-plugins-devel
+grilo-plugins-lang
+=== gtkspell/ppc64le ===
+gtkspell-devel
+gtkspell-doc
+gtkspell-lang
+libgtkspell0
+=== gtkspell/s390x ===
+gtkspell-devel
+gtkspell-doc
+gtkspell-lang
+libgtkspell0
+=== gtkspell/aarch64 ===
+gtkspell-devel
+gtkspell-doc
+gtkspell-lang
+libgtkspell0
+=== hexchat/ppc64le ===
+hexchat
+hexchat-devel
+hexchat-lang
+hexchat-plugins-lua
+hexchat-plugins-perl
+hexchat-plugins-python3
+=== hexchat/s390x ===
+hexchat
+hexchat-devel
+hexchat-lang
+hexchat-plugins-lua
+hexchat-plugins-perl
+hexchat-plugins-python3
+=== hexchat/aarch64 ===
+hexchat
+hexchat-devel
+hexchat-lang
+hexchat-plugins-lua
+hexchat-plugins-perl
+hexchat-plugins-python3
+=== highlight/ppc64le ===
+highlight
+highlight-gui
+highlight-gui-lang
+=== highlight/s390x ===
+highlight
+highlight-gui
+highlight-gui-lang
+=== highlight/aarch64 ===
+highlight
+highlight-gui
+highlight-gui-lang
+=== icedtea-web/ppc64le ===
+icedtea-web
+icedtea-web-javadoc
+=== icedtea-web/s390x ===
+icedtea-web
+icedtea-web-javadoc
+=== icedtea-web/aarch64 ===
+icedtea-web
+icedtea-web-javadoc
+=== inkscape/ppc64le ===
+inkscape
+inkscape-extensions-extra
+inkscape-extensions-fig
+inkscape-extensions-gimp
+inkscape-extensions-scribus
+inkscape-lang
+=== inkscape/s390x ===
+inkscape
+inkscape-extensions-extra
+inkscape-extensions-fig
+inkscape-extensions-gimp
+inkscape-extensions-scribus
+inkscape-lang
+=== inkscape/aarch64 ===
+inkscape
+inkscape-extensions-extra
+inkscape-extensions-fig
+inkscape-extensions-gimp
+inkscape-extensions-scribus
+inkscape-lang
+=== libabw/ppc64le ===
+libabw-0_1-1
+libabw-devel
+libabw-devel-doc
+libabw-tools
+=== libabw/s390x ===
+libabw-0_1-1
+libabw-devel
+libabw-devel-doc
+libabw-tools
+=== libabw/aarch64 ===
+libabw-0_1-1
+libabw-devel
+libabw-devel-doc
+libabw-tools
+=== libbase/ppc64le ===
+libbase
+libbase-javadoc
+=== libbase/s390x ===
+libbase
+libbase-javadoc
+=== libbase/aarch64 ===
+libbase
+libbase-javadoc
+=== libcdr/ppc64le ===
+libcdr-0_1-1
+libcdr-devel
+libcdr-devel-doc
+libcdr-tools
+=== libcdr/s390x ===
+libcdr-0_1-1
+libcdr-devel
+libcdr-devel-doc
+libcdr-tools
+=== libcdr/aarch64 ===
+libcdr-0_1-1
+libcdr-devel
+libcdr-devel-doc
+libcdr-tools
+=== libconfuse0/ppc64le ===
+libconfuse-devel
+libconfuse0
+libconfuse0-lang
+=== libconfuse0/s390x ===
+libconfuse-devel
+libconfuse0
+libconfuse0-lang
+=== libe-book/ppc64le ===
+libe-book-0_1-1
+libe-book-devel
+libe-book-devel-doc
+libe-book-tools
+=== libe-book/s390x ===
+libe-book-0_1-1
+libe-book-devel
+libe-book-devel-doc
+libe-book-tools
+=== libe-book/aarch64 ===
+libe-book-0_1-1
+libe-book-devel
+libe-book-devel-doc
+libe-book-tools
+=== libepc/ppc64le ===
+libepc-1_0-2
+libepc-devel
+libepc-lang
+=== libepc/s390x ===
+libepc-1_0-2
+libepc-devel
+libepc-lang
+=== libepc/aarch64 ===
+libepc-1_0-2
+libepc-devel
+libepc-lang
+=== libepubgen/ppc64le ===
+libepubgen-0_1-1
+libepubgen-devel
+libepubgen-devel-doc
+=== libepubgen/s390x ===
+libepubgen-0_1-1
+libepubgen-devel
+libepubgen-devel-doc
+=== libepubgen/aarch64 ===
+libepubgen-0_1-1
+libepubgen-devel
+libepubgen-devel-doc
+=== libetonyek/ppc64le ===
+libetonyek-0_1-1
+libetonyek-devel
+libetonyek-devel-doc
+libetonyek-tools
+=== libetonyek/s390x ===
+libetonyek-0_1-1
+libetonyek-devel
+libetonyek-devel-doc
+libetonyek-tools
+=== libetonyek/aarch64 ===
+libetonyek-0_1-1
+libetonyek-devel
+libetonyek-devel-doc
+libetonyek-tools
+=== libfonts/ppc64le ===
+libfonts
+libfonts-javadoc
+=== libfonts/s390x ===
+libfonts
+libfonts-javadoc
+=== libfonts/aarch64 ===
+libfonts
+libfonts-javadoc
+=== libformula/ppc64le ===
+libformula
+libformula-javadoc
+=== libformula/s390x ===
+libformula
+libformula-javadoc
+=== libformula/aarch64 ===
+libformula
+libformula-javadoc
+=== libfreehand/ppc64le ===
+libfreehand-0_1-1
+libfreehand-devel
+libfreehand-devel-doc
+libfreehand-tools
+=== libfreehand/s390x ===
+libfreehand-0_1-1
+libfreehand-devel
+libfreehand-devel-doc
+libfreehand-tools
+=== libfreehand/aarch64 ===
+libfreehand-0_1-1
+libfreehand-devel
+libfreehand-devel-doc
+libfreehand-tools
+=== liblangtag/ppc64le ===
+liblangtag-devel
+liblangtag-doc
+liblangtag1
+=== liblangtag/s390x ===
+liblangtag-devel
+liblangtag-doc
+liblangtag1
+=== liblangtag/aarch64 ===
+liblangtag-devel
+liblangtag-doc
+liblangtag1
+=== liblayout/ppc64le ===
+liblayout
+liblayout-javadoc
+=== liblayout/s390x ===
+liblayout
+liblayout-javadoc
+=== liblayout/aarch64 ===
+liblayout
+liblayout-javadoc
+=== libloader/ppc64le ===
+libloader
+libloader-javadoc
+=== libloader/s390x ===
+libloader
+libloader-javadoc
+=== libloader/aarch64 ===
+libloader
+libloader-javadoc
+=== libmspub/ppc64le ===
+libmspub-0_1-1
+libmspub-devel
+libmspub-devel-doc
+libmspub-tools
+=== libmspub/s390x ===
+libmspub-0_1-1
+libmspub-devel
+libmspub-devel-doc
+libmspub-tools
+=== libmspub/aarch64 ===
+libmspub-0_1-1
+libmspub-devel
+libmspub-devel-doc
+libmspub-tools
+=== libmwaw/ppc64le ===
+libmwaw-0_3-3
+libmwaw-devel
+libmwaw-devel-doc
+libmwaw-tools
+=== libmwaw/s390x ===
+libmwaw-0_3-3
+libmwaw-devel
+libmwaw-devel-doc
+libmwaw-tools
+=== libmwaw/aarch64 ===
+libmwaw-0_3-3
+libmwaw-devel
+libmwaw-devel-doc
+libmwaw-tools
+=== libmypaint/ppc64le ===
+libmypaint-1_5-1
+libmypaint-devel
+libmypaint-gegl-devel
+libmypaint-gegl0
+libmypaint-lang
+typelib-1_0-MyPaint-1_5
+typelib-1_0-MyPaintGegl-1_5
+=== libmypaint/s390x ===
+libmypaint-1_5-1
+libmypaint-devel
+libmypaint-gegl-devel
+libmypaint-gegl0
+libmypaint-lang
+typelib-1_0-MyPaint-1_5
+typelib-1_0-MyPaintGegl-1_5
+=== libmypaint/aarch64 ===
+libmypaint-1_5-1
+libmypaint-devel
+libmypaint-gegl-devel
+libmypaint-gegl0
+libmypaint-lang
+typelib-1_0-MyPaint-1_5
+typelib-1_0-MyPaintGegl-1_5
+=== libodfgen/ppc64le ===
+libodfgen-0_1-1
+libodfgen-devel
+libodfgen-devel-doc
+=== libodfgen/s390x ===
+libodfgen-0_1-1
+libodfgen-devel
+libodfgen-devel-doc
+=== libodfgen/aarch64 ===
+libodfgen-0_1-1
+libodfgen-devel
+libodfgen-devel-doc
+=== libpagemaker/ppc64le ===
+libpagemaker-0_0-0
+libpagemaker-devel
+libpagemaker-devel-doc
+libpagemaker-tools
+=== libpagemaker/s390x ===
+libpagemaker-0_0-0
+libpagemaker-devel
+libpagemaker-devel-doc
+libpagemaker-tools
+=== libpagemaker/aarch64 ===
+libpagemaker-0_0-0
+libpagemaker-devel
+libpagemaker-devel-doc
+libpagemaker-tools
+=== libqxp/ppc64le ===
+libqxp-0_0-0
+libqxp-devel
+libqxp-doc
+libqxp-tools
+=== libqxp/s390x ===
+libqxp-0_0-0
+libqxp-devel
+libqxp-doc
+libqxp-tools
+=== libqxp/aarch64 ===
+libqxp-0_0-0
+libqxp-devel
+libqxp-doc
+libqxp-tools
+=== libreoffice/ppc64le ===
+libreoffice
+libreoffice-base
+libreoffice-base-drivers-postgresql
+libreoffice-branding-upstream
+libreoffice-calc
+libreoffice-calc-extensions
+libreoffice-draw
+libreoffice-filters-optional
+libreoffice-gdb-pretty-printers
+libreoffice-glade
+libreoffice-gnome
+libreoffice-gtk3
+libreoffice-icon-themes
+libreoffice-impress
+libreoffice-l10n-af
+libreoffice-l10n-am
+libreoffice-l10n-ar
+libreoffice-l10n-as
+libreoffice-l10n-ast
+libreoffice-l10n-be
+libreoffice-l10n-bg
+libreoffice-l10n-bn
+libreoffice-l10n-bn_IN
+libreoffice-l10n-bo
+libreoffice-l10n-br
+libreoffice-l10n-brx
+libreoffice-l10n-bs
+libreoffice-l10n-ca
+libreoffice-l10n-ca_valencia
+libreoffice-l10n-ckb
+libreoffice-l10n-cs
+libreoffice-l10n-cy
+libreoffice-l10n-da
+libreoffice-l10n-de
+libreoffice-l10n-dgo
+libreoffice-l10n-dsb
+libreoffice-l10n-dz
+libreoffice-l10n-el
+libreoffice-l10n-en
+libreoffice-l10n-en_GB
+libreoffice-l10n-en_ZA
+libreoffice-l10n-eo
+libreoffice-l10n-es
+libreoffice-l10n-et
+libreoffice-l10n-eu
+libreoffice-l10n-fa
+libreoffice-l10n-fi
+libreoffice-l10n-fr
+libreoffice-l10n-fur
+libreoffice-l10n-fy
+libreoffice-l10n-ga
+libreoffice-l10n-gd
+libreoffice-l10n-gl
+libreoffice-l10n-gu
+libreoffice-l10n-gug
+libreoffice-l10n-he
+libreoffice-l10n-hi
+libreoffice-l10n-hr
+libreoffice-l10n-hsb
+libreoffice-l10n-hu
+libreoffice-l10n-id
+libreoffice-l10n-is
+libreoffice-l10n-it
+libreoffice-l10n-ja
+libreoffice-l10n-ka
+libreoffice-l10n-kab
+libreoffice-l10n-kk
+libreoffice-l10n-km
+libreoffice-l10n-kmr_Latn
+libreoffice-l10n-kn
+libreoffice-l10n-ko
+libreoffice-l10n-kok
+libreoffice-l10n-ks
+libreoffice-l10n-lb
+libreoffice-l10n-lo
+libreoffice-l10n-lt
+libreoffice-l10n-lv
+libreoffice-l10n-mai
+libreoffice-l10n-mk
+libreoffice-l10n-ml
+libreoffice-l10n-mn
+libreoffice-l10n-mni
+libreoffice-l10n-mr
+libreoffice-l10n-my
+libreoffice-l10n-nb
+libreoffice-l10n-ne
+libreoffice-l10n-nl
+libreoffice-l10n-nn
+libreoffice-l10n-nr
+libreoffice-l10n-nso
+libreoffice-l10n-oc
+libreoffice-l10n-om
+libreoffice-l10n-or
+libreoffice-l10n-pa
+libreoffice-l10n-pl
+libreoffice-l10n-pt_BR
+libreoffice-l10n-pt_PT
+libreoffice-l10n-ro
+libreoffice-l10n-ru
+libreoffice-l10n-rw
+libreoffice-l10n-sa_IN
+libreoffice-l10n-sat
+libreoffice-l10n-sd
+libreoffice-l10n-si
+libreoffice-l10n-sid
+libreoffice-l10n-sk
+libreoffice-l10n-sl
+libreoffice-l10n-sq
+libreoffice-l10n-sr
+libreoffice-l10n-ss
+libreoffice-l10n-st
+libreoffice-l10n-sv
+libreoffice-l10n-sw_TZ
+libreoffice-l10n-szl
+libreoffice-l10n-ta
+libreoffice-l10n-te
+libreoffice-l10n-tg
+libreoffice-l10n-th
+libreoffice-l10n-tn
+libreoffice-l10n-tr
+libreoffice-l10n-ts
+libreoffice-l10n-tt
+libreoffice-l10n-ug
+libreoffice-l10n-uk
+libreoffice-l10n-uz
+libreoffice-l10n-ve
+libreoffice-l10n-vec
+libreoffice-l10n-vi
+libreoffice-l10n-xh
+libreoffice-l10n-zh_CN
+libreoffice-l10n-zh_TW
+libreoffice-l10n-zu
+libreoffice-librelogo
+libreoffice-mailmerge
+libreoffice-math
+libreoffice-officebean
+libreoffice-pyuno
+libreoffice-qt5
+libreoffice-sdk
+libreoffice-sdk-doc
+libreoffice-writer
+libreoffice-writer-extensions
+libreofficekit
+libreofficekit-devel
+=== libreoffice/aarch64 ===
+libreoffice
+libreoffice-base
+libreoffice-base-drivers-postgresql
+libreoffice-branding-upstream
+libreoffice-calc
+libreoffice-calc-extensions
+libreoffice-draw
+libreoffice-filters-optional
+libreoffice-gdb-pretty-printers
+libreoffice-glade
+libreoffice-gnome
+libreoffice-gtk3
+libreoffice-icon-themes
+libreoffice-impress
+libreoffice-l10n-af
+libreoffice-l10n-am
+libreoffice-l10n-ar
+libreoffice-l10n-as
+libreoffice-l10n-ast
+libreoffice-l10n-be
+libreoffice-l10n-bg
+libreoffice-l10n-bn
+libreoffice-l10n-bn_IN
+libreoffice-l10n-bo
+libreoffice-l10n-br
+libreoffice-l10n-brx
+libreoffice-l10n-bs
+libreoffice-l10n-ca
+libreoffice-l10n-ca_valencia
+libreoffice-l10n-ckb
+libreoffice-l10n-cs
+libreoffice-l10n-cy
+libreoffice-l10n-da
+libreoffice-l10n-de
+libreoffice-l10n-dgo
+libreoffice-l10n-dsb
+libreoffice-l10n-dz
+libreoffice-l10n-el
+libreoffice-l10n-en
+libreoffice-l10n-en_GB
+libreoffice-l10n-en_ZA
+libreoffice-l10n-eo
+libreoffice-l10n-es
+libreoffice-l10n-et
+libreoffice-l10n-eu
+libreoffice-l10n-fa
+libreoffice-l10n-fi
+libreoffice-l10n-fr
+libreoffice-l10n-fur
+libreoffice-l10n-fy
+libreoffice-l10n-ga
+libreoffice-l10n-gd
+libreoffice-l10n-gl
+libreoffice-l10n-gu
+libreoffice-l10n-gug
+libreoffice-l10n-he
+libreoffice-l10n-hi
+libreoffice-l10n-hr
+libreoffice-l10n-hsb
+libreoffice-l10n-hu
+libreoffice-l10n-id
+libreoffice-l10n-is
+libreoffice-l10n-it
+libreoffice-l10n-ja
+libreoffice-l10n-ka
+libreoffice-l10n-kab
+libreoffice-l10n-kk
+libreoffice-l10n-km
+libreoffice-l10n-kmr_Latn
+libreoffice-l10n-kn
+libreoffice-l10n-ko
+libreoffice-l10n-kok
+libreoffice-l10n-ks
+libreoffice-l10n-lb
+libreoffice-l10n-lo
+libreoffice-l10n-lt
+libreoffice-l10n-lv
+libreoffice-l10n-mai
+libreoffice-l10n-mk
+libreoffice-l10n-ml
+libreoffice-l10n-mn
+libreoffice-l10n-mni
+libreoffice-l10n-mr
+libreoffice-l10n-my
+libreoffice-l10n-nb
+libreoffice-l10n-ne
+libreoffice-l10n-nl
+libreoffice-l10n-nn
+libreoffice-l10n-nr
+libreoffice-l10n-nso
+libreoffice-l10n-oc
+libreoffice-l10n-om
+libreoffice-l10n-or
+libreoffice-l10n-pa
+libreoffice-l10n-pl
+libreoffice-l10n-pt_BR
+libreoffice-l10n-pt_PT
+libreoffice-l10n-ro
+libreoffice-l10n-ru
+libreoffice-l10n-rw
+libreoffice-l10n-sa_IN
+libreoffice-l10n-sat
+libreoffice-l10n-sd
+libreoffice-l10n-si
+libreoffice-l10n-sid
+libreoffice-l10n-sk
+libreoffice-l10n-sl
+libreoffice-l10n-sq
+libreoffice-l10n-sr
+libreoffice-l10n-ss
+libreoffice-l10n-st
+libreoffice-l10n-sv
+libreoffice-l10n-sw_TZ
+libreoffice-l10n-szl
+libreoffice-l10n-ta
+libreoffice-l10n-te
+libreoffice-l10n-tg
+libreoffice-l10n-th
+libreoffice-l10n-tn
+libreoffice-l10n-tr
+libreoffice-l10n-ts
+libreoffice-l10n-tt
+libreoffice-l10n-ug
+libreoffice-l10n-uk
+libreoffice-l10n-uz
+libreoffice-l10n-ve
+libreoffice-l10n-vec
+libreoffice-l10n-vi
+libreoffice-l10n-xh
+libreoffice-l10n-zh_CN
+libreoffice-l10n-zh_TW
+libreoffice-l10n-zu
+libreoffice-librelogo
+libreoffice-mailmerge
+libreoffice-math
+libreoffice-officebean
+libreoffice-pyuno
+libreoffice-qt5
+libreoffice-sdk
+libreoffice-sdk-doc
+libreoffice-writer
+libreoffice-writer-extensions
+libreofficekit
+libreofficekit-devel
+=== libreoffice-share-linker/ppc64le ===
+libreoffice-share-linker
+=== libreoffice-share-linker/s390x ===
+libreoffice-share-linker
+=== libreoffice-share-linker/aarch64 ===
+libreoffice-share-linker
+=== librepository/ppc64le ===
+librepository
+librepository-javadoc
+=== librepository/s390x ===
+librepository
+librepository-javadoc
+=== librepository/aarch64 ===
+librepository
+librepository-javadoc
+=== librevenge/ppc64le ===
+librevenge-0_0-0
+librevenge-devel
+librevenge-doc
+librevenge-generators-0_0-0
+librevenge-stream-0_0-0
+=== librevenge/s390x ===
+librevenge-0_0-0
+librevenge-devel
+librevenge-doc
+librevenge-generators-0_0-0
+librevenge-stream-0_0-0
+=== librevenge/aarch64 ===
+librevenge-0_0-0
+librevenge-devel
+librevenge-doc
+librevenge-generators-0_0-0
+librevenge-stream-0_0-0
+=== libserializer/ppc64le ===
+libserializer
+libserializer-javadoc
+=== libserializer/s390x ===
+libserializer
+libserializer-javadoc
+=== libserializer/aarch64 ===
+libserializer
+libserializer-javadoc
+=== libstaroffice/ppc64le ===
+libstaroffice-0_0-0
+libstaroffice-devel
+libstaroffice-devel-doc
+libstaroffice-tools
+=== libstaroffice/s390x ===
+libstaroffice-0_0-0
+libstaroffice-devel
+libstaroffice-devel-doc
+libstaroffice-tools
+=== libstaroffice/aarch64 ===
+libstaroffice-0_0-0
+libstaroffice-devel
+libstaroffice-devel-doc
+libstaroffice-tools
+=== libvisio/ppc64le ===
+libvisio-0_1-1
+libvisio-devel
+libvisio-devel-doc
+libvisio-tools
+=== libvisio/s390x ===
+libvisio-0_1-1
+libvisio-devel
+libvisio-devel-doc
+libvisio-tools
+=== libvisio/aarch64 ===
+libvisio-0_1-1
+libvisio-devel
+libvisio-devel-doc
+libvisio-tools
+=== libvoikko/ppc64le ===
+libvoikko-devel
+libvoikko1
+python3-libvoikko
+voikkospell
+=== libvoikko/s390x ===
+libvoikko-devel
+libvoikko1
+python3-libvoikko
+voikkospell
+=== libvoikko/aarch64 ===
+libvoikko-devel
+libvoikko1
+libvoikko1-64bit
+python3-libvoikko
+voikkospell
+=== libwpd/ppc64le ===
+libwpd-0_10-10
+libwpd-devel
+libwpd-devel-doc
+libwpd-tools
+=== libwpd/s390x ===
+libwpd-0_10-10
+libwpd-devel
+libwpd-devel-doc
+libwpd-tools
+=== libwpd/aarch64 ===
+libwpd-0_10-10
+libwpd-devel
+libwpd-devel-doc
+libwpd-tools
+=== libwpg/ppc64le ===
+libwpg-0_3-3
+libwpg-devel
+libwpg-devel-doc
+libwpg-tools
+=== libwpg/s390x ===
+libwpg-0_3-3
+libwpg-devel
+libwpg-devel-doc
+libwpg-tools
+=== libwpg/aarch64 ===
+libwpg-0_3-3
+libwpg-devel
+libwpg-devel-doc
+libwpg-tools
+=== libzmf/ppc64le ===
+libzmf-0_0-0
+libzmf-devel
+libzmf-devel-doc
+libzmf-tools
+=== libzmf/s390x ===
+libzmf-0_0-0
+libzmf-devel
+libzmf-devel-doc
+libzmf-tools
+=== libzmf/aarch64 ===
+libzmf-0_0-0
+libzmf-devel
+libzmf-devel-doc
+libzmf-tools
+=== lirc/ppc64le ===
+libirrecord0
+liblirc0
+liblirc_client0
+liblirc_driver0
+lirc-config
+lirc-core
+lirc-devel
+lirc-disable-kernel-rc
+lirc-drv-ftdi
+lirc-drv-portaudio
+lirc-tools-gui
+=== lirc/s390x ===
+libirrecord0
+liblirc0
+liblirc_client0
+liblirc_driver0
+lirc-config
+lirc-core
+lirc-devel
+lirc-disable-kernel-rc
+lirc-drv-ftdi
+lirc-drv-portaudio
+lirc-tools-gui
+=== lirc/aarch64 ===
+libirrecord0
+liblirc0
+liblirc0-64bit
+liblirc_client0
+liblirc_client0-64bit
+liblirc_driver0
+liblirc_driver0-64bit
+lirc-config
+lirc-core
+lirc-devel
+lirc-disable-kernel-rc
+lirc-drv-ftdi
+lirc-drv-portaudio
+lirc-tools-gui
+=== lua-lmod:doc-pdf/ppc64le ===
+lua-lmod-doc
+=== lua-lmod:doc-pdf/s390x ===
+lua-lmod-doc
+=== malaga-suomi/ppc64le ===
+malaga-suomi
+=== malaga-suomi/s390x ===
+malaga-suomi
+=== malaga-suomi/aarch64 ===
+malaga-suomi
+=== NetworkManager-openconnect/ppc64le ===
+NetworkManager-openconnect
+NetworkManager-openconnect-gnome
+NetworkManager-openconnect-lang
+=== NetworkManager-openconnect/aarch64 ===
+NetworkManager-openconnect
+NetworkManager-openconnect-gnome
+NetworkManager-openconnect-lang
+=== NetworkManager-openvpn/ppc64le ===
+NetworkManager-openvpn
+NetworkManager-openvpn-gnome
+NetworkManager-openvpn-lang
+=== NetworkManager-openvpn/s390x ===
+NetworkManager-openvpn
+NetworkManager-openvpn-gnome
+NetworkManager-openvpn-lang
+=== NetworkManager-openvpn/aarch64 ===
+NetworkManager-openvpn
+NetworkManager-openvpn-gnome
+NetworkManager-openvpn-lang
+=== NetworkManager-pptp/ppc64le ===
+NetworkManager-pptp
+NetworkManager-pptp-gnome
+NetworkManager-pptp-lang
+=== NetworkManager-pptp/s390x ===
+NetworkManager-pptp
+NetworkManager-pptp-gnome
+NetworkManager-pptp-lang
+=== NetworkManager-pptp/aarch64 ===
+NetworkManager-pptp
+NetworkManager-pptp-gnome
+NetworkManager-pptp-lang
+=== NetworkManager-strongswan/ppc64le ===
+NetworkManager-strongswan
+NetworkManager-strongswan-gnome
+NetworkManager-strongswan-lang
+=== NetworkManager-strongswan/aarch64 ===
+NetworkManager-strongswan
+NetworkManager-strongswan-gnome
+NetworkManager-strongswan-lang
+=== opencl-headers/ppc64le ===
+opencl-headers
+=== opencl-headers/s390x ===
+opencl-headers
+=== opencl-headers/aarch64 ===
+opencl-headers
+=== openconnect/ppc64le ===
+openconnect
+openconnect-devel
+openconnect-doc
+openconnect-lang
+=== openconnect/s390x ===
+openconnect
+openconnect-devel
+openconnect-doc
+openconnect-lang
+=== openconnect/aarch64 ===
+openconnect
+openconnect-devel
+openconnect-doc
+openconnect-lang
+=== OpenPrintingPPDs/ppc64le ===
+OpenPrintingPPDs
+OpenPrintingPPDs-ghostscript
+OpenPrintingPPDs-hpijs
+OpenPrintingPPDs-postscript
+=== OpenPrintingPPDs/s390x ===
+OpenPrintingPPDs
+OpenPrintingPPDs-ghostscript
+OpenPrintingPPDs-hpijs
+OpenPrintingPPDs-postscript
+=== OpenPrintingPPDs/aarch64 ===
+OpenPrintingPPDs
+OpenPrintingPPDs-ghostscript
+OpenPrintingPPDs-hpijs
+OpenPrintingPPDs-postscript
+=== pentaho-libxml/ppc64le ===
+pentaho-libxml
+pentaho-libxml-javadoc
+=== pentaho-libxml/s390x ===
+pentaho-libxml
+pentaho-libxml-javadoc
+=== pentaho-libxml/aarch64 ===
+pentaho-libxml
+pentaho-libxml-javadoc
+=== pentaho-reporting-flow-engine/ppc64le ===
+pentaho-reporting-flow-engine
+pentaho-reporting-flow-engine-javadoc
+=== pentaho-reporting-flow-engine/s390x ===
+pentaho-reporting-flow-engine
+pentaho-reporting-flow-engine-javadoc
+=== pentaho-reporting-flow-engine/aarch64 ===
+pentaho-reporting-flow-engine
+pentaho-reporting-flow-engine-javadoc
+=== pidgin/ppc64le ===
+finch
+finch-devel
+libpurple
+libpurple-branding-upstream
+libpurple-devel
+libpurple-lang
+libpurple-plugin-sametime
+libpurple-tcl
+pidgin
+pidgin-devel
+=== pidgin/s390x ===
+finch
+finch-devel
+libpurple
+libpurple-branding-upstream
+libpurple-devel
+libpurple-lang
+libpurple-plugin-sametime
+libpurple-tcl
+pidgin
+pidgin-devel
+=== pidgin/aarch64 ===
+finch
+finch-devel
+libpurple
+libpurple-branding-upstream
+libpurple-devel
+libpurple-lang
+libpurple-plugin-sametime
+libpurple-tcl
+pidgin
+pidgin-devel
+=== pidgin-otr/ppc64le ===
+pidgin-plugin-otr
+pidgin-plugin-otr-lang
+=== pidgin-otr/s390x ===
+pidgin-plugin-otr
+pidgin-plugin-otr-lang
+=== pidgin-otr/aarch64 ===
+pidgin-plugin-otr
+pidgin-plugin-otr-lang
+=== pidgin-sipe/ppc64le ===
+libpurple-plugin-sipe
+libpurple-plugin-sipe-lang
+pidgin-plugin-sipe
+telepathy-sipe
+=== pidgin-sipe/s390x ===
+libpurple-plugin-sipe
+libpurple-plugin-sipe-lang
+pidgin-plugin-sipe
+telepathy-sipe
+=== pidgin-sipe/aarch64 ===
+libpurple-plugin-sipe
+libpurple-plugin-sipe-lang
+pidgin-plugin-sipe
+telepathy-sipe
+=== prun-ohpc/ppc64le ===
+prun-ohpc
+=== prun-ohpc/s390x ===
+prun-ohpc
+=== purple-rocketchat/ppc64le ===
+libpurple-plugin-rocketchat
+pidgin-plugin-rocketchat
+=== purple-rocketchat/s390x ===
+libpurple-plugin-rocketchat
+pidgin-plugin-rocketchat
+=== purple-rocketchat/aarch64 ===
+libpurple-plugin-rocketchat
+pidgin-plugin-rocketchat
+=== remmina/ppc64le ===
+remmina
+remmina-devel
+remmina-kiosk
+remmina-lang
+remmina-plugin-exec
+remmina-plugin-kwallet
+remmina-plugin-rdp
+remmina-plugin-secret
+remmina-plugin-spice
+remmina-plugin-st
+remmina-plugin-vnc
+remmina-plugin-www
+remmina-plugin-xdmcp
+=== remmina/s390x ===
+remmina
+remmina-devel
+remmina-kiosk
+remmina-lang
+remmina-plugin-exec
+remmina-plugin-kwallet
+remmina-plugin-rdp
+remmina-plugin-secret
+remmina-plugin-spice
+remmina-plugin-st
+remmina-plugin-vnc
+remmina-plugin-www
+remmina-plugin-xdmcp
+=== remmina/aarch64 ===
+remmina
+remmina-devel
+remmina-kiosk
+remmina-lang
+remmina-plugin-exec
+remmina-plugin-kwallet
+remmina-plugin-rdp
+remmina-plugin-secret
+remmina-plugin-spice
+remmina-plugin-st
+remmina-plugin-vnc
+remmina-plugin-www
+remmina-plugin-xdmcp
+=== sac/ppc64le ===
+sac
+sac-javadoc
+=== sac/s390x ===
+sac
+sac-javadoc
+=== sac/aarch64 ===
+sac
+sac-javadoc
+=== seahorse/ppc64le ===
+gnome-shell-search-provider-seahorse
+seahorse
+seahorse-lang
+=== seahorse/s390x ===
+gnome-shell-search-provider-seahorse
+seahorse
+seahorse-lang
+=== seahorse/aarch64 ===
+gnome-shell-search-provider-seahorse
+seahorse
+seahorse-lang
+=== simple-scan/ppc64le ===
+simple-scan
+simple-scan-lang
+=== simple-scan/s390x ===
+simple-scan
+simple-scan-lang
+=== simple-scan/aarch64 ===
+simple-scan
+simple-scan-lang
+=== suse-prime/ppc64le ===
+suse-prime
+suse-prime-bbswitch
+=== suse-prime/s390x ===
+suse-prime
+suse-prime-bbswitch
+=== suse-prime/aarch64 ===
+suse-prime
+suse-prime-bbswitch
+=== tagsoup/ppc64le ===
+tagsoup
+tagsoup-javadoc
+=== tagsoup/s390x ===
+tagsoup
+tagsoup-javadoc
+=== tagsoup/aarch64 ===
+tagsoup
+tagsoup-javadoc
+=== totem/ppc64le ===
+totem
+totem-devel
+totem-lang
+totem-plugins
+=== totem/s390x ===
+totem
+totem-devel
+totem-lang
+totem-plugins
+=== totem/aarch64 ===
+totem
+totem-devel
+totem-lang
+totem-plugins
+=== adios:gnu-mpich-hpc/ppc64le ===
+adios-gnu-mpich-hpc
+adios-gnu-mpich-hpc-devel
+adios-gnu-mpich-hpc-devel-static
+adios_1_13_1-gnu-mpich-hpc
+adios_1_13_1-gnu-mpich-hpc-devel
+adios_1_13_1-gnu-mpich-hpc-devel-static
+=== adios:gnu-mvapich2-hpc/ppc64le ===
+adios-gnu-mvapich2-hpc
+adios-gnu-mvapich2-hpc-devel
+adios-gnu-mvapich2-hpc-devel-static
+adios_1_13_1-gnu-mvapich2-hpc
+adios_1_13_1-gnu-mvapich2-hpc-devel
+adios_1_13_1-gnu-mvapich2-hpc-devel-static
+=== adios:gnu-openmpi3-hpc/ppc64le ===
+adios-gnu-openmpi3-hpc
+adios-gnu-openmpi3-hpc-devel
+adios-gnu-openmpi3-hpc-devel-static
+adios_1_13_1-gnu-openmpi3-hpc
+adios_1_13_1-gnu-openmpi3-hpc-devel
+adios_1_13_1-gnu-openmpi3-hpc-devel-static
+=== adios:gnu-openmpi4-hpc/ppc64le ===
+adios-gnu-openmpi4-hpc
+adios-gnu-openmpi4-hpc-devel
+adios-gnu-openmpi4-hpc-devel-static
+adios_1_13_1-gnu-openmpi4-hpc
+adios_1_13_1-gnu-openmpi4-hpc-devel
+adios_1_13_1-gnu-openmpi4-hpc-devel-static
+=== gnu-compilers-hpc:gnu-hpc/ppc64le ===
+gnu-compilers-hpc
+gnu-compilers-hpc-devel
+gnu-compilers-hpc-macros-devel
+=== gnu-compilers-hpc:gnu-hpc/s390x ===
+gnu-compilers-hpc
+gnu-compilers-hpc-devel
+gnu-compilers-hpc-macros-devel
+=== gnu-compilers-hpc:gnu10-hpc/ppc64le ===
+gnu10-compilers-hpc
+gnu10-compilers-hpc-devel
+gnu10-compilers-hpc-macros-devel
+=== gnu-compilers-hpc:gnu10-hpc/s390x ===
+gnu10-compilers-hpc
+gnu10-compilers-hpc-devel
+gnu10-compilers-hpc-macros-devel
+=== hdf5:gnu-hpc/ppc64le ===
+hdf5-gnu-hpc
+hdf5-gnu-hpc-devel
+hdf5-hpc-examples
+hdf5_1_10_7-gnu-hpc
+hdf5_1_10_7-gnu-hpc-devel
+hdf5_1_10_7-gnu-hpc-devel-static
+hdf5_1_10_7-gnu-hpc-module
+hdf5_1_10_7-hpc-examples
+libhdf5-gnu-hpc
+libhdf5_1_10_7-gnu-hpc
+libhdf5_cpp-gnu-hpc
+libhdf5_cpp_1_10_7-gnu-hpc
+libhdf5_fortran-gnu-hpc
+libhdf5_fortran_1_10_7-gnu-hpc
+libhdf5_hl-gnu-hpc
+libhdf5_hl_1_10_7-gnu-hpc
+libhdf5_hl_cpp-gnu-hpc
+libhdf5_hl_cpp_1_10_7-gnu-hpc
+libhdf5_hl_fortran-gnu-hpc
+libhdf5hl_fortran_1_10_7-gnu-hpc
+=== hdf5:gnu-hpc/s390x ===
+hdf5-gnu-hpc
+hdf5-gnu-hpc-devel
+hdf5-hpc-examples
+hdf5_1_10_7-gnu-hpc
+hdf5_1_10_7-gnu-hpc-devel
+hdf5_1_10_7-gnu-hpc-devel-static
+hdf5_1_10_7-gnu-hpc-module
+hdf5_1_10_7-hpc-examples
+libhdf5-gnu-hpc
+libhdf5_1_10_7-gnu-hpc
+libhdf5_cpp-gnu-hpc
+libhdf5_cpp_1_10_7-gnu-hpc
+libhdf5_fortran-gnu-hpc
+libhdf5_fortran_1_10_7-gnu-hpc
+libhdf5_hl-gnu-hpc
+libhdf5_hl_1_10_7-gnu-hpc
+libhdf5_hl_cpp-gnu-hpc
+libhdf5_hl_cpp_1_10_7-gnu-hpc
+libhdf5_hl_fortran-gnu-hpc
+libhdf5hl_fortran_1_10_7-gnu-hpc
+=== hdf5:gnu-mpich-hpc/ppc64le ===
+hdf5-gnu-mpich-hpc
+hdf5-gnu-mpich-hpc-devel
+hdf5_1_10_7-gnu-mpich-hpc
+hdf5_1_10_7-gnu-mpich-hpc-devel
+hdf5_1_10_7-gnu-mpich-hpc-devel-static
+hdf5_1_10_7-gnu-mpich-hpc-module
+libhdf5-gnu-mpich-hpc
+libhdf5_1_10_7-gnu-mpich-hpc
+libhdf5_cpp-gnu-mpich-hpc
+libhdf5_cpp_1_10_7-gnu-mpich-hpc
+libhdf5_fortran-gnu-mpich-hpc
+libhdf5_fortran_1_10_7-gnu-mpich-hpc
+libhdf5_hl-gnu-mpich-hpc
+libhdf5_hl_1_10_7-gnu-mpich-hpc
+libhdf5_hl_cpp-gnu-mpich-hpc
+libhdf5_hl_cpp_1_10_7-gnu-mpich-hpc
+libhdf5_hl_fortran-gnu-mpich-hpc
+libhdf5hl_fortran_1_10_7-gnu-mpich-hpc
+=== hdf5:gnu-mpich-hpc/s390x ===
+hdf5-gnu-mpich-hpc
+hdf5-gnu-mpich-hpc-devel
+hdf5_1_10_7-gnu-mpich-hpc
+hdf5_1_10_7-gnu-mpich-hpc-devel
+hdf5_1_10_7-gnu-mpich-hpc-devel-static
+hdf5_1_10_7-gnu-mpich-hpc-module
+libhdf5-gnu-mpich-hpc
+libhdf5_1_10_7-gnu-mpich-hpc
+libhdf5_cpp-gnu-mpich-hpc
+libhdf5_cpp_1_10_7-gnu-mpich-hpc
+libhdf5_fortran-gnu-mpich-hpc
+libhdf5_fortran_1_10_7-gnu-mpich-hpc
+libhdf5_hl-gnu-mpich-hpc
+libhdf5_hl_1_10_7-gnu-mpich-hpc
+libhdf5_hl_cpp-gnu-mpich-hpc
+libhdf5_hl_cpp_1_10_7-gnu-mpich-hpc
+libhdf5_hl_fortran-gnu-mpich-hpc
+libhdf5hl_fortran_1_10_7-gnu-mpich-hpc
+=== hdf5:gnu-mvapich2-hpc/ppc64le ===
+hdf5-gnu-mvapich2-hpc
+hdf5-gnu-mvapich2-hpc-devel
+hdf5_1_10_7-gnu-mvapich2-hpc
+hdf5_1_10_7-gnu-mvapich2-hpc-devel
+hdf5_1_10_7-gnu-mvapich2-hpc-devel-static
+hdf5_1_10_7-gnu-mvapich2-hpc-module
+libhdf5-gnu-mvapich2-hpc
+libhdf5_1_10_7-gnu-mvapich2-hpc
+libhdf5_cpp-gnu-mvapich2-hpc
+libhdf5_cpp_1_10_7-gnu-mvapich2-hpc
+libhdf5_fortran-gnu-mvapich2-hpc
+libhdf5_fortran_1_10_7-gnu-mvapich2-hpc
+libhdf5_hl-gnu-mvapich2-hpc
+libhdf5_hl_1_10_7-gnu-mvapich2-hpc
+libhdf5_hl_cpp-gnu-mvapich2-hpc
+libhdf5_hl_cpp_1_10_7-gnu-mvapich2-hpc
+libhdf5_hl_fortran-gnu-mvapich2-hpc
+libhdf5hl_fortran_1_10_7-gnu-mvapich2-hpc
+=== hdf5:gnu-mvapich2-hpc/s390x ===
+hdf5-gnu-mvapich2-hpc
+hdf5-gnu-mvapich2-hpc-devel
+hdf5_1_10_7-gnu-mvapich2-hpc
+hdf5_1_10_7-gnu-mvapich2-hpc-devel
+hdf5_1_10_7-gnu-mvapich2-hpc-devel-static
+hdf5_1_10_7-gnu-mvapich2-hpc-module
+libhdf5-gnu-mvapich2-hpc
+libhdf5_1_10_7-gnu-mvapich2-hpc
+libhdf5_cpp-gnu-mvapich2-hpc
+libhdf5_cpp_1_10_7-gnu-mvapich2-hpc
+libhdf5_fortran-gnu-mvapich2-hpc
+libhdf5_fortran_1_10_7-gnu-mvapich2-hpc
+libhdf5_hl-gnu-mvapich2-hpc
+libhdf5_hl_1_10_7-gnu-mvapich2-hpc
+libhdf5_hl_cpp-gnu-mvapich2-hpc
+libhdf5_hl_cpp_1_10_7-gnu-mvapich2-hpc
+libhdf5_hl_fortran-gnu-mvapich2-hpc
+libhdf5hl_fortran_1_10_7-gnu-mvapich2-hpc
+=== hdf5:gnu-openmpi3-hpc/ppc64le ===
+hdf5-gnu-openmpi3-hpc
+hdf5-gnu-openmpi3-hpc-devel
+hdf5_1_10_7-gnu-openmpi3-hpc
+hdf5_1_10_7-gnu-openmpi3-hpc-devel
+hdf5_1_10_7-gnu-openmpi3-hpc-devel-static
+hdf5_1_10_7-gnu-openmpi3-hpc-module
+libhdf5-gnu-openmpi3-hpc
+libhdf5_1_10_7-gnu-openmpi3-hpc
+libhdf5_cpp-gnu-openmpi3-hpc
+libhdf5_cpp_1_10_7-gnu-openmpi3-hpc
+libhdf5_fortran-gnu-openmpi3-hpc
+libhdf5_fortran_1_10_7-gnu-openmpi3-hpc
+libhdf5_hl-gnu-openmpi3-hpc
+libhdf5_hl_1_10_7-gnu-openmpi3-hpc
+libhdf5_hl_cpp-gnu-openmpi3-hpc
+libhdf5_hl_cpp_1_10_7-gnu-openmpi3-hpc
+libhdf5_hl_fortran-gnu-openmpi3-hpc
+libhdf5hl_fortran_1_10_7-gnu-openmpi3-hpc
+=== hdf5:gnu-openmpi3-hpc/s390x ===
+hdf5-gnu-openmpi3-hpc
+hdf5-gnu-openmpi3-hpc-devel
+hdf5_1_10_7-gnu-openmpi3-hpc
+hdf5_1_10_7-gnu-openmpi3-hpc-devel
+hdf5_1_10_7-gnu-openmpi3-hpc-devel-static
+hdf5_1_10_7-gnu-openmpi3-hpc-module
+libhdf5-gnu-openmpi3-hpc
+libhdf5_1_10_7-gnu-openmpi3-hpc
+libhdf5_cpp-gnu-openmpi3-hpc
+libhdf5_cpp_1_10_7-gnu-openmpi3-hpc
+libhdf5_fortran-gnu-openmpi3-hpc
+libhdf5_fortran_1_10_7-gnu-openmpi3-hpc
+libhdf5_hl-gnu-openmpi3-hpc
+libhdf5_hl_1_10_7-gnu-openmpi3-hpc
+libhdf5_hl_cpp-gnu-openmpi3-hpc
+libhdf5_hl_cpp_1_10_7-gnu-openmpi3-hpc
+libhdf5_hl_fortran-gnu-openmpi3-hpc
+libhdf5hl_fortran_1_10_7-gnu-openmpi3-hpc
+=== hdf5:gnu-openmpi4-hpc/ppc64le ===
+hdf5-gnu-openmpi4-hpc
+hdf5-gnu-openmpi4-hpc-devel
+hdf5_1_10_7-gnu-openmpi4-hpc
+hdf5_1_10_7-gnu-openmpi4-hpc-devel
+hdf5_1_10_7-gnu-openmpi4-hpc-devel-static
+hdf5_1_10_7-gnu-openmpi4-hpc-module
+libhdf5-gnu-openmpi4-hpc
+libhdf5_1_10_7-gnu-openmpi4-hpc
+libhdf5_cpp-gnu-openmpi4-hpc
+libhdf5_cpp_1_10_7-gnu-openmpi4-hpc
+libhdf5_fortran-gnu-openmpi4-hpc
+libhdf5_fortran_1_10_7-gnu-openmpi4-hpc
+libhdf5_hl-gnu-openmpi4-hpc
+libhdf5_hl_1_10_7-gnu-openmpi4-hpc
+libhdf5_hl_cpp-gnu-openmpi4-hpc
+libhdf5_hl_cpp_1_10_7-gnu-openmpi4-hpc
+libhdf5_hl_fortran-gnu-openmpi4-hpc
+libhdf5hl_fortran_1_10_7-gnu-openmpi4-hpc
+=== hdf5:gnu-openmpi4-hpc/s390x ===
+hdf5-gnu-openmpi4-hpc
+hdf5-gnu-openmpi4-hpc-devel
+hdf5_1_10_7-gnu-openmpi4-hpc
+hdf5_1_10_7-gnu-openmpi4-hpc-devel
+hdf5_1_10_7-gnu-openmpi4-hpc-devel-static
+hdf5_1_10_7-gnu-openmpi4-hpc-module
+libhdf5-gnu-openmpi4-hpc
+libhdf5_1_10_7-gnu-openmpi4-hpc
+libhdf5_cpp-gnu-openmpi4-hpc
+libhdf5_cpp_1_10_7-gnu-openmpi4-hpc
+libhdf5_fortran-gnu-openmpi4-hpc
+libhdf5_fortran_1_10_7-gnu-openmpi4-hpc
+libhdf5_hl-gnu-openmpi4-hpc
+libhdf5_hl_1_10_7-gnu-openmpi4-hpc
+libhdf5_hl_cpp-gnu-openmpi4-hpc
+libhdf5_hl_cpp_1_10_7-gnu-openmpi4-hpc
+libhdf5_hl_fortran-gnu-openmpi4-hpc
+libhdf5hl_fortran_1_10_7-gnu-openmpi4-hpc
+=== hypre:gnu-mpich-hpc/ppc64le ===
+hypre-gnu-mpich-hpc-devel
+hypre_2_20_0-gnu-mpich-hpc-devel
+libHYPRE-gnu-mpich-hpc
+libHYPRE_2_20_0-gnu-mpich-hpc
+=== hypre:gnu-mpich-hpc/s390x ===
+hypre-gnu-mpich-hpc-devel
+hypre_2_20_0-gnu-mpich-hpc-devel
+libHYPRE-gnu-mpich-hpc
+libHYPRE_2_20_0-gnu-mpich-hpc
+=== hypre:gnu-mvapich2-hpc/ppc64le ===
+hypre-gnu-mvapich2-hpc-devel
+hypre_2_20_0-gnu-mvapich2-hpc-devel
+libHYPRE-gnu-mvapich2-hpc
+libHYPRE_2_20_0-gnu-mvapich2-hpc
+=== hypre:gnu-mvapich2-hpc/s390x ===
+hypre-gnu-mvapich2-hpc-devel
+hypre_2_20_0-gnu-mvapich2-hpc-devel
+libHYPRE-gnu-mvapich2-hpc
+libHYPRE_2_20_0-gnu-mvapich2-hpc
+=== hypre:gnu-openmpi3-hpc/ppc64le ===
+hypre-gnu-openmpi3-hpc-devel
+hypre_2_20_0-gnu-openmpi3-hpc-devel
+libHYPRE-gnu-openmpi3-hpc
+libHYPRE_2_20_0-gnu-openmpi3-hpc
+=== hypre:gnu-openmpi3-hpc/s390x ===
+hypre-gnu-openmpi3-hpc-devel
+hypre_2_20_0-gnu-openmpi3-hpc-devel
+libHYPRE-gnu-openmpi3-hpc
+libHYPRE_2_20_0-gnu-openmpi3-hpc
+=== hypre:gnu-openmpi4-hpc/ppc64le ===
+hypre-gnu-openmpi4-hpc-devel
+hypre_2_20_0-gnu-openmpi4-hpc-devel
+libHYPRE-gnu-openmpi4-hpc
+libHYPRE_2_20_0-gnu-openmpi4-hpc
+=== hypre:gnu-openmpi4-hpc/s390x ===
+hypre-gnu-openmpi4-hpc-devel
+hypre_2_20_0-gnu-openmpi4-hpc-devel
+libHYPRE-gnu-openmpi4-hpc
+libHYPRE_2_20_0-gnu-openmpi4-hpc
+=== imb:gnu-mpich-hpc/ppc64le ===
+imb-gnu-mpich-hpc
+imb_2019_6-gnu-mpich-hpc
+=== imb:gnu-mpich-hpc/s390x ===
+imb-gnu-mpich-hpc
+imb_2019_6-gnu-mpich-hpc
+=== imb:gnu-mvapich2-hpc/ppc64le ===
+imb-gnu-mvapich2-hpc
+imb_2019_6-gnu-mvapich2-hpc
+=== imb:gnu-mvapich2-hpc/s390x ===
+imb-gnu-mvapich2-hpc
+imb_2019_6-gnu-mvapich2-hpc
+=== imb:gnu-openmpi3-hpc/ppc64le ===
+imb-gnu-openmpi3-hpc
+imb_2019_6-gnu-openmpi3-hpc
+=== imb:gnu-openmpi3-hpc/s390x ===
+imb-gnu-openmpi3-hpc
+imb_2019_6-gnu-openmpi3-hpc
+=== imb:gnu-openmpi4-hpc/ppc64le ===
+imb-gnu-openmpi4-hpc
+imb_2019_6-gnu-openmpi4-hpc
+=== imb:gnu-openmpi4-hpc/s390x ===
+imb-gnu-openmpi4-hpc
+imb_2019_6-gnu-openmpi4-hpc
+=== mpich:gnu-hpc/ppc64le ===
+mpich-gnu-hpc
+mpich-gnu-hpc-devel
+mpich-gnu-hpc-devel-static
+mpich-gnu-hpc-macros-devel
+mpich_3_3_2-gnu-hpc
+mpich_3_3_2-gnu-hpc-devel
+mpich_3_3_2-gnu-hpc-devel-static
+mpich_3_3_2-gnu-hpc-macros-devel
+=== mpich:gnu-hpc/s390x ===
+mpich-gnu-hpc
+mpich-gnu-hpc-devel
+mpich-gnu-hpc-devel-static
+mpich-gnu-hpc-macros-devel
+mpich_3_3_2-gnu-hpc
+mpich_3_3_2-gnu-hpc-devel
+mpich_3_3_2-gnu-hpc-devel-static
+mpich_3_3_2-gnu-hpc-macros-devel
+=== mpich:gnu-hpc-ofi/ppc64le ===
+mpich-ofi-gnu-hpc
+mpich-ofi-gnu-hpc-devel
+mpich-ofi-gnu-hpc-devel-static
+mpich-ofi-gnu-hpc-macros-devel
+mpich-ofi_3_3_2-gnu-hpc
+mpich-ofi_3_3_2-gnu-hpc-devel
+mpich-ofi_3_3_2-gnu-hpc-devel-static
+mpich-ofi_3_3_2-gnu-hpc-macros-devel
+=== mpich:gnu-hpc-ofi/s390x ===
+mpich-ofi-gnu-hpc
+mpich-ofi-gnu-hpc-devel
+mpich-ofi-gnu-hpc-devel-static
+mpich-ofi-gnu-hpc-macros-devel
+mpich-ofi_3_3_2-gnu-hpc
+mpich-ofi_3_3_2-gnu-hpc-devel
+mpich-ofi_3_3_2-gnu-hpc-devel-static
+mpich-ofi_3_3_2-gnu-hpc-macros-devel
+=== mumps:gnu-mpich-hpc/ppc64le ===
+libmumps-gnu-mpich-hpc
+libmumps_5_3_5-gnu-mpich-hpc
+mumps-gnu-mpich-hpc-devel
+mumps-gnu-mpich-hpc-doc
+mumps-gnu-mpich-hpc-examples
+mumps_5_3_5-gnu-mpich-hpc-devel
+mumps_5_3_5-gnu-mpich-hpc-devel-static
+mumps_5_3_5-gnu-mpich-hpc-doc
+mumps_5_3_5-gnu-mpich-hpc-examples
+=== mumps:gnu-mpich-hpc/s390x ===
+libmumps-gnu-mpich-hpc
+libmumps_5_3_5-gnu-mpich-hpc
+mumps-gnu-mpich-hpc-devel
+mumps-gnu-mpich-hpc-doc
+mumps-gnu-mpich-hpc-examples
+mumps_5_3_5-gnu-mpich-hpc-devel
+mumps_5_3_5-gnu-mpich-hpc-devel-static
+mumps_5_3_5-gnu-mpich-hpc-doc
+mumps_5_3_5-gnu-mpich-hpc-examples
+=== mumps:gnu-mvapich2-hpc/ppc64le ===
+libmumps-gnu-mvapich2-hpc
+libmumps_5_3_5-gnu-mvapich2-hpc
+mumps-gnu-mvapich2-hpc-devel
+mumps-gnu-mvapich2-hpc-doc
+mumps-gnu-mvapich2-hpc-examples
+mumps_5_3_5-gnu-mvapich2-hpc-devel
+mumps_5_3_5-gnu-mvapich2-hpc-devel-static
+mumps_5_3_5-gnu-mvapich2-hpc-doc
+mumps_5_3_5-gnu-mvapich2-hpc-examples
+=== mumps:gnu-mvapich2-hpc/s390x ===
+libmumps-gnu-mvapich2-hpc
+libmumps_5_3_5-gnu-mvapich2-hpc
+mumps-gnu-mvapich2-hpc-devel
+mumps-gnu-mvapich2-hpc-doc
+mumps-gnu-mvapich2-hpc-examples
+mumps_5_3_5-gnu-mvapich2-hpc-devel
+mumps_5_3_5-gnu-mvapich2-hpc-devel-static
+mumps_5_3_5-gnu-mvapich2-hpc-doc
+mumps_5_3_5-gnu-mvapich2-hpc-examples
+=== mumps:gnu-openmpi3-hpc/ppc64le ===
+libmumps-gnu-openmpi3-hpc
+libmumps_5_3_5-gnu-openmpi3-hpc
+mumps-gnu-openmpi3-hpc-devel
+mumps-gnu-openmpi3-hpc-doc
+mumps-gnu-openmpi3-hpc-examples
+mumps_5_3_5-gnu-openmpi3-hpc-devel
+mumps_5_3_5-gnu-openmpi3-hpc-devel-static
+mumps_5_3_5-gnu-openmpi3-hpc-doc
+mumps_5_3_5-gnu-openmpi3-hpc-examples
+=== mumps:gnu-openmpi3-hpc/s390x ===
+libmumps-gnu-openmpi3-hpc
+libmumps_5_3_5-gnu-openmpi3-hpc
+mumps-gnu-openmpi3-hpc-devel
+mumps-gnu-openmpi3-hpc-doc
+mumps-gnu-openmpi3-hpc-examples
+mumps_5_3_5-gnu-openmpi3-hpc-devel
+mumps_5_3_5-gnu-openmpi3-hpc-devel-static
+mumps_5_3_5-gnu-openmpi3-hpc-doc
+mumps_5_3_5-gnu-openmpi3-hpc-examples
+=== mumps:gnu-openmpi4-hpc/ppc64le ===
+libmumps-gnu-openmpi4-hpc
+libmumps_5_3_5-gnu-openmpi4-hpc
+mumps-gnu-openmpi4-hpc-devel
+mumps-gnu-openmpi4-hpc-doc
+mumps-gnu-openmpi4-hpc-examples
+mumps_5_3_5-gnu-openmpi4-hpc-devel
+mumps_5_3_5-gnu-openmpi4-hpc-devel-static
+mumps_5_3_5-gnu-openmpi4-hpc-doc
+mumps_5_3_5-gnu-openmpi4-hpc-examples
+=== mumps:gnu-openmpi4-hpc/s390x ===
+libmumps-gnu-openmpi4-hpc
+libmumps_5_3_5-gnu-openmpi4-hpc
+mumps-gnu-openmpi4-hpc-devel
+mumps-gnu-openmpi4-hpc-doc
+mumps-gnu-openmpi4-hpc-examples
+mumps_5_3_5-gnu-openmpi4-hpc-devel
+mumps_5_3_5-gnu-openmpi4-hpc-devel-static
+mumps_5_3_5-gnu-openmpi4-hpc-doc
+mumps_5_3_5-gnu-openmpi4-hpc-examples
+=== mvapich2:gnu-hpc/ppc64le ===
+mvapich2-gnu-hpc
+mvapich2-gnu-hpc-devel
+mvapich2-gnu-hpc-doc
+mvapich2-gnu-hpc-macros-devel
+mvapich2_2_3_4-gnu-hpc
+mvapich2_2_3_4-gnu-hpc-devel
+mvapich2_2_3_4-gnu-hpc-devel-static
+mvapich2_2_3_4-gnu-hpc-doc
+mvapich2_2_3_4-gnu-hpc-macros-devel
+=== mvapich2:gnu-hpc/s390x ===
+mvapich2-gnu-hpc
+mvapich2-gnu-hpc-devel
+mvapich2-gnu-hpc-doc
+mvapich2-gnu-hpc-macros-devel
+mvapich2_2_3_4-gnu-hpc
+mvapich2_2_3_4-gnu-hpc-devel
+mvapich2_2_3_4-gnu-hpc-devel-static
+mvapich2_2_3_4-gnu-hpc-doc
+mvapich2_2_3_4-gnu-hpc-macros-devel
+=== netcdf-cxx4:gnu-hpc/ppc64le ===
+libnetcdf-cxx4-gnu-hpc
+libnetcdf-cxx4-gnu-hpc-devel
+libnetcdf-cxx4_4_3_1-gnu-hpc
+libnetcdf-cxx4_4_3_1-gnu-hpc-devel
+libnetcdf-cxx4_4_3_1-gnu-hpc-devel-static
+netcdf-cxx4-gnu-hpc-tools
+netcdf-cxx4_4_3_1-gnu-hpc-tools
+=== netcdf-fortran:gnu-mpich-hpc/ppc64le ===
+libnetcdf-fortran-gnu-mpich-hpc
+libnetcdf-fortran_4_5_3-gnu-mpich-hpc
+netcdf-fortran-gnu-mpich-hpc
+netcdf-fortran-gnu-mpich-hpc-devel
+netcdf-fortran_4_5_3-gnu-mpich-hpc
+netcdf-fortran_4_5_3-gnu-mpich-hpc-devel
+=== netcdf-fortran:gnu-mvapich2-hpc/ppc64le ===
+libnetcdf-fortran-gnu-mvapich2-hpc
+libnetcdf-fortran_4_5_3-gnu-mvapich2-hpc
+netcdf-fortran-gnu-mvapich2-hpc
+netcdf-fortran-gnu-mvapich2-hpc-devel
+netcdf-fortran_4_5_3-gnu-mvapich2-hpc
+netcdf-fortran_4_5_3-gnu-mvapich2-hpc-devel
+=== netcdf-fortran:gnu-openmpi3-hpc/ppc64le ===
+libnetcdf-fortran-gnu-openmpi3-hpc
+libnetcdf-fortran_4_5_3-gnu-openmpi3-hpc
+netcdf-fortran-gnu-openmpi3-hpc
+netcdf-fortran-gnu-openmpi3-hpc-devel
+netcdf-fortran_4_5_3-gnu-openmpi3-hpc
+netcdf-fortran_4_5_3-gnu-openmpi3-hpc-devel
+=== netcdf-fortran:gnu-openmpi4-hpc/ppc64le ===
+libnetcdf-fortran-gnu-openmpi4-hpc
+libnetcdf-fortran_4_5_3-gnu-openmpi4-hpc
+netcdf-fortran-gnu-openmpi4-hpc
+netcdf-fortran-gnu-openmpi4-hpc-devel
+netcdf-fortran_4_5_3-gnu-openmpi4-hpc
+netcdf-fortran_4_5_3-gnu-openmpi4-hpc-devel
+=== netcdf:gnu-hpc/ppc64le ===
+libnetcdf-gnu-hpc
+libnetcdf_4_7_4-gnu-hpc
+netcdf-gnu-hpc
+netcdf-gnu-hpc-devel
+netcdf_4_7_4-gnu-hpc
+netcdf_4_7_4-gnu-hpc-devel
+netcdf_4_7_4-gnu-hpc-devel-static
+=== netcdf:gnu-hpc/s390x ===
+libnetcdf-gnu-hpc
+libnetcdf_4_7_4-gnu-hpc
+netcdf-gnu-hpc
+netcdf-gnu-hpc-devel
+netcdf_4_7_4-gnu-hpc
+netcdf_4_7_4-gnu-hpc-devel
+netcdf_4_7_4-gnu-hpc-devel-static
+=== netcdf:gnu-mpich-hpc/ppc64le ===
+libnetcdf-gnu-mpich-hpc
+libnetcdf_4_7_4-gnu-mpich-hpc
+netcdf-gnu-mpich-hpc
+netcdf-gnu-mpich-hpc-devel
+netcdf_4_7_4-gnu-mpich-hpc
+netcdf_4_7_4-gnu-mpich-hpc-devel
+netcdf_4_7_4-gnu-mpich-hpc-devel-static
+=== netcdf:gnu-mpich-hpc/s390x ===
+libnetcdf-gnu-mpich-hpc
+libnetcdf_4_7_4-gnu-mpich-hpc
+netcdf-gnu-mpich-hpc
+netcdf-gnu-mpich-hpc-devel
+netcdf_4_7_4-gnu-mpich-hpc
+netcdf_4_7_4-gnu-mpich-hpc-devel
+netcdf_4_7_4-gnu-mpich-hpc-devel-static
+=== netcdf:gnu-mvapich2-hpc/ppc64le ===
+libnetcdf-gnu-mvapich2-hpc
+libnetcdf_4_7_4-gnu-mvapich2-hpc
+netcdf-gnu-mvapich2-hpc
+netcdf-gnu-mvapich2-hpc-devel
+netcdf_4_7_4-gnu-mvapich2-hpc
+netcdf_4_7_4-gnu-mvapich2-hpc-devel
+netcdf_4_7_4-gnu-mvapich2-hpc-devel-static
+=== netcdf:gnu-mvapich2-hpc/s390x ===
+libnetcdf-gnu-mvapich2-hpc
+libnetcdf_4_7_4-gnu-mvapich2-hpc
+netcdf-gnu-mvapich2-hpc
+netcdf-gnu-mvapich2-hpc-devel
+netcdf_4_7_4-gnu-mvapich2-hpc
+netcdf_4_7_4-gnu-mvapich2-hpc-devel
+netcdf_4_7_4-gnu-mvapich2-hpc-devel-static
+=== netcdf:gnu-openmpi3-hpc/ppc64le ===
+libnetcdf-gnu-openmpi3-hpc
+libnetcdf_4_7_4-gnu-openmpi3-hpc
+netcdf-gnu-openmpi3-hpc
+netcdf-gnu-openmpi3-hpc-devel
+netcdf_4_7_4-gnu-openmpi3-hpc
+netcdf_4_7_4-gnu-openmpi3-hpc-devel
+netcdf_4_7_4-gnu-openmpi3-hpc-devel-static
+=== netcdf:gnu-openmpi3-hpc/s390x ===
+libnetcdf-gnu-openmpi3-hpc
+libnetcdf_4_7_4-gnu-openmpi3-hpc
+netcdf-gnu-openmpi3-hpc
+netcdf-gnu-openmpi3-hpc-devel
+netcdf_4_7_4-gnu-openmpi3-hpc
+netcdf_4_7_4-gnu-openmpi3-hpc-devel
+netcdf_4_7_4-gnu-openmpi3-hpc-devel-static
+=== netcdf:gnu-openmpi4-hpc/ppc64le ===
+libnetcdf-gnu-openmpi4-hpc
+libnetcdf_4_7_4-gnu-openmpi4-hpc
+netcdf-gnu-openmpi4-hpc
+netcdf-gnu-openmpi4-hpc-devel
+netcdf_4_7_4-gnu-openmpi4-hpc
+netcdf_4_7_4-gnu-openmpi4-hpc-devel
+netcdf_4_7_4-gnu-openmpi4-hpc-devel-static
+=== netcdf:gnu-openmpi4-hpc/s390x ===
+libnetcdf-gnu-openmpi4-hpc
+libnetcdf_4_7_4-gnu-openmpi4-hpc
+netcdf-gnu-openmpi4-hpc
+netcdf-gnu-openmpi4-hpc-devel
+netcdf_4_7_4-gnu-openmpi4-hpc
+netcdf_4_7_4-gnu-openmpi4-hpc-devel
+netcdf_4_7_4-gnu-openmpi4-hpc-devel-static
+=== ocr:gnu-hpc/ppc64le ===
+ocr-gnu-hpc
+ocr-gnu-hpc-devel
+ocr-gnu-hpc-doc
+ocr-gnu-hpc-examples
+ocr_1_0_1-gnu-hpc
+ocr_1_0_1-gnu-hpc-devel
+ocr_1_0_1-gnu-hpc-doc
+ocr_1_0_1-gnu-hpc-examples
+=== ocr:gnu-hpc/s390x ===
+ocr-gnu-hpc
+ocr-gnu-hpc-devel
+ocr-gnu-hpc-doc
+ocr-gnu-hpc-examples
+ocr_1_0_1-gnu-hpc
+ocr_1_0_1-gnu-hpc-devel
+ocr_1_0_1-gnu-hpc-doc
+ocr_1_0_1-gnu-hpc-examples
+=== ocr:gnu-mpich-hpc/ppc64le ===
+ocr-gnu-mpich-hpc
+ocr-gnu-mpich-hpc-devel
+ocr-gnu-mpich-hpc-doc
+ocr-gnu-mpich-hpc-examples
+ocr_1_0_1-gnu-mpich-hpc
+ocr_1_0_1-gnu-mpich-hpc-devel
+ocr_1_0_1-gnu-mpich-hpc-doc
+ocr_1_0_1-gnu-mpich-hpc-examples
+=== ocr:gnu-mpich-hpc/s390x ===
+ocr-gnu-mpich-hpc
+ocr-gnu-mpich-hpc-devel
+ocr-gnu-mpich-hpc-doc
+ocr-gnu-mpich-hpc-examples
+ocr_1_0_1-gnu-mpich-hpc
+ocr_1_0_1-gnu-mpich-hpc-devel
+ocr_1_0_1-gnu-mpich-hpc-doc
+ocr_1_0_1-gnu-mpich-hpc-examples
+=== ocr:gnu-mvapich2-hpc/ppc64le ===
+ocr-gnu-mvapich2-hpc
+ocr-gnu-mvapich2-hpc-devel
+ocr-gnu-mvapich2-hpc-doc
+ocr-gnu-mvapich2-hpc-examples
+ocr_1_0_1-gnu-mvapich2-hpc
+ocr_1_0_1-gnu-mvapich2-hpc-devel
+ocr_1_0_1-gnu-mvapich2-hpc-doc
+ocr_1_0_1-gnu-mvapich2-hpc-examples
+=== ocr:gnu-mvapich2-hpc/s390x ===
+ocr-gnu-mvapich2-hpc
+ocr-gnu-mvapich2-hpc-devel
+ocr-gnu-mvapich2-hpc-doc
+ocr-gnu-mvapich2-hpc-examples
+ocr_1_0_1-gnu-mvapich2-hpc
+ocr_1_0_1-gnu-mvapich2-hpc-devel
+ocr_1_0_1-gnu-mvapich2-hpc-doc
+ocr_1_0_1-gnu-mvapich2-hpc-examples
+=== ocr:gnu-openmpi3-hpc/ppc64le ===
+ocr-gnu-openmpi3-hpc
+ocr-gnu-openmpi3-hpc-devel
+ocr-gnu-openmpi3-hpc-doc
+ocr-gnu-openmpi3-hpc-examples
+ocr_1_0_1-gnu-openmpi3-hpc
+ocr_1_0_1-gnu-openmpi3-hpc-devel
+ocr_1_0_1-gnu-openmpi3-hpc-doc
+ocr_1_0_1-gnu-openmpi3-hpc-examples
+=== ocr:gnu-openmpi3-hpc/s390x ===
+ocr-gnu-openmpi3-hpc
+ocr-gnu-openmpi3-hpc-devel
+ocr-gnu-openmpi3-hpc-doc
+ocr-gnu-openmpi3-hpc-examples
+ocr_1_0_1-gnu-openmpi3-hpc
+ocr_1_0_1-gnu-openmpi3-hpc-devel
+ocr_1_0_1-gnu-openmpi3-hpc-doc
+ocr_1_0_1-gnu-openmpi3-hpc-examples
+=== openmpi2:gnu-hpc/ppc64le ===
+libopenmpi2-gnu-hpc
+libopenmpi_2_1_6-gnu-hpc
+openmpi2-gnu-hpc
+openmpi2-gnu-hpc-devel
+openmpi2-gnu-hpc-devel-static
+openmpi2-gnu-hpc-docs
+openmpi2-gnu-hpc-macros-devel
+openmpi_2_1_6-gnu-hpc
+openmpi_2_1_6-gnu-hpc-devel
+openmpi_2_1_6-gnu-hpc-devel-static
+openmpi_2_1_6-gnu-hpc-docs
+openmpi_2_1_6-gnu-hpc-macros-devel
+=== openmpi2:gnu-hpc/s390x ===
+libopenmpi2-gnu-hpc
+libopenmpi_2_1_6-gnu-hpc
+openmpi2-gnu-hpc
+openmpi2-gnu-hpc-devel
+openmpi2-gnu-hpc-devel-static
+openmpi2-gnu-hpc-docs
+openmpi2-gnu-hpc-macros-devel
+openmpi_2_1_6-gnu-hpc
+openmpi_2_1_6-gnu-hpc-devel
+openmpi_2_1_6-gnu-hpc-devel-static
+openmpi_2_1_6-gnu-hpc-docs
+openmpi_2_1_6-gnu-hpc-macros-devel
+=== openmpi3:gnu-hpc/ppc64le ===
+libopenmpi3-gnu-hpc
+libopenmpi_3_1_6-gnu-hpc
+openmpi3-gnu-hpc
+openmpi3-gnu-hpc-devel
+openmpi3-gnu-hpc-devel-static
+openmpi3-gnu-hpc-docs
+openmpi3-gnu-hpc-macros-devel
+openmpi_3_1_6-gnu-hpc
+openmpi_3_1_6-gnu-hpc-devel
+openmpi_3_1_6-gnu-hpc-devel-static
+openmpi_3_1_6-gnu-hpc-docs
+openmpi_3_1_6-gnu-hpc-macros-devel
+=== openmpi3:gnu-hpc/s390x ===
+libopenmpi3-gnu-hpc
+libopenmpi_3_1_6-gnu-hpc
+openmpi3-gnu-hpc
+openmpi3-gnu-hpc-devel
+openmpi3-gnu-hpc-devel-static
+openmpi3-gnu-hpc-docs
+openmpi3-gnu-hpc-macros-devel
+openmpi_3_1_6-gnu-hpc
+openmpi_3_1_6-gnu-hpc-devel
+openmpi_3_1_6-gnu-hpc-devel-static
+openmpi_3_1_6-gnu-hpc-docs
+openmpi_3_1_6-gnu-hpc-macros-devel
+=== openmpi:gnu-hpc/ppc64le ===
+libopenmpi1-gnu-hpc
+libopenmpi_1_10_7-gnu-hpc
+openmpi1-gnu-hpc
+openmpi1-gnu-hpc-devel
+openmpi1-gnu-hpc-devel-static
+openmpi1-gnu-hpc-macros-devel
+openmpi_1_10_7-gnu-hpc
+openmpi_1_10_7-gnu-hpc-devel
+openmpi_1_10_7-gnu-hpc-devel-static
+openmpi_1_10_7-gnu-hpc-macros-devel
+=== openmpi:gnu-hpc/s390x ===
+libopenmpi1-gnu-hpc
+libopenmpi_1_10_7-gnu-hpc
+openmpi1-gnu-hpc
+openmpi1-gnu-hpc-devel
+openmpi1-gnu-hpc-devel-static
+openmpi1-gnu-hpc-macros-devel
+openmpi_1_10_7-gnu-hpc
+openmpi_1_10_7-gnu-hpc-devel
+openmpi_1_10_7-gnu-hpc-devel-static
+openmpi_1_10_7-gnu-hpc-macros-devel
+=== petsc:doc/ppc64le ===
+petsc-doc
+=== scotch:gnu-mpich-hpc/ppc64le ===
+libptscotch-gnu-mpich-hpc
+libptscotch_6_1_0-gnu-mpich-hpc
+ptscotch-gnu-mpich-hpc
+ptscotch-gnu-mpich-hpc-devel
+ptscotch_6_1_0-gnu-mpich-hpc
+ptscotch_6_1_0-gnu-mpich-hpc-devel
+ptscotch_6_1_0-gnu-mpich-hpc-devel-static
+=== scotch:gnu-mpich-hpc/s390x ===
+libptscotch-gnu-mpich-hpc
+libptscotch_6_1_0-gnu-mpich-hpc
+ptscotch-gnu-mpich-hpc
+ptscotch-gnu-mpich-hpc-devel
+ptscotch_6_1_0-gnu-mpich-hpc
+ptscotch_6_1_0-gnu-mpich-hpc-devel
+ptscotch_6_1_0-gnu-mpich-hpc-devel-static
+=== scotch:gnu-mvapich2-hpc/ppc64le ===
+libptscotch-gnu-mvapich2-hpc
+libptscotch_6_1_0-gnu-mvapich2-hpc
+ptscotch-gnu-mvapich2-hpc
+ptscotch-gnu-mvapich2-hpc-devel
+ptscotch_6_1_0-gnu-mvapich2-hpc
+ptscotch_6_1_0-gnu-mvapich2-hpc-devel
+ptscotch_6_1_0-gnu-mvapich2-hpc-devel-static
+=== scotch:gnu-mvapich2-hpc/s390x ===
+libptscotch-gnu-mvapich2-hpc
+libptscotch_6_1_0-gnu-mvapich2-hpc
+ptscotch-gnu-mvapich2-hpc
+ptscotch-gnu-mvapich2-hpc-devel
+ptscotch_6_1_0-gnu-mvapich2-hpc
+ptscotch_6_1_0-gnu-mvapich2-hpc-devel
+ptscotch_6_1_0-gnu-mvapich2-hpc-devel-static
+=== scotch:gnu-openmpi3-hpc/ppc64le ===
+libptscotch-gnu-openmpi3-hpc
+libptscotch_6_1_0-gnu-openmpi3-hpc
+ptscotch-gnu-openmpi3-hpc
+ptscotch-gnu-openmpi3-hpc-devel
+ptscotch_6_1_0-gnu-openmpi3-hpc
+ptscotch_6_1_0-gnu-openmpi3-hpc-devel
+ptscotch_6_1_0-gnu-openmpi3-hpc-devel-static
+=== scotch:gnu-openmpi3-hpc/s390x ===
+libptscotch-gnu-openmpi3-hpc
+libptscotch_6_1_0-gnu-openmpi3-hpc
+ptscotch-gnu-openmpi3-hpc
+ptscotch-gnu-openmpi3-hpc-devel
+ptscotch_6_1_0-gnu-openmpi3-hpc
+ptscotch_6_1_0-gnu-openmpi3-hpc-devel
+ptscotch_6_1_0-gnu-openmpi3-hpc-devel-static
+=== scotch:gnu-openmpi4-hpc/ppc64le ===
+libptscotch-gnu-openmpi4-hpc
+libptscotch_6_1_0-gnu-openmpi4-hpc
+ptscotch-gnu-openmpi4-hpc
+ptscotch-gnu-openmpi4-hpc-devel
+ptscotch_6_1_0-gnu-openmpi4-hpc
+ptscotch_6_1_0-gnu-openmpi4-hpc-devel
+ptscotch_6_1_0-gnu-openmpi4-hpc-devel-static
+=== scotch:gnu-openmpi4-hpc/s390x ===
+libptscotch-gnu-openmpi4-hpc
+libptscotch_6_1_0-gnu-openmpi4-hpc
+ptscotch-gnu-openmpi4-hpc
+ptscotch-gnu-openmpi4-hpc-devel
+ptscotch_6_1_0-gnu-openmpi4-hpc
+ptscotch_6_1_0-gnu-openmpi4-hpc-devel
+ptscotch_6_1_0-gnu-openmpi4-hpc-devel-static
+=== superlu:gnu-hpc/ppc64le ===
+libsuperlu-gnu-hpc
+libsuperlu_5_2_2-gnu-hpc
+superlu-gnu-hpc-devel
+superlu-gnu-hpc-doc
+superlu-gnu-hpc-examples
+superlu_5_2_2-gnu-hpc-devel
+superlu_5_2_2-gnu-hpc-doc
+superlu_5_2_2-gnu-hpc-examples
+=== superlu:gnu-hpc/s390x ===
+libsuperlu-gnu-hpc
+libsuperlu_5_2_2-gnu-hpc
+superlu-gnu-hpc-devel
+superlu-gnu-hpc-doc
+superlu-gnu-hpc-examples
+superlu_5_2_2-gnu-hpc-devel
+superlu_5_2_2-gnu-hpc-doc
+superlu_5_2_2-gnu-hpc-examples
+=== trilinos:documentation-hpc/ppc64le ===
+trilinos-hpc-doc
+trilinos_13_0_0-hpc-doc
+=== trilinos:gnu-mpich-hpc/ppc64le ===
+libtrilinos-gnu-mpich-hpc
+libtrilinos_13_0_0-gnu-mpich-hpc
+trilinos-gnu-mpich-hpc-devel
+trilinos_13_0_0-gnu-mpich-hpc-devel
+=== trilinos:gnu-mvapich2-hpc/ppc64le ===
+libtrilinos-gnu-mvapich2-hpc
+libtrilinos_13_0_0-gnu-mvapich2-hpc
+trilinos-gnu-mvapich2-hpc-devel
+trilinos_13_0_0-gnu-mvapich2-hpc-devel
+=== trilinos:gnu-openmpi3-hpc/ppc64le ===
+libtrilinos-gnu-openmpi3-hpc
+libtrilinos_13_0_0-gnu-openmpi3-hpc
+trilinos-gnu-openmpi3-hpc-devel
+trilinos_13_0_0-gnu-openmpi3-hpc-devel
+=== trilinos:gnu-openmpi4-hpc/ppc64le ===
+libtrilinos-gnu-openmpi4-hpc
+libtrilinos_13_0_0-gnu-openmpi4-hpc
+trilinos-gnu-openmpi4-hpc-devel
+trilinos_13_0_0-gnu-openmpi4-hpc-devel
+
+-----
+Package need to drop or being disabled in Backports
+-----
+
+baobab
+bogofilter
+color-filesystem
+deja-dup
+dia
+duplicity
+eiciel
+evolution
+evolution-data-server
+evolution-ews
+farstream
+flute
+folks
+ganglia-web
+gdl
+gegl
+ghex
+gimp
+gnome-backgrounds
+gnome-clocks
+gnome-contacts
+gnome-documents
+gnome-music
+gnome-photos
+gnome-video-effects
+gnome-weather
+grilo-plugins
+gtkspell
+hexchat
+highlight
+icedtea-web
+inkscape
+libabw
+libbase
+libcdr
+libconfuse0
+libe-book
+libepc
+libepubgen
+libetonyek
+libfonts
+libformula
+libfreehand
+liblangtag
+liblayout
+libloader
+libmspub
+libmwaw
+libmypaint
+libodfgen
+libpagemaker
+libqxp
+libreoffice
+libreoffice-share-linker
+librepository
+librevenge
+libserializer
+libstaroffice
+libvisio
+libvoikko
+libwpd
+libwpg
+libzmf
+lirc
+lua-lmod:doc-pdf
+malaga-suomi
+NetworkManager-openconnect
+NetworkManager-openvpn
+NetworkManager-pptp
+NetworkManager-strongswan
+opencl-headers
+openconnect
+OpenPrintingPPDs
+pentaho-libxml
+pentaho-reporting-flow-engine
+pidgin
+pidgin-otr
+pidgin-sipe
+prun-ohpc
+purple-rocketchat
+remmina
+sac
+seahorse
+simple-scan
+suse-prime
+tagsoup
+totem
+adios:gnu-mpich-hpc
+adios:gnu-mvapich2-hpc
+adios:gnu-openmpi3-hpc
+adios:gnu-openmpi4-hpc
+gnu-compilers-hpc:gnu-hpc
+gnu-compilers-hpc:gnu10-hpc
+hdf5:gnu-hpc
+hdf5:gnu-mpich-hpc
+hdf5:gnu-mvapich2-hpc
+hdf5:gnu-openmpi3-hpc
+hdf5:gnu-openmpi4-hpc
+hypre:gnu-mpich-hpc
+hypre:gnu-mvapich2-hpc
+hypre:gnu-openmpi3-hpc
+hypre:gnu-openmpi4-hpc
+imb:gnu-mpich-hpc
+imb:gnu-mvapich2-hpc
+imb:gnu-openmpi3-hpc
+imb:gnu-openmpi4-hpc
+mpich:gnu-hpc
+mpich:gnu-hpc-ofi
+mumps:gnu-mpich-hpc
+mumps:gnu-mvapich2-hpc
+mumps:gnu-openmpi3-hpc
+mumps:gnu-openmpi4-hpc
+mvapich2:gnu-hpc
+netcdf-cxx4:gnu-hpc
+netcdf-fortran:gnu-mpich-hpc
+netcdf-fortran:gnu-mvapich2-hpc
+netcdf-fortran:gnu-openmpi3-hpc
+netcdf-fortran:gnu-openmpi4-hpc
+netcdf:gnu-hpc
+netcdf:gnu-mpich-hpc
+netcdf:gnu-mvapich2-hpc
+netcdf:gnu-openmpi3-hpc
+netcdf:gnu-openmpi4-hpc
+ocr:gnu-hpc
+ocr:gnu-mpich-hpc
+ocr:gnu-mvapich2-hpc
+ocr:gnu-openmpi3-hpc
+openmpi2:gnu-hpc
+openmpi3:gnu-hpc
+openmpi:gnu-hpc
+petsc:doc
+scotch:gnu-mpich-hpc
+scotch:gnu-mvapich2-hpc
+scotch:gnu-openmpi3-hpc
+scotch:gnu-openmpi4-hpc
+superlu:gnu-hpc
+trilinos:documentation-hpc
+trilinos:gnu-mpich-hpc
+trilinos:gnu-mvapich2-hpc
+trilinos:gnu-openmpi3-hpc
+trilinos:gnu-openmpi4-hpc
