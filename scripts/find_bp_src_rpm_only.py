@@ -3,11 +3,7 @@
 import argparse
 import logging
 import sys
-try:
-    from urllib.error import HTTPError
-except ImportError:
-    # python 2.x
-    from urllib2 import HTTPError
+from urllib.error import HTTPError
 
 import re
 from xml.etree import cElementTree as ET
@@ -61,7 +57,15 @@ class FindBP(object):
         return True
 
     def src_rpm_only(self, project, package, repo, arch):
-        root = ET.parse(http_GET(makeurl(self.apiurl, ['build', project, repo, arch, package]))).getroot()
+        try:
+            root = ET.parse(http_GET(makeurl(self.apiurl, ['build', project, repo, arch, package]))).getroot()
+        except HTTPError as e:
+            if e.code == 404:
+                print("No build result found: %s" % package)
+                return False
+
+            raise e
+
         rpms = [i.get('filename') for i in root.findall('binary')]
         result = True
 
@@ -120,7 +124,7 @@ class FindBP(object):
                     if self.wipe:
                         self.switch_flag_in_pkg(BACKPORTS, pkg, flag='build', state='disable', repository='standard')
                         self.do_wipe_package(BACKPORTS, pkg, repository='standard')
-                    print("Package exists in SLE and src_rpm only %s %s" % (BACKPORTS, pkg))
+                    print("Package exists in SLE and was produced src.rpm only in %s %s" % (BACKPORTS, pkg))
 
 
 def main(args):
@@ -142,7 +146,7 @@ if __name__ == '__main__':
                         default=OPENSUSE)
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='show the diff')
-    parser.add_argument('-f', '--wipe', action='store_true',
+    parser.add_argument('-w', '--wipe', action='store_true',
                         help='disable package and wipe binaries')
 
     args = parser.parse_args()
