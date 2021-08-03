@@ -27,6 +27,7 @@ http_GET = osc.core.http_GET
 http_POST = osc.core.http_POST
 http_PUT = osc.core.http_PUT
 
+
 class ObsoletesFinder(object):
     def __init__(self, project, verbose):
         self.project = project
@@ -35,7 +36,12 @@ class ObsoletesFinder(object):
         self.debug = osc.conf.config['debug']
 
     def get_packageinfo(self, project, expand=False):
-        """Return the list of packages in a project."""
+        """
+        Return the list of package's info of a project.
+        If the latest package is from an incident then returns incident
+        package.
+        """
+
         pkglist = {}
         packageinfo = {}
         query = {}
@@ -59,7 +65,7 @@ class ObsoletesFinder(object):
                     if not (pkgname.count('.') > 1):
                         is_incidentpkg = False
 
-            # If is an incident then update the package origin info
+            # if an incident then update the package origin info
             if is_incidentpkg:
                 orig_name = re.sub(r'\.[0-9]+$', '', pkgname)
                 incident_number = int(pkgname.split('.')[-1])
@@ -81,7 +87,11 @@ class ObsoletesFinder(object):
 
         return packageinfo
 
-    def get_project_binary_list(self, project, repository, arch, package_binaries = {}):
+    def get_project_binary_list(self, project, repository, arch, package_binaries={}):
+        """
+        Returns binarylist of a project
+        """
+
         if project.startswith('SUSE:'):
             repository = 'pool'
 
@@ -118,6 +128,7 @@ class ObsoletesFinder(object):
         """
         Return true if the given project or package exists
         """
+
         if package:
             url = makeurl(self.apiurl, ['source', project, package, '_meta'])
         else:
@@ -129,6 +140,10 @@ class ObsoletesFinder(object):
         return True
 
     def origin_metadata_get(self, project, package):
+        """
+        Returns origin infomration
+        """
+
         meta = ET.fromstringlist(osc.core.show_package_meta(self.apiurl, project, package))
         if meta is not None:
             return meta.get('project'), meta.get('name')
@@ -136,6 +151,10 @@ class ObsoletesFinder(object):
         return None, None
 
     def get_linkinfo(self, project, package):
+        """
+        Returns package links if it does exist
+        """
+
         query = {'withlinked': 1}
         u = makeurl(self.apiurl, ['source', project, package], query=query)
         root = ET.parse(http_GET(u)).getroot()
@@ -157,25 +176,28 @@ class ObsoletesFinder(object):
 
     def crawl(self):
         """Main method"""
+
         leap_pkglist = self.get_packageinfo(OPENSUSE, expand=1)
-        # the selected_binarylist from the latest sources
-        # these binary RPMs need to be presented in ftp eventually
-        # no more binary RPM than this list
+        # the selected_binarylist including the latest sourcepackage list
+        # binary RPMs from the latest sources need to be presented in ftp eventually
         selected_binarylist = []
-        # any existed binary RPM
+        # all existed binary RPMs from any SPx/Leap/Backports
         fullbinarylist = []
         # package_binaries is a pre-formated binarylist per each package
         package_binaries = {}
-        # empty binarylist of a packagelist
-        # some are build failed SLE fork
+        # a packagelist of no build result's package
+        # some are SLE fork but build failed
         empty_binarylist_packages = []
-        # extra multibuild packages
+        # the extra multibuild packages
+        # TODO: this is a ugly hack since multibuild flavor has different
+        # capacity on openSUSE and SLE
         extra_multibuilds = ["python-numpy", "openblas", "openmpi", "openmpi2",
-                "openmpi3", "mpich", "mvapich2", "scalapack",
-                "libappindicator", "timescaledb", "pgaudit", "petsc",
-                "lua-lmod", "adios", "gnu-compilers-hpc", "hdf5", "hypre",
-                "imb", "mumps", "netcdf-cxx4", "netcdf-fortran", "netcdf",
-                "ocr", "scotch", "superlu", "trilinos"]
+                             "openmpi3", "mpich", "mvapich2", "scalapack",
+                             "libappindicator", "timescaledb", "pgaudit", "petsc",
+                             "lua-lmod", "adios", "gnu-compilers-hpc", "hdf5", "hypre",
+                             "imb", "mumps", "netcdf-cxx4", "netcdf-fortran", "netcdf",
+                             "ocr", "scotch", "superlu", "trilinos"]
+        # inject binarylist to a list per package name no matter what archtectures was
         for arch in SUPPORTED_ARCHS:
             for prj in leap_pkglist.keys():
                 package_binaries = self.get_project_binary_list(prj, DEFAULT_REPOSITORY, arch, package_binaries)
@@ -192,7 +214,7 @@ class ObsoletesFinder(object):
                     if 'Backports' in prj:
                         empty_binarylist_packages.append(pkg)
                     logging.info("Can not find binary of %s/%s" % (prj, pkg))
-        # the additional binary RPMs
+        # the additional binary RPMs should be included in ftp
         extra_multibuilds += empty_binarylist_packages
         for pkg in extra_multibuilds:
             if (not self.exception_list(pkg) and self.item_exists(SLE, pkg)):
@@ -202,6 +224,7 @@ class ObsoletesFinder(object):
                 if index in package_binaries:
                     selected_binarylist += package_binaries[index]
 
+        # a list of binary RPM should filter out from ftp
         unneeded = []
         for pkg in fullbinarylist:
             if pkg not in selected_binarylist and pkg not in unneeded:
@@ -210,16 +233,17 @@ class ObsoletesFinder(object):
                     if self.verbose:
                         print(pkg)
 
+
 def main(args):
-    # Configure OSC
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
     uc = ObsoletesFinder(args.project, args.verbose)
     uc.crawl()
 
+
 if __name__ == '__main__':
-    description = 'Find obsoleted binary RPM according to the latest sources'
+    description = 'Find the obsoleted binary RPMs according to the latest sources'
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('-A', '--apiurl', metavar='URL', help='API URL')
     parser.add_argument('-d', '--debug', action='store_true',
@@ -232,7 +256,6 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    # Set logging configuration
     logging.basicConfig(level=logging.DEBUG if args.debug
                         else logging.INFO)
 
