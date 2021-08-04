@@ -225,13 +225,25 @@ class ObsoletesFinder(object):
                     selected_binarylist += package_binaries[index]
 
         # a list of binary RPM should filter out from ftp
-        unneeded = []
+        obsoleted = []
         for pkg in fullbinarylist:
-            if pkg not in selected_binarylist and pkg not in unneeded:
-                if not self.exception_list(pkg):
-                    unneeded.append(pkg)
-                    if self.verbose:
-                        print(pkg)
+            if pkg not in selected_binarylist and pkg not in obsoleted:
+                if pkg not in obsoleted and not self.exception_list(pkg):
+                    obsoleted.append(pkg)
+
+        # another ugly hack for -32bit and -64bit binary RPM for the obsoleted list
+        unneeded = obsoleted.copy()
+        for pkg in unneeded:
+            if pkg.endswith('-32bit') or pkg.endswith('-64bit'):
+                main_filename = re.sub('-[36][24]bit', '', pkg)
+                if main_filename not in obsoleted:
+                    obsoleted.remove(pkg)
+
+        # TODO: should have to be a uploading instead of a plain output
+        # and need merge to NON_FTP_PACKAGES.group in 000package-groups
+        if self.verbose:
+            for pkg in obsoleted:
+                print(pkg)
 
 
 def main(args):
