@@ -35,6 +35,37 @@ class ObsoletesFinder(object):
         self.apiurl = osc.conf.config['apiurl']
         self.debug = osc.conf.config['debug']
 
+    def is_sle_specific(self, package):
+        pkg = package.lower()
+        if pkg.startswith('skelcd') or pkg.startswith('release-notes') or\
+                pkg.startswith('sle-') or pkg.startswith('sle_'):
+            return True
+        if 'sles' in pkg or 'sled' in pkg:
+            return True
+        if 'sap-' in pkg or '-sap' in pkg or pkg.startswith('sap'):
+            return True
+        if 'eula' in pkg:
+            return True
+        if pkg.startswith('sle15') or\
+                pkg.startswith('suse-migration') or\
+                pkg.startswith('migrate') or\
+                pkg.startswith('kernel-livepatch') or\
+                pkg.startswith('patterns') or\
+                pkg.startswith('supportutils-plugin') or\
+                pkg.startswith('lifecycle-data-sle') or\
+                pkg.startswith('sca-patterns') or\
+                pkg.startswith('susemanager-') or\
+                pkg.startswith('desktop-data'):
+            return True
+        if pkg.endswith('bootstrap') or pkg.endswith('-caasp') or\
+                pkg.endswith('-sle'):
+            return True
+        if pkg == 'suse-build-key' or pkg == 'suse-hpc' or\
+                pkg == 'zypper-search-packages-plugin' or\
+                pkg == 'python-ibus':
+            return True
+        return False
+
     def get_packageinfo(self, project, expand=False):
         """
         Return the list of package's info of a project.
@@ -53,9 +84,10 @@ class ObsoletesFinder(object):
             pkgname = i.get('name')
             orig_project = i.get('originproject')
             is_incidentpkg = False
-            if pkgname.startswith('00') or pkgname.startswith('_') or \
+            if pkgname.startswith('000') or pkgname.startswith('_') or \
                     pkgname.startswith('patchinfo.'):
-                continue
+                if pkgname != '000release-packages':
+                    continue
             # ugly hack for go1.x incidents as the name would be go1.x.xxx
             if '.' in pkgname and re.match(r'[0-9]+$', pkgname.split('.')[-1]) and \
                     orig_project.startswith('SUSE:') and orig_project.endswith(':Update'):
@@ -80,6 +112,8 @@ class ObsoletesFinder(object):
                 pkglist[pkgname] = {'Project': orig_project, 'Package': pkgname}
 
         for pkg in pkglist.keys():
+            if pkglist[pkg]['Project'].startswith('SUSE:') and self.is_sle_specific(pkg):
+                continue
             if pkglist[pkg]['Project'] not in packageinfo:
                 packageinfo[pkglist[pkg]['Project']] = []
             if pkglist[pkg]['Package'] not in packageinfo[pkglist[pkg]['Project']]:
