@@ -51,6 +51,7 @@ class ObsoletesFinder(object):
         if 'eula' in pkg:
             return True
         if pkg.startswith('sle15') or\
+                pkg.startswith('sles15') or\
                 pkg.startswith('suse-migration') or\
                 pkg.startswith('migrate') or\
                 pkg.startswith('kernel-livepatch') or\
