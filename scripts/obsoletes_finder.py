@@ -24,6 +24,8 @@ DEFAULT_REPOSITORY = 'standard'
 BINARY_REGEX = r'(?:.*::)?(?P<filename>(?P<name>.*)-(?P<version>[^-]+)-(?P<release>[^-]+)\.(?P<arch>[^-\.]+))'
 RPM_REGEX = BINARY_REGEX + r'\.rpm'
 
+META_PACKAGE = '000package-groups'
+
 makeurl = osc.core.makeurl
 http_GET = osc.core.http_GET
 http_POST = osc.core.http_POST
@@ -200,6 +202,10 @@ class ObsoletesFinder(object):
         return package
 
     def exception_list(self, package):
+        """
+        Do not skip the package if marches the condition
+        """
+
         if package.startswith('python2') or package.startswith('python3') or \
                 package.startswith('preinstallimage-'):
             return True
@@ -296,12 +302,14 @@ class ObsoletesFinder(object):
         skip_list = ET.Element('group', {'name': 'NON_FTP_PACKAGES'})
         ET.SubElement(skip_list, 'conditional', {'name': 'drop_from_ftp'})
         packagelist = ET.SubElement(skip_list, 'packagelist', {'relationship': 'requires'})
-        for pkg in obsoleted:
+        for pkg in sorted(obsoleted):
             if self.verbose:
                 print(pkg)
             attr = {'name': pkg}
             ET.SubElement(packagelist, 'package', attr)
-        self.upload_skip_list(OPENSUSE, '000package-groups', 'NON_FTP_PACKAGES.group', ET.tostring(skip_list, pretty_print=True, encoding='unicode'), 'Update the skip list')
+        self.upload_skip_list(OPENSUSE, META_PACKAGE, 'NON_FTP_PACKAGES.group',
+                              ET.tostring(skip_list, pretty_print=True, encoding='unicode'),
+                              'Update the skip list')
 
 
 def main(args):
