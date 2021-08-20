@@ -7,13 +7,15 @@ import sys
 from urllib.error import HTTPError
 
 import re
-from xml.etree import cElementTree as ET
+from lxml import etree as ET
 
 import osc.conf
 import osc.core
 
 from osc import oscerr
 from collections import namedtuple
+
+from osc.util.helper import decode_it
 
 OPENSUSE = 'openSUSE:Leap:15.4'
 SLE = 'SUSE:SLE-15-SP4:GA'
@@ -85,9 +87,8 @@ class ObsoletesFinder(object):
             orig_project = i.get('originproject')
             is_incidentpkg = False
             if pkgname.startswith('000') or pkgname.startswith('_') or \
-                    pkgname.startswith('patchinfo.'):
-                if pkgname != '000release-packages':
-                    continue
+                    pkgname.startswith('patchinfo.') or pkgname.endswith('-mini'):
+                continue
             # ugly hack for go1.x incidents as the name would be go1.x.xxx
             if '.' in pkgname and re.match(r'[0-9]+$', pkgname.split('.')[-1]) and \
                     orig_project.startswith('SUSE:') and orig_project.endswith(':Update'):
@@ -208,6 +209,22 @@ class ObsoletesFinder(object):
             return True
         return False
 
+    def source_file_load(self, project, package, filename):
+        query = {'expand': 1}
+        url = makeurl(self.apiurl, ['source', project, package, filename], query)
+        try:
+            return decode_it(http_GET(url).read())
+        except HTTPError:
+            return None
+
+    def source_file_save(self, project, package, filename, content, comment=None):
+        url = makeurl(self.apiurl, ['source', project, package, filename], {'comment': comment})
+        http_PUT(url, data=content)
+
+    def upload_skip_list(self, project, package, filename, content, comment=None):
+        if content != self.source_file_load(project, package, filename):
+            self.source_file_save(project, package, filename, content, comment)
+
     def crawl(self):
         """Main method"""
 
@@ -261,9 +278,12 @@ class ObsoletesFinder(object):
         # a list of binary RPM should filter out from ftp
         obsoleted = []
         for pkg in fullbinarylist:
-            if pkg not in selected_binarylist and pkg not in obsoleted:
-                if pkg not in obsoleted and not self.exception_list(pkg):
-                    obsoleted.append(pkg)
+            if pkg not in selected_binarylist and pkg not in obsoleted and not self.exception_list(pkg):
+                # special handling for -release package
+                if pkg == 'openSUSE-release' or pkg == 'openSUSE-release-ftp' or\
+                        pkg == 'openSUSE-Addon-NonOss-release':
+                    continue
+                obsoleted.append(pkg)
 
         # another ugly hack for -32bit and -64bit binary RPM for the obsoleted list
         unneeded = obsoleted.copy()
@@ -273,11 +293,15 @@ class ObsoletesFinder(object):
                 if main_filename not in obsoleted:
                     obsoleted.remove(pkg)
 
-        # TODO: should have to be a uploading instead of a plain output
-        # and need merge to NON_FTP_PACKAGES.group in 000package-groups
-        if self.verbose:
-            for pkg in obsoleted:
+        skip_list = ET.Element('group', {'name': 'NON_FTP_PACKAGES'})
+        ET.SubElement(skip_list, 'conditional', {'name': 'drop_from_ftp'})
+        packagelist = ET.SubElement(skip_list, 'packagelist', {'relationship': 'requires'})
+        for pkg in obsoleted:
+            if self.verbose:
                 print(pkg)
+            attr = {'name': pkg}
+            ET.SubElement(packagelist, 'package', attr)
+        self.upload_skip_list(OPENSUSE, '000package-groups', 'NON_FTP_PACKAGES.group', ET.tostring(skip_list, pretty_print=True, encoding='unicode'), 'Update the skip list')
 
 
 def main(args):
