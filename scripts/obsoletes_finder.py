@@ -259,15 +259,6 @@ class ObsoletesFinder(object):
         # a packagelist of no build result's package
         # some are SLE fork but build failed
         empty_binarylist_packages = []
-        # the extra multibuild packages
-        # TODO: this is a ugly hack since multibuild flavor has different
-        # capacity on openSUSE and SLE
-        extra_multibuilds = ["python-numpy", "openblas", "openmpi", "openmpi2",
-                             "openmpi3", "mpich", "mvapich2", "scalapack",
-                             "libappindicator", "timescaledb", "pgaudit", "petsc",
-                             "lua-lmod", "adios", "gnu-compilers-hpc", "hdf5", "hypre",
-                             "imb", "mumps", "netcdf-cxx4", "netcdf-fortran", "netcdf",
-                             "ocr", "scotch", "superlu", "trilinos"]
         # inject binarylist to a list per package name no matter what archtectures was
         for arch in SUPPORTED_ARCHS:
             for prj in leap_pkglist.keys():
@@ -293,9 +284,7 @@ class ObsoletesFinder(object):
                         if 'Backports' in prj:
                             empty_binarylist_packages.append(pkg)
                         logging.info("Can not find binary of %s" % index)
-        # the additional binary RPMs should be included in ftp
-        extra_multibuilds += empty_binarylist_packages
-        for pkg in extra_multibuilds:
+        for pkg in empty_binarylist_packages:
             if (not self.exceptions(pkg) and self.item_exists(SLE, pkg)):
                 oproject, opackage = self.origin_metadata_get(SLE, pkg)
                 opackage = self.get_linkinfo(oproject, opackage)
