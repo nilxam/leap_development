@@ -41,6 +41,9 @@ class ObsoletesFinder(object):
         self.debug = osc.conf.config['debug']
 
     def is_sle_specific(self, package):
+        """
+        Returns if package is provided for SLE only or a forking cnadidate
+        """
         pkg = package.lower()
         if pkg.startswith('skelcd') or pkg.startswith('release-notes') or\
                 pkg.startswith('sle-') or pkg.startswith('sle_'):
@@ -49,7 +52,7 @@ class ObsoletesFinder(object):
             return True
         if 'sap-' in pkg or '-sap' in pkg or pkg.startswith('sap'):
             return True
-        if 'eula' in pkg:
+        if 'eula' in pkg or 'branding' in pkg:
             return True
         if pkg.startswith('sle15') or\
                 pkg.startswith('sles15') or\
@@ -61,13 +64,17 @@ class ObsoletesFinder(object):
                 pkg.startswith('lifecycle-data-sle') or\
                 pkg.startswith('sca-patterns') or\
                 pkg.startswith('susemanager-') or\
+                pkg.startswith('kiwi-template') or\
                 pkg.startswith('desktop-data'):
             return True
         if pkg.endswith('bootstrap') or pkg.endswith('-caasp') or\
                 pkg.endswith('-sle'):
             return True
         if pkg == 'suse-build-key' or pkg == 'suse-hpc' or\
+                pkg == 'llvm' or\
+                pkg == 'txt2tags' or\
                 pkg == 'zypper-search-packages-plugin' or\
+                pkg == 'python-pymemcache' or\
                 pkg == 'python-ibus':
             return True
         return False
@@ -272,8 +279,10 @@ class ObsoletesFinder(object):
         for prj in leap_pkglist.keys():
             for pkg in leap_pkglist[prj]:
                 cands = [prj + "_" + pkg]
+                # handling for SLE forks, or different multibuild bits has
+                # enabled between SLE and openSUSE
                 if prj.startswith('openSUSE:') and pkg in sle_pkglist and\
-                        not 'branding' in pkg:
+                        not self.is_sle_specific(pkg):
                     cands.append(sle_pkglist[pkg]['Project'] + "_" + sle_pkglist[pkg]['Package'])
                 logging.debug(cands)
                 for index in cands:
@@ -283,7 +292,7 @@ class ObsoletesFinder(object):
                         # we only cares empty binarylist in Backports
                         if 'Backports' in prj:
                             empty_binarylist_packages.append(pkg)
-                        logging.info("Can not find binary of %s/%s" % (prj, pkg))
+                        logging.info("Can not find binary of %s" % index)
         # the additional binary RPMs should be included in ftp
         extra_multibuilds += empty_binarylist_packages
         for pkg in extra_multibuilds:
