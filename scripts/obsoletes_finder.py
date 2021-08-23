@@ -72,7 +72,7 @@ class ObsoletesFinder(object):
             return True
         return False
 
-    def get_packageinfo(self, project, expand=False):
+    def get_packageinfo(self, project, by_project=True):
         """
         Return the list of package's info of a project.
         If the latest package is from an incident then returns incident
@@ -81,9 +81,7 @@ class ObsoletesFinder(object):
 
         pkglist = {}
         packageinfo = {}
-        query = {}
-        if expand:
-            query['expand'] = 1
+        query = {'expand': 1}
         root = ET.parse(http_GET(makeurl(self.apiurl, ['source', project],
                                  query=query))).getroot()
         for i in root.findall('entry'):
@@ -120,15 +118,17 @@ class ObsoletesFinder(object):
             else:
                 pkglist[pkgname] = {'Project': orig_project, 'Package': pkgname}
 
-        for pkg in pkglist.keys():
-            if pkglist[pkg]['Project'].startswith('SUSE:') and self.is_sle_specific(pkg):
-                continue
-            if pkglist[pkg]['Project'] not in packageinfo:
-                packageinfo[pkglist[pkg]['Project']] = []
-            if pkglist[pkg]['Package'] not in packageinfo[pkglist[pkg]['Project']]:
-                packageinfo[pkglist[pkg]['Project']].append(pkglist[pkg]['Package'])
+        if by_project:
+            for pkg in pkglist.keys():
+                if pkglist[pkg]['Project'].startswith('SUSE:') and self.is_sle_specific(pkg):
+                    continue
+                if pkglist[pkg]['Project'] not in packageinfo:
+                    packageinfo[pkglist[pkg]['Project']] = []
+                if pkglist[pkg]['Package'] not in packageinfo[pkglist[pkg]['Project']]:
+                    packageinfo[pkglist[pkg]['Project']].append(pkglist[pkg]['Package'])
+            return packageinfo
 
-        return packageinfo
+        return pkglist
 
     def get_project_binary_list(self, project, repository, arch, package_binaries={}):
         """
@@ -240,7 +240,8 @@ class ObsoletesFinder(object):
     def crawl(self):
         """Main method"""
 
-        leap_pkglist = self.get_packageinfo(OPENSUSE, expand=1)
+        leap_pkglist = self.get_packageinfo(OPENSUSE)
+        sle_pkglist = self.get_packageinfo(SLE, by_project=False)
         # the selected_binarylist including the latest sourcepackage list
         # binary RPMs from the latest sources need to be presented in ftp eventually
         selected_binarylist = []
@@ -270,13 +271,19 @@ class ObsoletesFinder(object):
 
         for prj in leap_pkglist.keys():
             for pkg in leap_pkglist[prj]:
-                index = prj + "_" + pkg
-                if index in package_binaries:
-                    selected_binarylist += package_binaries[index]
-                else:
-                    if 'Backports' in prj:
-                        empty_binarylist_packages.append(pkg)
-                    logging.info("Can not find binary of %s/%s" % (prj, pkg))
+                cands = [prj + "_" + pkg]
+                if prj.startswith('openSUSE:') and pkg in sle_pkglist and\
+                        not 'branding' in pkg:
+                    cands.append(sle_pkglist[pkg]['Project'] + "_" + sle_pkglist[pkg]['Package'])
+                logging.debug(cands)
+                for index in cands:
+                    if index in package_binaries:
+                        selected_binarylist += package_binaries[index]
+                    else:
+                        # we only cares empty binarylist in Backports
+                        if 'Backports' in prj:
+                            empty_binarylist_packages.append(pkg)
+                        logging.info("Can not find binary of %s/%s" % (prj, pkg))
         # the additional binary RPMs should be included in ftp
         extra_multibuilds += empty_binarylist_packages
         for pkg in extra_multibuilds:
