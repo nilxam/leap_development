@@ -33,9 +33,9 @@ http_PUT = osc.core.http_PUT
 
 
 class ObsoletesFinder(object):
-    def __init__(self, project, printonly, verbose):
+    def __init__(self, project, print_only, verbose):
         self.project = project
-        self.printonly = printonly
+        self.print_only = print_only
         self.verbose = verbose
         self.apiurl = osc.conf.config['apiurl']
         self.debug = osc.conf.config['debug']
@@ -72,7 +72,7 @@ class ObsoletesFinder(object):
             return True
         return False
 
-    def get_packageinfo(self, project, by_project=True):
+    def get_packagelist(self, project, by_project=True):
         """
         Return the list of package's info of a project.
         If the latest package is from an incident then returns incident
@@ -207,7 +207,7 @@ class ObsoletesFinder(object):
 
         return package
 
-    def exception_list(self, package):
+    def exceptions(self, package):
         """
         Do not skip the package if marches the condition
         """
@@ -240,8 +240,8 @@ class ObsoletesFinder(object):
     def crawl(self):
         """Main method"""
 
-        leap_pkglist = self.get_packageinfo(OPENSUSE)
-        sle_pkglist = self.get_packageinfo(SLE, by_project=False)
+        leap_pkglist = self.get_packagelist(OPENSUSE)
+        sle_pkglist = self.get_packagelist(SLE, by_project=False)
         # the selected_binarylist including the latest sourcepackage list
         # binary RPMs from the latest sources need to be presented in ftp eventually
         selected_binarylist = []
@@ -287,7 +287,7 @@ class ObsoletesFinder(object):
         # the additional binary RPMs should be included in ftp
         extra_multibuilds += empty_binarylist_packages
         for pkg in extra_multibuilds:
-            if (not self.exception_list(pkg) and self.item_exists(SLE, pkg)):
+            if (not self.exceptions(pkg) and self.item_exists(SLE, pkg)):
                 oproject, opackage = self.origin_metadata_get(SLE, pkg)
                 opackage = self.get_linkinfo(oproject, opackage)
                 index = oproject + "_" + opackage
@@ -297,7 +297,7 @@ class ObsoletesFinder(object):
         # a list of binary RPM should filter out from ftp
         obsoleted = []
         for pkg in fullbinarylist:
-            if pkg not in selected_binarylist and pkg not in obsoleted and not self.exception_list(pkg):
+            if pkg not in selected_binarylist and pkg not in obsoleted and not self.exceptions(pkg):
                 # special handling for -release package
                 if pkg == 'openSUSE-release' or pkg == 'openSUSE-release-ftp' or\
                         pkg == 'openSUSE-Addon-NonOss-release':
@@ -320,7 +320,7 @@ class ObsoletesFinder(object):
                 print(pkg)
             attr = {'name': pkg}
             ET.SubElement(packagelist, 'package', attr)
-        if not self.printonly:
+        if not self.print_only:
             self.upload_skip_list(OPENSUSE, META_PACKAGE, 'NON_FTP_PACKAGES.group',
                                   ET.tostring(skip_list, pretty_print=True, encoding='unicode'),
                                   'Update the skip list')
@@ -330,7 +330,7 @@ def main(args):
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = ObsoletesFinder(args.project, args.printonly, args.verbose)
+    uc = ObsoletesFinder(args.project, args.print_only, args.verbose)
     uc.crawl()
 
 
@@ -343,7 +343,7 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--project', dest='project', metavar='PROJECT',
                         help='the project where to check (default: %s)' % OPENSUSE,
                         default=OPENSUSE)
-    parser.add_argument('-t', '--printonly', action='store_true',
+    parser.add_argument('-t', '--print-only', action='store_true',
                         help='show the diff')
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='show the diff')
