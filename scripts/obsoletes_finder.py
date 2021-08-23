@@ -33,8 +33,7 @@ http_PUT = osc.core.http_PUT
 
 
 class ObsoletesFinder(object):
-    def __init__(self, project, print_only, verbose):
-        self.project = project
+    def __init__(self, print_only, verbose):
         self.print_only = print_only
         self.verbose = verbose
         self.apiurl = osc.conf.config['apiurl']
@@ -331,21 +330,19 @@ def main(args):
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = ObsoletesFinder(args.project, args.print_only, args.verbose)
+    uc = ObsoletesFinder(args.print_only, args.verbose)
     uc.crawl()
 
 
 if __name__ == '__main__':
-    description = 'Find the obsoleted binary RPMs according to the latest sources'
+    description = 'Overwrites NON_FTP_PACKAGES.group according to the latest sources. '\
+                  'This tool only works for Leap after CtLG implemented.'
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('-A', '--apiurl', metavar='URL', help='API URL')
     parser.add_argument('-d', '--debug', action='store_true',
                         help='print info useful for debuging')
-    parser.add_argument('-p', '--project', dest='project', metavar='PROJECT',
-                        help='the project where to check (default: %s)' % OPENSUSE,
-                        default=OPENSUSE)
-    parser.add_argument('-t', '--print-only', action='store_true',
-                        help='show the diff')
+    parser.add_argument('-o', '--print-only', action='store_true',
+                        help='show the result instead of the uploading')
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='show the diff')
 
