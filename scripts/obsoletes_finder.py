@@ -33,8 +33,9 @@ http_PUT = osc.core.http_PUT
 
 
 class ObsoletesFinder(object):
-    def __init__(self, project, verbose):
+    def __init__(self, project, printonly, verbose):
         self.project = project
+        self.printonly = printonly
         self.verbose = verbose
         self.apiurl = osc.conf.config['apiurl']
         self.debug = osc.conf.config['debug']
@@ -89,8 +90,12 @@ class ObsoletesFinder(object):
             pkgname = i.get('name')
             orig_project = i.get('originproject')
             is_incidentpkg = False
-            if pkgname.startswith('000') or pkgname.startswith('_') or \
-                    pkgname.startswith('patchinfo.') or pkgname.endswith('-mini'):
+            if pkgname.startswith('000') or\
+                    pkgname.startswith('_') or\
+                    pkgname.startswith('patchinfo.') or\
+                    pkgname.startswith('skelcd-') or\
+                    pkgname.startswith('installation-images') or\
+                    pkgname.endswith('-mini'):
                 continue
             # ugly hack for go1.x incidents as the name would be go1.x.xxx
             if '.' in pkgname and re.match(r'[0-9]+$', pkgname.split('.')[-1]) and \
@@ -308,16 +313,17 @@ class ObsoletesFinder(object):
                 print(pkg)
             attr = {'name': pkg}
             ET.SubElement(packagelist, 'package', attr)
-        self.upload_skip_list(OPENSUSE, META_PACKAGE, 'NON_FTP_PACKAGES.group',
-                              ET.tostring(skip_list, pretty_print=True, encoding='unicode'),
-                              'Update the skip list')
+        if not self.printonly:
+            self.upload_skip_list(OPENSUSE, META_PACKAGE, 'NON_FTP_PACKAGES.group',
+                                  ET.tostring(skip_list, pretty_print=True, encoding='unicode'),
+                                  'Update the skip list')
 
 
 def main(args):
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = ObsoletesFinder(args.project, args.verbose)
+    uc = ObsoletesFinder(args.project, args.printonly, args.verbose)
     uc.crawl()
 
 
@@ -330,6 +336,8 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--project', dest='project', metavar='PROJECT',
                         help='the project where to check (default: %s)' % OPENSUSE,
                         default=OPENSUSE)
+    parser.add_argument('-t', '--printonly', action='store_true',
+                        help='show the diff')
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='show the diff')
 
