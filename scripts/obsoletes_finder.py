@@ -209,7 +209,7 @@ class ObsoletesFinder(object):
 
     def exceptions(self, package):
         """
-        Do not skip the package if marches the condition
+        Do not skip the package if matches the condition
         """
 
         if package.startswith('python2') or package.startswith('python3') or \
@@ -316,7 +316,7 @@ class ObsoletesFinder(object):
         ET.SubElement(skip_list, 'conditional', {'name': 'drop_from_ftp'})
         packagelist = ET.SubElement(skip_list, 'packagelist', {'relationship': 'requires'})
         for pkg in sorted(obsoleted):
-            if self.verbose:
+            if not self.print_only and self.verbose:
                 print(pkg)
             attr = {'name': pkg}
             ET.SubElement(packagelist, 'package', attr)
@@ -324,6 +324,9 @@ class ObsoletesFinder(object):
             self.upload_skip_list(OPENSUSE, META_PACKAGE, 'NON_FTP_PACKAGES.group',
                                   ET.tostring(skip_list, pretty_print=True, encoding='unicode'),
                                   'Update the skip list')
+        else:
+            print(ET.tostring(skip_list, pretty_print=True,
+                  encoding='unicode'))
 
 
 def main(args):
