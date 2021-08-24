@@ -8,14 +8,13 @@ from urllib.error import HTTPError
 
 import re
 from lxml import etree as ET
+from collections import namedtuple
 
 import osc.conf
 import osc.core
-
 from osc import oscerr
-from collections import namedtuple
-
 from osc.util.helper import decode_it
+from osclib.core import source_file_ensure
 
 OPENSUSE = 'openSUSE:Leap:15.4'
 SLE = 'SUSE:SLE-15-SP4:GA'
@@ -32,7 +31,7 @@ http_POST = osc.core.http_POST
 http_PUT = osc.core.http_PUT
 
 
-class ObsoletesFinder(object):
+class SkippkgFinder(object):
     def __init__(self, print_only, verbose):
         self.print_only = print_only
         self.verbose = verbose
@@ -41,7 +40,7 @@ class ObsoletesFinder(object):
 
     def is_sle_specific(self, package):
         """
-        Returns if package is provided for SLE only or a forking cnadidate
+        Return True if package is provided for SLE only or a SLE forking
         """
         pkg = package.lower()
         if pkg.startswith('skelcd') or pkg.startswith('release-notes') or\
@@ -227,22 +226,6 @@ class ObsoletesFinder(object):
             return True
         return False
 
-    def source_file_load(self, project, package, filename):
-        query = {'expand': 1}
-        url = makeurl(self.apiurl, ['source', project, package, filename], query)
-        try:
-            return decode_it(http_GET(url).read())
-        except HTTPError:
-            return None
-
-    def source_file_save(self, project, package, filename, content, comment=None):
-        url = makeurl(self.apiurl, ['source', project, package, filename], {'comment': comment})
-        http_PUT(url, data=content)
-
-    def upload_skip_list(self, project, package, filename, content, comment=None):
-        if content != self.source_file_load(project, package, filename):
-            self.source_file_save(project, package, filename, content, comment)
-
     def crawl(self):
         """Main method"""
 
@@ -255,9 +238,7 @@ class ObsoletesFinder(object):
         fullbinarylist = []
         # package_binaries is a pre-formated binarylist per each package
         package_binaries = {}
-        # a packagelist of no build result's package
-        # some are SLE fork but build failed
-        empty_binarylist_packages = []
+
         # inject binarylist to a list per package name no matter what archtectures was
         for arch in SUPPORTED_ARCHS:
             for prj in leap_pkglist.keys():
@@ -279,17 +260,7 @@ class ObsoletesFinder(object):
                     if index in package_binaries:
                         selected_binarylist += package_binaries[index]
                     else:
-                        # we only cares empty binarylist in Backports
-                        if 'Backports' in prj:
-                            empty_binarylist_packages.append(pkg)
                         logging.info("Can not find binary of %s" % index)
-        for pkg in empty_binarylist_packages:
-            if (not self.exceptions(pkg) and self.item_exists(SLE, pkg)):
-                oproject, opackage = self.origin_metadata_get(SLE, pkg)
-                opackage = self.get_linkinfo(oproject, opackage)
-                index = oproject + "_" + opackage
-                if index in package_binaries:
-                    selected_binarylist += package_binaries[index]
 
         # a list of binary RPM should filter out from ftp
         obsoleted = []
@@ -318,9 +289,9 @@ class ObsoletesFinder(object):
             attr = {'name': pkg}
             ET.SubElement(packagelist, 'package', attr)
         if not self.print_only:
-            self.upload_skip_list(OPENSUSE, META_PACKAGE, 'NON_FTP_PACKAGES.group',
-                                  ET.tostring(skip_list, pretty_print=True, encoding='unicode'),
-                                  'Update the skip list')
+            source_file_ensure(self.apiurl, OPENSUSE, META_PACKAGE, 'NON_FTP_PACKAGES.group',
+                               ET.tostring(skip_list, pretty_print=True, encoding='unicode'),
+                               'Update the skip list')
         else:
             print(ET.tostring(skip_list, pretty_print=True,
                   encoding='unicode'))
@@ -330,7 +301,7 @@ def main(args):
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = ObsoletesFinder(args.print_only, args.verbose)
+    uc = SkippkgFinder(args.print_only, args.verbose)
     uc.crawl()
 
 
