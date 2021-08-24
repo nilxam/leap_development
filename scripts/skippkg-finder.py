@@ -32,7 +32,9 @@ http_PUT = osc.core.http_PUT
 
 
 class SkippkgFinder(object):
-    def __init__(self, print_only, verbose):
+    def __init__(self, opensuse_project, sle_project, print_only, verbose):
+        self.opensuse_project = opensuse_project
+        self.sle_project = sle_project
         self.print_only = print_only
         self.verbose = verbose
         self.apiurl = osc.conf.config['apiurl']
@@ -229,8 +231,8 @@ class SkippkgFinder(object):
     def crawl(self):
         """Main method"""
 
-        leap_pkglist = self.get_packagelist(OPENSUSE)
-        sle_pkglist = self.get_packagelist(SLE, by_project=False)
+        leap_pkglist = self.get_packagelist(self.opensuse_project)
+        sle_pkglist = self.get_packagelist(self.sle_project, by_project=False)
         # the selected_binarylist including the latest sourcepackage list
         # binary RPMs from the latest sources need to be presented in ftp eventually
         selected_binarylist = []
@@ -289,7 +291,7 @@ class SkippkgFinder(object):
             attr = {'name': pkg}
             ET.SubElement(packagelist, 'package', attr)
         if not self.print_only:
-            source_file_ensure(self.apiurl, OPENSUSE, META_PACKAGE, 'NON_FTP_PACKAGES.group',
+            source_file_ensure(self.apiurl, self.opensuse_project, META_PACKAGE, 'NON_FTP_PACKAGES.group',
                                ET.tostring(skip_list, pretty_print=True, encoding='unicode'),
                                'Update the skip list')
         else:
@@ -301,7 +303,7 @@ def main(args):
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = SkippkgFinder(args.print_only, args.verbose)
+    uc = SkippkgFinder(args.opensuse_project, args.sle_project, args.print_only, args.verbose)
     uc.crawl()
 
 
@@ -312,7 +314,13 @@ if __name__ == '__main__':
     parser.add_argument('-A', '--apiurl', metavar='URL', help='API URL')
     parser.add_argument('-d', '--debug', action='store_true',
                         help='print info useful for debuging')
-    parser.add_argument('-o', '--print-only', action='store_true',
+    parser.add_argument('-o', '--opensuse-project', dest='opensuse_project', metavar='OPENSUSE_PROJECT',
+                        help='openSUSE project on buildservice (default: %s)' % OPENSUSE,
+                        default=OPENSUSE)
+    parser.add_argument('-s', '--sle-project', dest='sle_project', metavar='SLE_PROJECT',
+                        help='SLE project on buildservice (default: %s)' % SLE,
+                        default=SLE)
+    parser.add_argument('-p', '--print-only', action='store_true',
                         help='show the result instead of the uploading')
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='show the diff')
