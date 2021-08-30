@@ -17,10 +17,11 @@ import osc.core
 
 from osc import oscerr
 
-OPENSUSE = 'openSUSE:Leap:15.3'
-OPENSUSE_UPDATE = 'openSUSE:Leap:15.2:Update'
-BACKPORTS = 'openSUSE:Backports:SLE-15-SP3'
-SLE = 'SUSE:SLE-15-SP3:GA'
+OPENSUSE = 'openSUSE:Leap:15.4'
+OPENSUSE_UPDATE = 'openSUSE:Leap:15.3:Update'
+BACKPORTS = 'openSUSE:Backports:SLE-15-SP4'
+BACKPORTS_UPDATE = 'openSUSE:Backports:SLE-15-SP3:Update'
+SLE = 'SUSE:SLE-15-SP4:GA'
 
 makeurl = osc.core.makeurl
 http_GET = osc.core.http_GET
@@ -98,39 +99,56 @@ class FindUpdate(object):
     def crawl(self):
         """Main method"""
         # get souce packages from update
-        update_pkglist = self.get_source_packages(OPENSUSE_UPDATE)
+        os_update_pkglist = self.get_source_packages(OPENSUSE_UPDATE)
+        bp_update_pkglist = self.get_source_packages(BACKPORTS_UPDATE)
         # get souce packages from SLE
         sle_pkglist = self.get_source_packages(SLE, True)
+        os_pkglist = self.get_source_packages(OPENSUSE)
         # get souce packages from backports
         bp_pkglist = self.get_source_packages(BACKPORTS)
-        weird_pkglist = []
-        new_pkglist = []
+        weird_pkglist = {OPENSUSE_UPDATE: [], BACKPORTS_UPDATE: []}
 
-        for pkg in update_pkglist:
-            if pkg.startswith('patchinfo') or "." in pkg:
+        for pkg in os_update_pkglist:
+            if pkg.startswith('patchinfo') or pkg.count('.') > 1:
                 continue
-            if pkg in sle_pkglist:
+            if pkg in os_pkglist:
+                target_pkg = self.parse_package_link(OPENSUSE_UPDATE, pkg)
+                if target_pkg and not self.parse_package_link(OPENSUSE_UPDATE, target_pkg, True) and self.has_diff(OPENSUSE, pkg, OPENSUSE_UPDATE, target_pkg):
+                    if pkg in sle_pkglist:
+                        logging.debug("%s exist in SLE" % pkg)
+                    if self.get_request_list(OPENSUSE, pkg):
+                        logging.debug("There is a request to %s / %s already or it has been declined/revoked, skip!" % (OPENSUSE, pkg))
+                    else:
+                        print("eval \"osc copypac -e -m 'updated package in %s' %s %s %s %s\"" % (OPENSUSE_UPDATE, OPENSUSE_UPDATE, target_pkg, OPENSUSE, pkg))
+                else:
+                    weird_pkglist[OPENSUSE_UPDATE].append(pkg)
+            else:
+                target_pkg = self.parse_package_link(OPENSUSE_UPDATE, pkg)
+                if target_pkg:
+                    print("eval \"osc copypac -e -m 'New package in %s' %s %s %s %s\"" % (OPENSUSE_UPDATE, OPENSUSE_UPDATE, target_pkg, OPENSUSE, pkg))
+
+        for pkg in bp_update_pkglist:
+            if pkg.startswith('patchinfo') or pkg.count('.') > 1:
                 continue
             if pkg in bp_pkglist:
-                target_pkg = self.parse_package_link(OPENSUSE_UPDATE, pkg)
-                if target_pkg and not self.parse_package_link(OPENSUSE_UPDATE, target_pkg, True) and self.has_diff(BACKPORTS, pkg, OPENSUSE_UPDATE, target_pkg):
-                    pending_request = self.get_request_list(BACKPORTS, pkg)
-                    if pending_request:
+                target_pkg = self.parse_package_link(BACKPORTS_UPDATE, pkg)
+                if target_pkg and not self.parse_package_link(BACKPORTS_UPDATE, target_pkg, True) and self.has_diff(BACKPORTS, pkg, BACKPORTS_UPDATE, target_pkg):
+                    if pkg in sle_pkglist:
+                        logging.debug("%s exist in SLE" % pkg)
+                    if self.get_request_list(BACKPORTS, pkg):
                         logging.debug("There is a request to %s / %s already or it has been declined/revoked, skip!" % (BACKPORTS, pkg))
                     else:
-                        print("osc sr -m 'updated package in openSUSE:Leap:15.2:Update' %s %s %s %s" % (OPENSUSE_UPDATE, target_pkg, BACKPORTS, pkg))
+                        print("eval \"osc copypac -e -m 'updated package in %s' %s %s %s %s\"" % (BACKPORTS_UPDATE, BACKPORTS_UPDATE, target_pkg, BACKPORTS, pkg))
                 else:
-                    weird_pkglist.append(pkg)
+                    weird_pkglist[BACKPORTS_UPDATE].append(pkg)
             else:
-                new_pkglist.append(pkg)
+                target_pkg = self.parse_package_link(BACKPORTS_UPDATE, pkg)
+                if target_pkg:
+                    print("eval \"osc copypac -e -m 'New package in %s' %s %s %s %s\"" % (BACKPORTS_UPDATE, BACKPORTS_UPDATE, target_pkg, BACKPORTS, pkg))
 
-        print('No diffs package:')
-        for pkg in weird_pkglist:
-            print(pkg)
-
-        print('New package:')
-        for pkg in new_pkglist:
-            print(pkg)
+        print('Package has no diff:')
+        for prj in weird_pkglist.keys():
+            print('\n'.join(weird_pkglist[prj]))
 
 def main(args):
     # Configure OSC

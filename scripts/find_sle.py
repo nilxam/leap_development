@@ -17,10 +17,10 @@ import osc.core
 
 from osc import oscerr
 
-OPENSUSE = 'openSUSE:Leap:15.3'
-OPENSUSE_UPDATE = 'openSUSE:Leap:15.2:Update'
-BACKPORTS = 'openSUSE:Backports:SLE-15-SP3'
-SLE = 'SUSE:SLE-15-SP3:GA'
+OPENSUSE = 'openSUSE:Leap:15.4'
+OPENSUSE_UPDATE = 'openSUSE:Leap:15.3:Update'
+BACKPORTS = 'openSUSE:Backports:SLE-15-SP4'
+SLE = 'SUSE:SLE-15-SP4:GA'
 
 makeurl = osc.core.makeurl
 http_GET = osc.core.http_GET
@@ -119,9 +119,9 @@ class FindSLE(object):
                     if orig_prj != SLE:
                         src_pkg = self.parse_package_link(orig_prj, orig_pkg)
                         if src_pkg:
-                            print("osc copypac -m 'updated package in SLE' %s %s %s %s" % (orig_prj, src_pkg, BACKPORTS, pkg))
+                            print("eval \"osc copypac -m 'updated package in SLE' %s %s %s %s\"" % (orig_prj, src_pkg, BACKPORTS, pkg))
                     else:
-                        print("osc copypac -m 'updated package in SLE' %s %s %s %s" % (SLE, pkg, BACKPORTS, pkg))
+                        print("eval \"osc copypac -m 'updated package in SLE' %s %s %s %s\"" % (SLE, pkg, BACKPORTS, pkg))
 
 
 def main(args):
