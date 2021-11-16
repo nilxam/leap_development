@@ -111,11 +111,14 @@ class FindUpdate(object):
         for pkg in os_update_pkglist:
             if pkg.startswith('patchinfo') or pkg.count('.') > 1:
                 continue
+            if pkg in sle_pkglist:
+                logging.debug("%s exist in SLE" % pkg)
+                continue
+            if pkg.startswith('rubygem'):
+                continue
             if pkg in os_pkglist:
                 target_pkg = self.parse_package_link(OPENSUSE_UPDATE, pkg)
                 if target_pkg and not self.parse_package_link(OPENSUSE_UPDATE, target_pkg, True) and self.has_diff(OPENSUSE, pkg, OPENSUSE_UPDATE, target_pkg):
-                    if pkg in sle_pkglist:
-                        logging.debug("%s exist in SLE" % pkg)
                     if self.get_request_list(OPENSUSE, pkg):
                         logging.debug("There is a request to %s / %s already or it has been declined/revoked, skip!" % (OPENSUSE, pkg))
                     else:
@@ -130,11 +133,14 @@ class FindUpdate(object):
         for pkg in bp_update_pkglist:
             if pkg.startswith('patchinfo') or pkg.count('.') > 1:
                 continue
+            if pkg in sle_pkglist:
+                logging.debug("%s exist in SLE" % pkg)
+                continue
+            if pkg.startswith('rubygem'):
+                continue
             if pkg in bp_pkglist:
                 target_pkg = self.parse_package_link(BACKPORTS_UPDATE, pkg)
                 if target_pkg and not self.parse_package_link(BACKPORTS_UPDATE, target_pkg, True) and self.has_diff(BACKPORTS, pkg, BACKPORTS_UPDATE, target_pkg):
-                    if pkg in sle_pkglist:
-                        logging.debug("%s exist in SLE" % pkg)
                     if self.get_request_list(BACKPORTS, pkg):
                         logging.debug("There is a request to %s / %s already or it has been declined/revoked, skip!" % (BACKPORTS, pkg))
                     else:
