@@ -70,12 +70,13 @@ class SLEMover(object):
                 if not result:
                     continue
 
-                if result.group('arch') == 'src' or result.group('arch') == 'nosrc':
-                    continue
-                if result.group('name').endswith('-debuginfo') or result.group('name').endswith('-debuginfo-32bit'):
-                    continue
-                if result.group('name').endswith('-debugsource'):
-                    continue
+                if not self.print_full:
+                    if result.group('arch') == 'src' or result.group('arch') == 'nosrc':
+                        continue
+                    if result.group('name').endswith('-debuginfo') or result.group('name').endswith('-debuginfo-32bit'):
+                        continue
+                    if result.group('name').endswith('-debugsource'):
+                        continue
 
                 if result.group('name') not in package_binaries[index]:
                     package_binaries[index].append(result.group('name'))
