@@ -30,6 +30,11 @@ class SLEMover(object):
         self.print_full = print_full
         self.apiurl = osc.conf.config['apiurl']
         self.debug = osc.conf.config['debug']
+        self.exceptions = ["python-numpy", "openblas", "timescaledb",
+                           "pgaudit", "lua-lmod", "adios", "gnu-compilers-hpc", "hdf5",
+                           "hypre", "imb", "mpich", "mumps", "mvapich2", "netcdf-cxx4",
+                           "netcdf-fortran", "netcdf", "ocr", "openmpi2", "openmpi3",
+                           "openmpi", "petsc", "scotch", "superlu", "trilinos"]
 
     def get_source_packages(self, project, expand=False):
         """Return the list of packages in a project."""
@@ -97,6 +102,10 @@ class SLEMover(object):
             package_binaries = self.get_project_binary_list(self.opensuse_project, DEFAULT_REPOSITORY, arch, package_binaries)
 
         for pkg in sorted(inter_pkglist):
+            # these complicate multibuild package need to go thru one by one by
+            # human check
+            if pkg in self.exceptions:
+                continue
             print("Name: %s" % pkg)
             for arch in SUPPORTED_ARCHS:
                 if pkg + "_" + arch in package_binaries:
