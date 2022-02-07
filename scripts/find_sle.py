@@ -20,6 +20,7 @@ from osc import oscerr
 OPENSUSE = 'openSUSE:Leap:15.4'
 OPENSUSE_UPDATE = 'openSUSE:Leap:15.3:Update'
 BACKPORTS = 'openSUSE:Backports:SLE-15-SP4'
+SLEFORK = 'openSUSE:Backports:SLE-15-SP4:SLEFork'
 SLE = 'SUSE:SLE-15-SP4:GA'
 
 makeurl = osc.core.makeurl
@@ -28,9 +29,10 @@ http_POST = osc.core.http_POST
 http_PUT = osc.core.http_PUT
 
 class FindSLE(object):
-    def __init__(self, project, verbose):
+    def __init__(self, project, verbose, check_slefork):
         self.project = project
         self.verbose = verbose
+        self.check_slefork = check_slefork
         self.apiurl = osc.conf.config['apiurl']
         self.debug = osc.conf.config['debug']
 
@@ -108,8 +110,8 @@ class FindSLE(object):
         # get souce packages from backports
         bp_pkglist = self.get_source_packages(BACKPORTS)
         os_pkglist = self.get_source_packages(OPENSUSE)
+        slefork_pkglist = self.get_source_packages(SLEFORK)
         sle_current_pkglist = self.get_source_packages(SLE)
-        new_pkglist = []
 
         # Backports
         for pkg in bp_pkglist:
@@ -118,10 +120,14 @@ class FindSLE(object):
             if pkg in sle_pkglist:
                 if self.has_diff(SLE, pkg, BACKPORTS, pkg):
                     orig_prj, orig_pkg = self.origin_metadata_get(SLE, pkg)
+                    src_pkg = self.parse_package_link(orig_prj, orig_pkg)
+                    if self.check_slefork and (src_pkg in slefork_pkglist or orig_pkg in slefork_pkglist):
+                        continue
                     if orig_prj != SLE:
-                        src_pkg = self.parse_package_link(orig_prj, orig_pkg)
                         if src_pkg:
                             print("eval \"osc copypac -e -m 'Updated package in SLE' %s %s %s %s\"" % (orig_prj, src_pkg, BACKPORTS, pkg))
+                        if orig_prj.endswith(':GA'):
+                            print("eval \"osc copypac -e -m 'Updated package in SLE' %s %s %s %s\"" % (orig_prj, orig_pkg, BACKPORTS, pkg))
                     else:
                         print("eval \"osc copypac -e -m 'Updated package in SLE' %s %s %s %s\"" % (SLE, pkg, BACKPORTS, pkg))
         for pkg in os_pkglist:
@@ -134,15 +140,19 @@ class FindSLE(object):
                         src_pkg = self.parse_package_link(orig_prj, orig_pkg)
                         if src_pkg:
                             print("eval \"osc copypac -e -m 'Updated package in SLE' %s %s %s %s\"" % (orig_prj, src_pkg, OPENSUSE, pkg))
+                        if orig_prj.endswith(':GA'):
+                            print("eval \"osc copypac -e -m 'Updated package in SLE' %s %s %s %s\"" % (orig_prj, orig_pkg, OPENSUSE, pkg))
                     else:
                         print("eval \"osc copypac -e -m 'Updated package in SLE' %s %s %s %s\"" % (SLE, pkg, OPENSUSE, pkg))
  
-        for pkg in sle_current_pkglist:
-            if pkg not in bp_pkglist:
-                new_pkglist.append(pkg)
-        print("\nNew packages:")
-        for p in new_pkglist:
-            print(p)
+        if self.verbose:
+            new_pkglist = []
+            for pkg in sle_current_pkglist:
+                if pkg not in bp_pkglist:
+                    new_pkglist.append(pkg)
+            print("\nNew packages:")
+            for p in new_pkglist:
+                print(p)
 
 
 def main(args):
@@ -150,7 +160,7 @@ def main(args):
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = FindSLE(args.project, args.verbose)
+    uc = FindSLE(args.project, args.verbose, args.check_slefork)
     uc.crawl()
 
 if __name__ == '__main__':
@@ -164,6 +174,8 @@ if __name__ == '__main__':
                         default=OPENSUSE)
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='show the diff')
+    parser.add_argument('-s', '--check-slefork', action='store_true',
+                        help='check SLEFork project')
 
     args = parser.parse_args()
 

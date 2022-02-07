@@ -3,11 +3,7 @@
 import argparse
 import logging
 import sys
-try:
-    from urllib.error import HTTPError
-except ImportError:
-    # python 2.x
-    from urllib2 import HTTPError
+from urllib.error import HTTPError
 
 import re
 from xml.etree import cElementTree as ET
@@ -18,15 +14,17 @@ import osc.core
 from osc import oscerr
 
 OPENSUSE = 'openSUSE:Leap:15.4'
-LEAP_NF = 'openSUSE:Leap:15.4:NonFree'
-FACTORY_NF = 'openSUSE:Factory:NonFree'
+FACTORY = 'openSUSE:Factory'
+OPENSUSE_UPDATE = 'openSUSE:Leap:15.3:Update'
+BACKPORTS = 'openSUSE:Backports:SLE-15-SP4'
+SLE = 'SUSE:SLE-15-SP4:GA'
 
 makeurl = osc.core.makeurl
 http_GET = osc.core.http_GET
 http_POST = osc.core.http_POST
 http_PUT = osc.core.http_PUT
 
-class FindNF(object):
+class FindSLE(object):
     def __init__(self, project, verbose):
         self.project = project
         self.verbose = verbose
@@ -54,8 +52,11 @@ class FindNF(object):
             url = makeurl(self.apiurl, ['source', project, '_meta'])
         try:
             http_GET(url)
-        except HTTPError:
-            return False
+        except HTTPError as e:
+            if e.code == 404:
+                return False
+            else:
+                raise e
         return True
 
     def has_diff(self, project, package, target_prj, target_pkg):
@@ -66,7 +67,11 @@ class FindNF(object):
                  'oproject': project,
                  'opackage': package}
         u = makeurl(self.apiurl, ['source', target_prj, target_pkg], query=query)
-        root = ET.parse(http_POST(u)).getroot()
+        try:
+            root = ET.parse(http_POST(u)).getroot()
+        except HTTPError as e:
+            if e.code == 404:
+                return False
         if root:
             # check if it has diff element
             diffs = root.findall('files/file/diff')
@@ -74,53 +79,53 @@ class FindNF(object):
                 return True
         return False
 
-    def origin_metadata_get(self, project, package):
-        meta = ET.fromstringlist(osc.core.show_package_meta(self.apiurl, project, package))
-        if meta is not None:
-            return meta.get('project'), meta.get('name')
+    def get_prj_results(self, prj, arch, code='failed'):
+        url = makeurl(self.apiurl, ['build', prj, "_result?arch=x86_64&repository=standard&view=status"])
+        results = []
 
-        return None, None
+        root = ET.parse(http_GET(url)).getroot()
 
-    def is_links(self, project, package, reverse=False):
-        query = {'withlinked': 1}
-        u = makeurl(self.apiurl, ['source', project, package], query=query)
-        root = ET.parse(http_GET(u)).getroot()
-        links = root.findall('linkinfo/linked')
-        linkinfo = None
-        if reverse and links:
-            return True
-        if not links:
-            return False
+        xmllines = root.findall("./result/status")
 
-        for linked in links:
-            if linked.get('project') == project:
-                return True
-        return False
+        for pkg in xmllines:
+            if code == 'failed':
+                if pkg.attrib['code'] == 'failed' or pkg.attrib['code'] == 'unresolvable':
+                    if ':' not in pkg.attrib['package']:
+                        results.append(pkg.attrib['package'])
+            if code == 'succeeded':
+                if pkg.attrib['code'] == 'succeeded':
+                    if ':' not in pkg.attrib['package']:
+                        results.append(pkg.attrib['package'])
+
+        return results
 
     def crawl(self):
         """Main method"""
-        leap_pkglist = self.get_source_packages(LEAP_NF)
-        factory_pkglist = self.get_source_packages(FACTORY_NF)
+        sle_pkglist = self.get_source_packages(SLE, True)
+        bp_pkglist = self.get_source_packages(BACKPORTS)
+        leap_pkglist = self.get_source_packages(OPENSUSE)
+        rebuild_pkglist = self.get_source_packages(self.project)
+        sle_ones = []
+        nodiffs = []
+        deletes = []
 
-        for pkg in factory_pkglist:
-            if pkg.startswith('patchinfo') or "." in pkg or pkg.startswith('00'):
+        cands = set(leap_pkglist) - set(bp_pkglist)
+        for pkg in list(cands):
+            if pkg in sle_pkglist or pkg in rebuild_pkglist:
                 continue
-            if pkg in leap_pkglist:
-                if self.has_diff(FACTORY_NF, pkg, LEAP_NF, pkg):
-                    if self.is_links(FACTORY_NF, pkg):
-                        continue
-                    else:
-                        print("eval \"osc copypac -e -m 'Newer package in Factory NonFree' %s %s %s %s\"" % (FACTORY_NF, pkg, LEAP_NF, pkg))
-            else:
-                print("New package: %s" % pkg)
-
+            if self.has_diff(FACTORY, pkg, OPENSUSE, pkg):
+                print("eval \"osc copypac -e -m 'updated package from Factory' %s %s %s %s\"" % (FACTORY, pkg, self.project, pkg))
 
 def main(args):
     # Configure OSC
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = FindNF(args.project, args.verbose)
+    if args.project is None:
+        print("Please pass --project argument. See usage with --help.")
+        quit()
+
+    uc = FindSLE(args.project, args.verbose)
     uc.crawl()
 
 if __name__ == '__main__':
@@ -130,8 +135,7 @@ if __name__ == '__main__':
     parser.add_argument('-d', '--debug', action='store_true',
                         help='print info useful for debuging')
     parser.add_argument('-p', '--project', dest='project', metavar='PROJECT',
-                        help='the project where to check (default: %s)' % OPENSUSE,
-                        default=OPENSUSE)
+                        help='the target project where do submit to')
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='show the diff')
 
