@@ -28,9 +28,10 @@ http_POST = osc.core.http_POST
 http_PUT = osc.core.http_PUT
 
 class FindBP(object):
-    def __init__(self, project, verbose):
+    def __init__(self, project, verbose, identical):
         self.project = project
         self.verbose = verbose
+        self.identical = identical
         self.apiurl = osc.conf.config['apiurl']
         self.debug = osc.conf.config['debug']
 
@@ -116,6 +117,10 @@ class FindBP(object):
                         continue
                     else:
                         print("eval \"osc copypac -e -m 'updated package in Backports' %s %s %s %s\"" % (BACKPORTS, pkg, OPENSUSE, pkg))
+                else:
+                    if self.identical:
+                        print("eval \"osc rdelete -m 'no need to fork this package from Backports' %s %s\"" % (OPENSUSE, pkg))
+                    pass
 
 
 def main(args):
@@ -123,7 +128,7 @@ def main(args):
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = FindBP(args.project, args.verbose)
+    uc = FindBP(args.project, args.verbose, args.identical)
     uc.crawl()
 
 if __name__ == '__main__':
@@ -135,6 +140,8 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--project', dest='project', metavar='PROJECT',
                         help='the project where to check (default: %s)' % OPENSUSE,
                         default=OPENSUSE)
+    parser.add_argument('-i', '--identical', action='store_true',
+                        help='show identical package')
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='show the diff')
 
