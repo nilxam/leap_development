@@ -1,0 +1,4 @@
+#!/bin/bash
+eval "osc -A https://api.opensuse.org release --target-project=openSUSE:Leap:Micro:5.2:ToTest --target-repository=images -r images openSUSE:Leap:Micro:5.2 000product"
+eval "osc -A https://api.opensuse.org release --target-project=openSUSE:Leap:Micro:5.2:Images:ToTest --target-repository=images -r images openSUSE:Leap:Micro:5.2:Images SUSE-MicroOS"
+eval "osc -A https://api.opensuse.org release --target-project=openSUSE:Leap:Micro:5.2:Images:ToTest --target-repository=containers -r containers openSUSE:Leap:Micro:5.2:Images opensuse-toolbox-image"
