@@ -1,0 +1,622 @@
+INFO:root:2ping has got updated from other place, skip!
+INFO:root:AppStream exist in SLE
+INFO:root:PackageKit-Qt has got updated from other place, skip!
+INFO:root:abcm2ps has got updated from other place, skip!
+INFO:root:akonadi-calendar has got updated from other place, skip!
+INFO:root:akonadi-calendar-tools has got updated from other place, skip!
+INFO:root:akonadi-contact has got updated from other place, skip!
+INFO:root:akonadi-import-wizard has got updated from other place, skip!
+INFO:root:akonadi-mime has got updated from other place, skip!
+INFO:root:akonadi-notes has got updated from other place, skip!
+INFO:root:akonadi-search has got updated from other place, skip!
+INFO:root:akonadi-server has got updated from other place, skip!
+INFO:root:akonadiconsole has got updated from other place, skip!
+INFO:root:alkimia has got updated from other place, skip!
+INFO:root:analitza has got updated from other place, skip!
+INFO:root:ansible exist in SLE
+INFO:root:apache2-mod_evasive has got updated from other place, skip!
+INFO:root:aqbanking has got updated from other place, skip!
+INFO:root:attica-qt5 exist in SLE
+INFO:root:audacity has got updated from other place, skip!
+INFO:root:baloo5 has got updated from other place, skip!
+INFO:root:baloo5-widgets has got updated from other place, skip!
+INFO:root:barrier has got updated from other place, skip!
+INFO:root:bcmatroska2 has got updated from other place, skip!
+INFO:root:bctoolbox has got updated from other place, skip!
+INFO:root:bcunit has got updated from other place, skip!
+INFO:root:bitcoin has got updated from other place, skip!
+INFO:root:breeze has got updated from other place, skip!
+INFO:root:breeze5-icons has got updated from other place, skip!
+INFO:root:bzrtp has got updated from other place, skip!
+INFO:root:c-toxcore has got updated from other place, skip!
+INFO:root:cacti has got updated from other place, skip!
+INFO:root:cacti-spine has got updated from other place, skip!
+INFO:root:calendarsupport has got updated from other place, skip!
+INFO:root:cdecl has got updated from other place, skip!
+INFO:root:chromium has got updated from other place, skip!
+INFO:root:civetweb has got updated from other place, skip!
+INFO:root:ckb-next has got updated from other place, skip!
+INFO:root:claws-mail has got updated from other place, skip!
+INFO:root:cobbler has got updated from other place, skip!
+INFO:root:connman has got updated from other place, skip!
+INFO:root:criu has got updated from other place, skip!
+INFO:root:dnf has got updated from other place, skip!
+INFO:root:dnf-plugins-core has got updated from other place, skip!
+INFO:root:docker-distribution has got updated from other place, skip!
+INFO:root:drkonqi5 has got updated from other place, skip!
+INFO:root:ebook-tools has got updated from other place, skip!
+INFO:root:editorconfig-core-c has got updated from other place, skip!
+INFO:root:eventviews has got updated from other place, skip!
+INFO:root:exo has got updated from other place, skip!
+INFO:root:f2fs-tools has got updated from other place, skip!
+INFO:root:fail2ban exist in SLE
+INFO:root:fcitx-qt5 has got updated from other place, skip!
+INFO:root:firejail has got updated from other place, skip!
+INFO:root:fox16 has got updated from other place, skip!
+INFO:root:frameworkintegration has got updated from other place, skip!
+INFO:root:freecell-solver has got updated from other place, skip!
+INFO:root:fwts has got updated from other place, skip!
+INFO:root:fxload exist in SLE
+INFO:root:galera-4 has got updated from other place, skip!
+INFO:root:gdcm has got updated from other place, skip!
+INFO:root:gedit-plugins has got updated from other place, skip!
+INFO:root:glmark2 has got updated from other place, skip!
+INFO:root:glusterfs exist in SLE
+INFO:root:gn has got updated from other place, skip!
+INFO:root:gnuhealth has got updated from other place, skip!
+INFO:root:go exist in SLE
+INFO:root:gpsd has got updated from other place, skip!
+INFO:root:grantleetheme has got updated from other place, skip!
+INFO:root:guake has got updated from other place, skip!
+INFO:root:gwenhywfar has got updated from other place, skip!
+INFO:root:gzdoom has got updated from other place, skip!
+INFO:root:hamlib has got updated from other place, skip!
+INFO:root:haserl has got updated from other place, skip!
+INFO:root:helm exist in SLE
+INFO:root:hiredis has got updated from other place, skip!
+INFO:root:htmldoc has got updated from other place, skip!
+INFO:root:hylafax+ has got updated from other place, skip!
+INFO:root:icingaweb2 has got updated from other place, skip!
+INFO:root:id3lib has got updated from other place, skip!
+INFO:root:incidenceeditor has got updated from other place, skip!
+INFO:root:inn has got updated from other place, skip!
+INFO:root:ipxe has got updated from other place, skip!
+INFO:root:jawn exist in SLE
+INFO:root:jxrlib has got updated from other place, skip!
+INFO:root:k3b has got updated from other place, skip!
+INFO:root:k4dirstat has got updated from other place, skip!
+INFO:root:kColorPicker has got updated from other place, skip!
+INFO:root:kImageAnnotator has got updated from other place, skip!
+INFO:root:kaccounts-integration has got updated from other place, skip!
+INFO:root:kaccounts-providers has got updated from other place, skip!
+INFO:root:kactivities-stats has got updated from other place, skip!
+INFO:root:kactivities5 has got updated from other place, skip!
+INFO:root:kactivitymanagerd has got updated from other place, skip!
+INFO:root:kaddressbook has got updated from other place, skip!
+INFO:root:kaffeine has got updated from other place, skip!
+INFO:root:kafka has got updated from other place, skip!
+INFO:root:kafka-kit has got updated from other place, skip!
+INFO:root:kajongg has got updated from other place, skip!
+INFO:root:kalarm has got updated from other place, skip!
+INFO:root:kalarmcal has got updated from other place, skip!
+INFO:root:kalgebra has got updated from other place, skip!
+INFO:root:kalzium has got updated from other place, skip!
+INFO:root:kamera has got updated from other place, skip!
+INFO:root:kamerka has got updated from other place, skip!
+INFO:root:kamoso has got updated from other place, skip!
+INFO:root:kanagram has got updated from other place, skip!
+INFO:root:kapidox has got updated from other place, skip!
+INFO:root:kapman has got updated from other place, skip!
+INFO:root:kapptemplate has got updated from other place, skip!
+INFO:root:karchive exist in SLE
+INFO:root:kate has got updated from other place, skip!
+INFO:root:katomic has got updated from other place, skip!
+INFO:root:kauth exist in SLE
+INFO:root:kbackup has got updated from other place, skip!
+INFO:root:kbibtex has got updated from other place, skip!
+INFO:root:kblackbox has got updated from other place, skip!
+INFO:root:kblocks has got updated from other place, skip!
+INFO:root:kbookmarks exist in SLE
+INFO:root:kbounce has got updated from other place, skip!
+INFO:root:kbreakout has got updated from other place, skip!
+INFO:root:kbruch has got updated from other place, skip!
+INFO:root:kcachegrind has got updated from other place, skip!
+INFO:root:kcalc has got updated from other place, skip!
+INFO:root:kcalendarcore has got updated from other place, skip!
+INFO:root:kcalutils has got updated from other place, skip!
+INFO:root:kcharselect has got updated from other place, skip!
+INFO:root:kcm_sddm has got updated from other place, skip!
+INFO:root:kcm_tablet has got updated from other place, skip!
+INFO:root:kcmutils has got updated from other place, skip!
+INFO:root:kcodecs exist in SLE
+INFO:root:kcolorchooser has got updated from other place, skip!
+INFO:root:kcompletion exist in SLE
+INFO:root:kconfig exist in SLE
+INFO:root:kconfigwidgets exist in SLE
+INFO:root:kcontacts has got updated from other place, skip!
+INFO:root:kcoreaddons exist in SLE
+INFO:root:kcrash exist in SLE
+INFO:root:kcron has got updated from other place, skip!
+INFO:root:kdav has got updated from other place, skip!
+INFO:root:kdb has got updated from other place, skip!
+INFO:root:kdbusaddons exist in SLE
+INFO:root:kde-cli-tools5 has got updated from other place, skip!
+INFO:root:kde-dev-utils has got updated from other place, skip!
+INFO:root:kde-gtk-config5 has got updated from other place, skip!
+INFO:root:kde-print-manager has got updated from other place, skip!
+INFO:root:kdebugsettings has got updated from other place, skip!
+INFO:root:kdeclarative has got updated from other place, skip!
+INFO:root:kdeconnect-kde has got updated from other place, skip!
+INFO:root:kded exist in SLE
+INFO:root:kdeedu-data has got updated from other place, skip!
+INFO:root:kdegraphics-thumbnailers has got updated from other place, skip!
+INFO:root:kdelibs4support has got updated from other place, skip!
+INFO:root:kdenetwork-filesharing has got updated from other place, skip!
+INFO:root:kdenlive has got updated from other place, skip!
+INFO:root:kdepim-addons has got updated from other place, skip!
+INFO:root:kdepim-runtime has got updated from other place, skip!
+INFO:root:kdesdk-kioslaves has got updated from other place, skip!
+INFO:root:kdesdk-scripts has got updated from other place, skip!
+INFO:root:kdesdk-thumbnailers has got updated from other place, skip!
+INFO:root:kdesignerplugin has got updated from other place, skip!
+INFO:root:kdesu has got updated from other place, skip!
+INFO:root:kdesvn has got updated from other place, skip!
+INFO:root:kdevelop5 has got updated from other place, skip!
+INFO:root:kdevelop5-pg-qt has got updated from other place, skip!
+INFO:root:kdevelop5-plugin-php has got updated from other place, skip!
+INFO:root:kdevelop5-plugin-python3 has got updated from other place, skip!
+INFO:root:kdewebkit has got updated from other place, skip!
+INFO:root:kdf has got updated from other place, skip!
+INFO:root:kdgantt2 has got updated from other place, skip!
+INFO:root:kdialog has got updated from other place, skip!
+INFO:root:kdiamond has got updated from other place, skip!
+INFO:root:kdiff3 has got updated from other place, skip!
+INFO:root:kdnssd has got updated from other place, skip!
+INFO:root:kdnssd-framework has got updated from other place, skip!
+INFO:root:kdoctools exist in SLE
+INFO:root:kdsoap has got updated from other place, skip!
+INFO:root:keditbookmarks has got updated from other place, skip!
+INFO:root:keepassxc has got updated from other place, skip!
+INFO:root:kemoticons has got updated from other place, skip!
+INFO:root:kf5-filesystem exist in SLE
+INFO:root:kfilemetadata5 has got updated from other place, skip!
+INFO:root:kfind has got updated from other place, skip!
+INFO:root:kfloppy has got updated from other place, skip!
+INFO:root:kfourinline has got updated from other place, skip!
+INFO:root:kgamma5 has got updated from other place, skip!
+INFO:root:kgeography has got updated from other place, skip!
+INFO:root:kget has got updated from other place, skip!
+INFO:root:kglobalaccel exist in SLE
+INFO:root:kgoldrunner has got updated from other place, skip!
+INFO:root:kgpg has got updated from other place, skip!
+INFO:root:kguiaddons exist in SLE
+INFO:root:khangman has got updated from other place, skip!
+INFO:root:khelpcenter5 has got updated from other place, skip!
+INFO:root:kholidays has got updated from other place, skip!
+INFO:root:khotkeys5 has got updated from other place, skip!
+INFO:root:khtml has got updated from other place, skip!
+INFO:root:ki18n exist in SLE
+INFO:root:kiconthemes exist in SLE
+INFO:root:kidentitymanagement has got updated from other place, skip!
+INFO:root:kidletime has got updated from other place, skip!
+INFO:root:kig has got updated from other place, skip!
+INFO:root:kigo has got updated from other place, skip!
+INFO:root:killbots has got updated from other place, skip!
+INFO:root:kimageformats has got updated from other place, skip!
+INFO:root:kimagemapeditor has got updated from other place, skip!
+INFO:root:kimap has got updated from other place, skip!
+INFO:root:kinfocenter5 has got updated from other place, skip!
+INFO:root:kinit has got updated from other place, skip!
+INFO:root:kio exist in SLE
+INFO:root:kio-extras5 has got updated from other place, skip!
+INFO:root:kio-gdrive has got updated from other place, skip!
+INFO:root:kio-stash has got updated from other place, skip!
+INFO:root:kio_audiocd has got updated from other place, skip!
+INFO:root:kipi-plugins has got updated from other place, skip!
+INFO:root:kirigami-gallery has got updated from other place, skip!
+INFO:root:kirigami2 has got updated from other place, skip!
+INFO:root:kiriki has got updated from other place, skip!
+INFO:root:kitemmodels has got updated from other place, skip!
+INFO:root:kitemviews exist in SLE
+INFO:root:kitinerary has got updated from other place, skip!
+INFO:root:kjobwidgets exist in SLE
+INFO:root:kjots has got updated from other place, skip!
+INFO:root:kjs has got updated from other place, skip!
+INFO:root:kjsembed has got updated from other place, skip!
+INFO:root:kjumpingcube has got updated from other place, skip!
+INFO:root:kldap has got updated from other place, skip!
+INFO:root:kleopatra has got updated from other place, skip!
+INFO:root:klettres has got updated from other place, skip!
+INFO:root:klickety has got updated from other place, skip!
+INFO:root:klines has got updated from other place, skip!
+INFO:root:kmag has got updated from other place, skip!
+INFO:root:kmahjongg has got updated from other place, skip!
+INFO:root:kmail has got updated from other place, skip!
+INFO:root:kmail-account-wizard has got updated from other place, skip!
+INFO:root:kmailtransport has got updated from other place, skip!
+INFO:root:kmbox has got updated from other place, skip!
+INFO:root:kmediaplayer has got updated from other place, skip!
+INFO:root:kmenuedit5 has got updated from other place, skip!
+INFO:root:kmime has got updated from other place, skip!
+INFO:root:kmines has got updated from other place, skip!
+INFO:root:kmix has got updated from other place, skip!
+INFO:root:kmousetool has got updated from other place, skip!
+INFO:root:kmouth has got updated from other place, skip!
+INFO:root:kmplot has got updated from other place, skip!
+INFO:root:kmymoney has got updated from other place, skip!
+INFO:root:knavalbattle has got updated from other place, skip!
+INFO:root:knetwalk has got updated from other place, skip!
+INFO:root:knewstuff has got updated from other place, skip!
+INFO:root:knights has got updated from other place, skip!
+INFO:root:knot has got updated from other place, skip!
+INFO:root:knotes has got updated from other place, skip!
+INFO:root:knotifications exist in SLE
+INFO:root:knotifyconfig has got updated from other place, skip!
+INFO:root:kolf has got updated from other place, skip!
+INFO:root:kollision has got updated from other place, skip!
+INFO:root:kolourpaint has got updated from other place, skip!
+INFO:root:kompare has got updated from other place, skip!
+INFO:root:konqueror has got updated from other place, skip!
+INFO:root:konquest has got updated from other place, skip!
+INFO:root:konsole has got updated from other place, skip!
+INFO:root:kontact has got updated from other place, skip!
+INFO:root:kontactinterface has got updated from other place, skip!
+INFO:root:konversation has got updated from other place, skip!
+INFO:root:kopete has got updated from other place, skip!
+INFO:root:korganizer has got updated from other place, skip!
+INFO:root:kpackage has got updated from other place, skip!
+INFO:root:kparts has got updated from other place, skip!
+INFO:root:kpat has got updated from other place, skip!
+INFO:root:kpeople5 has got updated from other place, skip!
+INFO:root:kpeoplevcard has got updated from other place, skip!
+INFO:root:kphotoalbum has got updated from other place, skip!
+INFO:root:kpimtextedit has got updated from other place, skip!
+INFO:root:kpkpass has got updated from other place, skip!
+INFO:root:kplotting has got updated from other place, skip!
+INFO:root:kpmcore has got updated from other place, skip!
+INFO:root:kproperty has got updated from other place, skip!
+INFO:root:kpty has got updated from other place, skip!
+INFO:root:kqtquickcharts has got updated from other place, skip!
+INFO:root:kquickcharts has got updated from other place, skip!
+INFO:root:kraft has got updated from other place, skip!
+INFO:root:krb5-auth-dialog has got updated from other place, skip!
+INFO:root:krdc has got updated from other place, skip!
+INFO:root:krename has got updated from other place, skip!
+INFO:root:kreport has got updated from other place, skip!
+INFO:root:kreversi has got updated from other place, skip!
+INFO:root:krfb has got updated from other place, skip!
+INFO:root:krita has got updated from other place, skip!
+INFO:root:kronometer has got updated from other place, skip!
+INFO:root:kross has got updated from other place, skip!
+INFO:root:kross-interpreters has got updated from other place, skip!
+INFO:root:kruler has got updated from other place, skip!
+INFO:root:krunner has got updated from other place, skip!
+INFO:root:krusader has got updated from other place, skip!
+INFO:root:kscreen5 has got updated from other place, skip!
+INFO:root:kscreenlocker has got updated from other place, skip!
+INFO:root:kseexpr has got updated from other place, skip!
+INFO:root:kservice exist in SLE
+INFO:root:kshisen has got updated from other place, skip!
+INFO:root:kshutdown has got updated from other place, skip!
+INFO:root:ksirk has got updated from other place, skip!
+INFO:root:ksmtp has got updated from other place, skip!
+INFO:root:ksnakeduel has got updated from other place, skip!
+INFO:root:ksnip has got updated from other place, skip!
+INFO:root:kspaceduel has got updated from other place, skip!
+INFO:root:ksquares has got updated from other place, skip!
+INFO:root:ksshaskpass5 has got updated from other place, skip!
+INFO:root:kstars has got updated from other place, skip!
+INFO:root:ksudoku has got updated from other place, skip!
+INFO:root:ksysguard5 has got updated from other place, skip!
+INFO:root:ksystemlog has got updated from other place, skip!
+INFO:root:kteatime has got updated from other place, skip!
+INFO:root:ktexteditor has got updated from other place, skip!
+INFO:root:ktextwidgets exist in SLE
+INFO:root:ktimer has got updated from other place, skip!
+INFO:root:ktimetracker has got updated from other place, skip!
+INFO:root:ktnef has got updated from other place, skip!
+INFO:root:ktorrent has got updated from other place, skip!
+INFO:root:ktouch has got updated from other place, skip!
+INFO:root:ktp-accounts-kcm has got updated from other place, skip!
+INFO:root:ktp-approver has got updated from other place, skip!
+INFO:root:ktp-auth-handler has got updated from other place, skip!
+INFO:root:ktp-common-internals has got updated from other place, skip!
+INFO:root:ktp-contact-list has got updated from other place, skip!
+INFO:root:ktp-contact-runner has got updated from other place, skip!
+INFO:root:ktp-desktop-applets has got updated from other place, skip!
+INFO:root:ktp-filetransfer-handler has got updated from other place, skip!
+INFO:root:ktp-kded-module has got updated from other place, skip!
+INFO:root:ktp-send-file has got updated from other place, skip!
+INFO:root:ktp-text-ui has got updated from other place, skip!
+INFO:root:ktuberling has got updated from other place, skip!
+INFO:root:kturtle has got updated from other place, skip!
+INFO:root:kubrick has got updated from other place, skip!
+INFO:root:kunitconversion has got updated from other place, skip!
+INFO:root:kwallet exist in SLE
+INFO:root:kwalletmanager5 has got updated from other place, skip!
+INFO:root:kwave has got updated from other place, skip!
+INFO:root:kwayland has got updated from other place, skip!
+INFO:root:kwayland-integration has got updated from other place, skip!
+INFO:root:kwidgetsaddons exist in SLE
+INFO:root:kwin5 has got updated from other place, skip!
+INFO:root:kwindowsystem exist in SLE
+INFO:root:kwordquiz has got updated from other place, skip!
+INFO:root:kwrited5 has got updated from other place, skip!
+INFO:root:kxmlrpcclient5 has got updated from other place, skip!
+INFO:root:libKF5ModemManagerQt has got updated from other place, skip!
+INFO:root:libKF5NetworkManagerQt has got updated from other place, skip!
+INFO:root:libaccounts-glib has got updated from other place, skip!
+INFO:root:libaccounts-qt5 has got updated from other place, skip!
+INFO:root:libclc exist in SLE
+INFO:root:libdnf exist in SLE
+INFO:root:libdxfrw has got updated from other place, skip!
+INFO:root:libgravatar has got updated from other place, skip!
+INFO:root:libhts has got updated from other place, skip!
+INFO:root:libkcddb has got updated from other place, skip!
+INFO:root:libkcompactdisc has got updated from other place, skip!
+INFO:root:libkdcraw has got updated from other place, skip!
+INFO:root:libkdecoration2 has got updated from other place, skip!
+INFO:root:libkdegames has got updated from other place, skip!
+INFO:root:libkdepim has got updated from other place, skip!
+INFO:root:libkeduvocdocument has got updated from other place, skip!
+INFO:root:libkexiv2 has got updated from other place, skip!
+INFO:root:libkgapi has got updated from other place, skip!
+INFO:root:libkipi has got updated from other place, skip!
+INFO:root:libkleo has got updated from other place, skip!
+INFO:root:libkmahjongg has got updated from other place, skip!
+INFO:root:libkolabxml has got updated from other place, skip!
+INFO:root:libkomparediff2 has got updated from other place, skip!
+INFO:root:libksane has got updated from other place, skip!
+INFO:root:libkscreen2 has got updated from other place, skip!
+INFO:root:libksieve has got updated from other place, skip!
+INFO:root:libksysguard5 has got updated from other place, skip!
+INFO:root:libktorrent has got updated from other place, skip!
+INFO:root:libmediawiki has got updated from other place, skip!
+INFO:root:libmodulemd exist in SLE
+INFO:root:libmusicbrainz has got updated from other place, skip!
+INFO:root:libofx has got updated from other place, skip!
+INFO:root:libqt5-qtcharts has got updated from other place, skip!
+INFO:root:libqt5-qtnetworkauth has got updated from other place, skip!
+INFO:root:libqt5-qtwebengine has got updated from other place, skip!
+INFO:root:libqt5-qtwebkit has got updated from other place, skip!
+INFO:root:librecad has got updated from other place, skip!
+INFO:root:librepo exist in SLE
+INFO:root:libsignon-glib has got updated from other place, skip!
+INFO:root:libsigrok has got updated from other place, skip!
+INFO:root:libupnp has got updated from other place, skip!
+INFO:root:lighttpd has got updated from other place, skip!
+INFO:root:live555 has got updated from other place, skip!
+INFO:root:lxd has got updated from other place, skip!
+INFO:root:mailcommon has got updated from other place, skip!
+INFO:root:mailimporter has got updated from other place, skip!
+INFO:root:mate-menu has got updated from other place, skip!
+INFO:root:materia-gtk-theme has got updated from other place, skip!
+INFO:root:mbedtls has got updated from other place, skip!
+INFO:root:mc has got updated from other place, skip!
+INFO:root:mediastreamer2 has got updated from other place, skip!
+INFO:root:messagelib has got updated from other place, skip!
+INFO:root:milou5 has got updated from other place, skip!
+INFO:root:minidlna has got updated from other place, skip!
+INFO:root:mkvtoolnix has got updated from other place, skip!
+INFO:root:mousepad has got updated from other place, skip!
+INFO:root:mupdf has got updated from other place, skip!
+INFO:root:netdata has got updated from other place, skip!
+INFO:root:nextcloud has got updated from other place, skip!
+INFO:root:nodejs-electron has got updated from other place, skip!
+INFO:root:nrpe has got updated from other place, skip!
+INFO:root:obs-service-extract_file has got updated from other place, skip!
+INFO:root:ocaml-facile has got updated from other place, skip!
+INFO:root:okteta has got updated from other place, skip!
+INFO:root:openQA has got updated from other place, skip!
+INFO:root:openbabel has got updated from other place, skip!
+INFO:root:openscad has got updated from other place, skip!
+INFO:root:opi has got updated from other place, skip!
+INFO:root:orthanc has got updated from other place, skip!
+INFO:root:orthanc-gdcm has got updated from other place, skip!
+INFO:root:ortp has got updated from other place, skip!
+INFO:root:os-autoinst has got updated from other place, skip!
+INFO:root:oxygen5-icon-theme has got updated from other place, skip!
+INFO:root:oyranos has got updated from other place, skip!
+INFO:root:pam_kwallet has got updated from other place, skip!
+INFO:root:parsec has got updated from other place, skip!
+INFO:root:parsec-tool has got updated from other place, skip!
+INFO:root:parti has got updated from other place, skip!
+INFO:root:pdftk has got updated from other place, skip!
+INFO:root:pdns has got updated from other place, skip!
+INFO:root:pdns-recursor has got updated from other place, skip!
+INFO:root:perl-App-cpanminus has got updated from other place, skip!
+INFO:root:perl-Devel-Cover-Report-Codecovbash has got updated from other place, skip!
+INFO:root:perl-Mojolicious has got updated from other place, skip!
+INFO:root:pgaudit has got updated from other place, skip!
+INFO:root:phpMyAdmin has got updated from other place, skip!
+INFO:root:phpPgAdmin has got updated from other place, skip!
+INFO:root:pimcommon has got updated from other place, skip!
+INFO:root:plasma-applet-weather-widget has got updated from other place, skip!
+INFO:root:plasma-browser-integration has got updated from other place, skip!
+INFO:root:plasma-framework has got updated from other place, skip!
+INFO:root:plasma-nm5 has got updated from other place, skip!
+INFO:root:plasma-pass has got updated from other place, skip!
+INFO:root:plasma-vault has got updated from other place, skip!
+INFO:root:plasma-wayland-protocols has got updated from other place, skip!
+INFO:root:plasma5-addons has got updated from other place, skip!
+INFO:root:plasma5-applet-suse-prime has got updated from other place, skip!
+INFO:root:plasma5-desktop has got updated from other place, skip!
+INFO:root:plasma5-integration has got updated from other place, skip!
+INFO:root:plasma5-pa has got updated from other place, skip!
+INFO:root:plasma5-pk-updates has got updated from other place, skip!
+INFO:root:plasma5-sdk has got updated from other place, skip!
+INFO:root:plasma5-workspace has got updated from other place, skip!
+INFO:root:plasma5-workspace-wallpapers has got updated from other place, skip!
+INFO:root:plib has got updated from other place, skip!
+INFO:root:polkit-kde-agent-5 has got updated from other place, skip!
+INFO:root:postsrsd has got updated from other place, skip!
+INFO:root:prboom-plus has got updated from other place, skip!
+INFO:root:prison-qt5 has got updated from other place, skip!
+INFO:root:privoxy has got updated from other place, skip!
+INFO:root:prosody has got updated from other place, skip!
+INFO:root:proteus has got updated from other place, skip!
+INFO:root:pulseaudio-qt has got updated from other place, skip!
+INFO:root:purpose has got updated from other place, skip!
+INFO:root:python-attrs exist in SLE
+INFO:root:python-bugzilla has got updated from other place, skip!
+INFO:root:python-configparser exist in SLE
+INFO:root:python-congressclient has got updated from other place, skip!
+INFO:root:python-guessit has got updated from other place, skip!
+INFO:root:python-importlib-metadata exist in SLE
+INFO:root:python-ipython has got updated from other place, skip!
+INFO:root:python-ironic-inspector-client has got updated from other place, skip!
+INFO:root:python-magic-wormhole has got updated from other place, skip!
+INFO:root:python-masakariclient has got updated from other place, skip!
+INFO:root:python-mistralclient has got updated from other place, skip!
+INFO:root:python-rebulk has got updated from other place, skip!
+INFO:root:python-responses exist in SLE
+INFO:root:python-saharaclient has got updated from other place, skip!
+INFO:root:python-senlinclient has got updated from other place, skip!
+INFO:root:python-wxPython exist in SLE
+INFO:root:python-zipp exist in SLE
+INFO:root:python3-pyside2 has got updated from other place, skip!
+INFO:root:re2 has got updated from other place, skip!
+INFO:root:ristretto has got updated from other place, skip!
+INFO:root:scap-workbench exist in SLE
+INFO:root:seamonkey has got updated from other place, skip!
+INFO:root:shapelib has got updated from other place, skip!
+INFO:root:signon-plugin-oauth2 has got updated from other place, skip!
+INFO:root:signon-ui has got updated from other place, skip!
+INFO:root:singularity exist in SLE
+INFO:root:solo has got updated from other place, skip!
+INFO:root:spotify-easyrpm has got updated from other place, skip!
+INFO:root:sqlcipher has got updated from other place, skip!
+INFO:root:stb has got updated from other place, skip!
+INFO:root:strawberry has got updated from other place, skip!
+INFO:root:subtitlecomposer has got updated from other place, skip!
+INFO:root:syndication has got updated from other place, skip!
+INFO:root:synnefo has got updated from other place, skip!
+INFO:root:syntax-highlighting has got updated from other place, skip!
+INFO:root:system-user-grafana exist in SLE
+INFO:root:telepathy-accounts-signon has got updated from other place, skip!
+INFO:root:telepathy-logger-qt5 has got updated from other place, skip!
+INFO:root:telepathy-mission-control has got updated from other place, skip!
+INFO:root:terraform-provider-vsphere has got updated from other place, skip!
+INFO:root:threadweaver has got updated from other place, skip!
+INFO:root:thunar has got updated from other place, skip!
+INFO:root:tor has got updated from other place, skip!
+INFO:root:transfig exist in SLE
+INFO:root:trivy has got updated from other place, skip!
+INFO:root:trytond has got updated from other place, skip!
+INFO:root:trytond_account has got updated from other place, skip!
+INFO:root:trytond_account_invoice has got updated from other place, skip!
+INFO:root:trytond_account_invoice_stock has got updated from other place, skip!
+INFO:root:trytond_account_product has got updated from other place, skip!
+INFO:root:trytond_company has got updated from other place, skip!
+INFO:root:trytond_country has got updated from other place, skip!
+INFO:root:trytond_currency has got updated from other place, skip!
+INFO:root:trytond_party has got updated from other place, skip!
+INFO:root:trytond_product has got updated from other place, skip!
+INFO:root:trytond_purchase has got updated from other place, skip!
+INFO:root:trytond_purchase_request has got updated from other place, skip!
+INFO:root:trytond_stock has got updated from other place, skip!
+INFO:root:trytond_stock_lot has got updated from other place, skip!
+INFO:root:trytond_stock_supply has got updated from other place, skip!
+INFO:root:units has got updated from other place, skip!
+INFO:root:upx has got updated from other place, skip!
+INFO:root:vagrant has got updated from other place, skip!
+INFO:root:vagrant-libvirt has got updated from other place, skip!
+INFO:root:variety has got updated from other place, skip!
+INFO:root:vlc has got updated from other place, skip!
+INFO:root:warewulf has got updated from other place, skip!
+INFO:root:warewulf4 has got updated from other place, skip!
+INFO:root:watchman has got updated from other place, skip!
+INFO:root:weechat has got updated from other place, skip!
+INFO:root:whipper has got updated from other place, skip!
+INFO:root:xcalib has got updated from other place, skip!
+INFO:root:xcb-util-cursor exist in SLE
+INFO:root:xf86-input-synaptics has got updated from other place, skip!
+INFO:root:xfce4-cpufreq-plugin has got updated from other place, skip!
+INFO:root:xfce4-cpugraph-plugin has got updated from other place, skip!
+INFO:root:xfce4-screenshooter has got updated from other place, skip!
+INFO:root:xsd has got updated from other place, skip!
+INFO:root:youtube-dl has got updated from other place, skip!
+INFO:root:zabbix has got updated from other place, skip!
+eval "osc sr -m 'New package in openSUSE:Backports:SLE-15-SP3:Update' openSUSE:Backports:SLE-15-SP3:Update llvm12.17181 openSUSE:Backports:SLE-15-SP4 llvm12"
+Package has no diff:
+
+aria2
+balsa
+bcg729
+ca-certificates-cacert
+elektra
+exim
+fossil
+gifsicle
+gigolo
+grantlee5
+hack-fonts
+hello
+icc-profiles-basiccolor-printing2009
+icc-profiles-openicc
+icinga2
+kblog
+kcm5-fcitx
+kdbg
+kde-oxygen-fonts
+kde-user-manager
+kde4-filesystem
+kdedesktopcheck
+kdiagram
+kirigami
+kmarkdownwebview
+kmozillahelper
+kolor-manager
+ktoblzcheck
+kuserfeedback
+kwebkitpart
+libXcm
+libdnf-plugin-txnupd
+libfakekey
+libmusicbrainz5
+libserialport
+libsigrokdecode
+libspf2
+libxls
+liferea
+loki
+microdnf
+openQA-client-test
+openQA-devel-test
+openQA-test
+openQA-worker-test
+orthanc-mysql
+os-autoinst-test
+perl-AppConfig
+perl-Class-Method-Modifiers
+perl-Cpanel-JSON-XS
+perl-Devel-GlobalDestruction
+perl-Mojolicious-Plugin-AssetPack
+perl-Moo
+perl-Template-Toolkit
+phonon4qt5
+python-pydot3
+python-pysol-cards
+python-python-sql
+python-random2
+python-youtube-dl
+qalculate
+qimageblitz
+qoauth-qt5
+rinutils
+rttr
+signon
+speedtest-cli
+ssh-audit
+telepathy-farstream
+telepathy-qt5
+xfce4-battery-plugin
+xfce4-clipman-plugin
+xfce4-netload-plugin
+xfce4-panel
+xfce4-panel-profiles
+xfce4-settings
+xfce4-systemload-plugin
+xfce4-time-out-plugin
+xfdashboard
+zmusic
