@@ -74,7 +74,7 @@ class FindBP(object):
                 if not r.endswith('.rpm') or r.startswith('::'):
                     continue
                 else:
-                    if not (r.endswith('.src.rpm') or '-doc' in r or '-lang' in r or r.startswith('python2-')):
+                    if not (r.endswith('.src.rpm') or '-doc-' in r or '-lang-' in r or r.startswith('python2-')):
                         result = False
         else:
             result = False

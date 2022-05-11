@@ -121,21 +121,21 @@ class FindUpdate(object):
                 if pkg.startswith('patchinfo') or pkg.count('.') > 1:
                     continue
                 if pkg in sle_pkglist:
-                    logging.debug("%s exist in SLE" % pkg)
+                    logging.info("%s exist in SLE" % pkg)
                     continue
                 if pkg.startswith('rubygem'):
                     continue
-                if self.has_package_modified(OPENSUSE, pkg):
-                    logging.debug("Package %s has been updated from other place, skip!" % pkg)
-                    continue
                 target_pkg = self.parse_package_link(OPENSUSE_UPDATE, pkg)
                 if pkg in os_pkglist:
+                    if self.has_package_modified(OPENSUSE, pkg):
+                        logging.info("%s has got updated from other place, skip!" % pkg)
+                        continue
                     if target_pkg and not self.parse_package_link(OPENSUSE_UPDATE, target_pkg, True) and\
                             self.has_diff(OPENSUSE, pkg, OPENSUSE_UPDATE, target_pkg):
                         if self.get_request_list(OPENSUSE, target_pkg):
-                            logging.debug("There is a request to %s / %s already or it has been declined/revoked, skip!" % (OPENSUSE, target_pkg))
+                            logging.info("There is a request to %s / %s already or it has been declined/revoked, skip!" % (OPENSUSE, target_pkg))
                         else:
-                            print("eval \"osc sr -m 'updated package in %s' %s %s %s %s\"" % (OPENSUSE_UPDATE, OPENSUSE_UPDATE, target_pkg, OPENSUSE, pkg))
+                            print("eval \"osc sr -m '%s has different source in %s' %s %s %s %s\"" % (pkg, OPENSUSE_UPDATE, OPENSUSE_UPDATE, target_pkg, OPENSUSE, pkg))
                     else:
                         weird_pkglist[OPENSUSE_UPDATE].append(pkg)
                 else:
@@ -146,20 +146,20 @@ class FindUpdate(object):
             if pkg.startswith('patchinfo') or pkg.count('.') > 1:
                 continue
             if pkg in sle_pkglist:
-                logging.debug("%s exist in SLE" % pkg)
+                logging.info("%s exist in SLE" % pkg)
                 continue
             if pkg.startswith('rubygem'):
                 continue
-            if self.has_package_modified(BACKPORTS, pkg):
-                logging.debug("Package %s has been updated from other place, skip!" % pkg)
-                continue
             target_pkg = self.parse_package_link(BACKPORTS_UPDATE, pkg)
             if pkg in bp_pkglist:
+                if self.has_package_modified(BACKPORTS, pkg):
+                    logging.info("%s has got updated from other place, skip!" % pkg)
+                    continue
                 if target_pkg and not self.parse_package_link(BACKPORTS_UPDATE, target_pkg, True) and self.has_diff(BACKPORTS, pkg, BACKPORTS_UPDATE, target_pkg):
                     if self.get_request_list(BACKPORTS, target_pkg):
-                        logging.debug("There is a request to %s / %s already or it has been declined/revoked, skip!" % (BACKPORTS, target_pkg))
+                        logging.info("There is a request to %s / %s already or it has been declined/revoked, skip!" % (BACKPORTS, target_pkg))
                     else:
-                        print("eval \"osc sr -m 'updated package in %s' %s %s %s %s\"" % (BACKPORTS_UPDATE, BACKPORTS_UPDATE, target_pkg, BACKPORTS, pkg))
+                        print("eval \"osc sr -m '%s has different source in %s' %s %s %s %s\"" % (pkg, BACKPORTS_UPDATE, BACKPORTS_UPDATE, target_pkg, BACKPORTS, pkg))
                 else:
                     weird_pkglist[BACKPORTS_UPDATE].append(pkg)
             else:
@@ -195,7 +195,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Set logging configuration
-    logging.basicConfig(level=logging.DEBUG if args.debug
-                        else logging.INFO)
+    logging.basicConfig(level=logging.DEBUG if args.debug else logging.INFO)
 
     sys.exit(main(args))
