@@ -3,6 +3,7 @@
 import argparse
 import logging
 import sys
+import subprocess
 try:
     from urllib.error import HTTPError
 except ImportError:
@@ -28,15 +29,14 @@ http_GET = osc.core.http_GET
 http_POST = osc.core.http_POST
 http_PUT = osc.core.http_PUT
 
-class FindUpdate(object):
-    def __init__(self, project, verbose, bp_only):
+class UpdateFinder(object):
+    def __init__(self, project, bp_only):
         self.project = project
-        self.verbose = verbose
         self.bp_only = bp_only
         self.apiurl = osc.conf.config['apiurl']
         self.debug = osc.conf.config['debug']
 
-    def get_source_packages(self, project, expand=False, deleted=False):
+    def get_source_packages(self, project, expand=False, deleted=False, with_project_name=False):
         """Return the list of packages in a project."""
         query = {}
         if expand:
@@ -45,7 +45,10 @@ class FindUpdate(object):
             query['deleted'] = 1
         root = ET.parse(http_GET(makeurl(self.apiurl, ['source', project],
                                  query=query))).getroot()
-        packages = [i.get('name') for i in root.findall('entry')]
+        if with_project_name:
+            packages = [[project, i.get('name')] for i in root.findall('entry')]
+        else:
+            packages = [i.get('name') for i in root.findall('entry')]
 
         return packages
 
@@ -54,6 +57,28 @@ class FindUpdate(object):
 
     def has_package_modified(self, project, package):
         return osc.core.get_request_list(self.apiurl, project, package, req_state=('accepted', ))
+
+    def package_version(self, project, package):
+        try:
+            url = makeurl(self.apiurl, ['source', project, package, '_history'], {'limit': 1})
+            root = ET.parse(http_GET(url)).getroot()
+        except HTTPError as e:
+            if e.code == 404:
+                return False
+
+            raise e
+
+        return str(root.find('./revision/version').text)
+
+    def package_vercmp(self, ver1, ver2):
+        cmd = "rpmdev-vercmp %s %s" % (ver1, ver2)
+        prun = subprocess.run(cmd, shell=True, capture_output=True, encoding='utf-8')
+        vcmp = prun.stdout.strip()
+        if '>' in vcmp:
+            return 1
+        elif '<' in vcmp:
+            return -1
+        return 0
 
     def item_exists(self, project, package=None):
         """
@@ -102,84 +127,69 @@ class FindUpdate(object):
                 return linkinfo
         return False
 
+    def do_check(self, project, update_project, package, sle_pkglist, deleted_pkglist, cmp_pkglist):
+        if package.startswith('patchinfo') or package.count('.') > 1:
+            return
+        if package in sle_pkglist:
+            logging.debug("%s exist in SLE" % package)
+            return
+        if package.startswith('rubygem') or package.startswith('Leap-release'):
+            return
+        target_pkg = self.parse_package_link(update_project, package)
+        if package in cmp_pkglist:
+            req_record = self.has_package_modified(project, package)
+            if req_record and (req_record[0].actions[0].src_project != update_project and \
+                               req_record[0].actions[0].src_package != target_pkg):
+                logging.debug("%s has got updated from other place, skip!" % package)
+                return
+            if target_pkg and not self.parse_package_link(update_project, target_pkg, True) and\
+                    self.has_diff(project, package, update_project, target_pkg):
+                if self.get_request_list(project, target_pkg):
+                    logging.debug("There is a request to %s / %s already or it has been declined/revoked, skip!" % (project, target_pkg))
+                else:
+                    new_ver = self.package_version(update_project, target_pkg)
+                    old_ver = self.package_version(project, package)
+                    if self.package_vercmp(new_ver, old_ver) > 0:
+                        print("eval \"osc sr -m '%s has different source in %s/%s' %s %s %s %s\"" %
+                                (package, update_project, target_pkg, update_project, target_pkg, project, package))
+        else:
+            if target_pkg and package not in deleted_pkglist:
+                print("eval \"osc sr -m 'New package in %s' %s %s %s %s\"" % (update_project, update_project, target_pkg, project, package))
+
     def crawl(self):
         """Main method"""
-        # get souce packages from update
-        os_update_pkglist = self.get_source_packages(OPENSUSE_UPDATE)
-        bp_update_pkglist = self.get_source_packages(BACKPORTS_UPDATE)
+        # get souce packages from Leap/Backports update
+        os_update_pkglist = self.get_source_packages(OPENSUSE_UPDATE, with_project_name=True)
+        bp_update_pkglist = self.get_source_packages(BACKPORTS_UPDATE, with_project_name=True)
         # get souce packages from SLE
         sle_pkglist = self.get_source_packages(SLE, True)
+        # get souce packages from Leap
         os_pkglist = self.get_source_packages(OPENSUSE)
         os_deleted_pkglist = self.get_source_packages(OPENSUSE, deleted=True)
-        # get souce packages from backports
+        # get souce packages from Backports
         bp_pkglist = self.get_source_packages(BACKPORTS)
         bp_deleted_pkglist = self.get_source_packages(BACKPORTS, deleted=True)
-        weird_pkglist = {OPENSUSE_UPDATE: [], BACKPORTS_UPDATE: []}
 
         if not self.bp_only:
             for pkg in os_update_pkglist:
-                if pkg.startswith('patchinfo') or pkg.count('.') > 1:
+                if pkg[1] in bp_pkglist:
+                    bp_update_pkglist.append([OPENSUSE_UPDATE, pkg[1]])
                     continue
-                if pkg in sle_pkglist:
-                    logging.info("%s exist in SLE" % pkg)
-                    continue
-                if pkg.startswith('rubygem'):
-                    continue
-                target_pkg = self.parse_package_link(OPENSUSE_UPDATE, pkg)
-                if pkg in os_pkglist:
-                    if self.has_package_modified(OPENSUSE, pkg):
-                        logging.info("%s has got updated from other place, skip!" % pkg)
-                        continue
-                    if target_pkg and not self.parse_package_link(OPENSUSE_UPDATE, target_pkg, True) and\
-                            self.has_diff(OPENSUSE, pkg, OPENSUSE_UPDATE, target_pkg):
-                        if self.get_request_list(OPENSUSE, target_pkg):
-                            logging.info("There is a request to %s / %s already or it has been declined/revoked, skip!" % (OPENSUSE, target_pkg))
-                        else:
-                            print("eval \"osc sr -m '%s has different source in %s' %s %s %s %s\"" % (pkg, OPENSUSE_UPDATE, OPENSUSE_UPDATE, target_pkg, OPENSUSE, pkg))
-                    else:
-                        weird_pkglist[OPENSUSE_UPDATE].append(pkg)
-                else:
-                    if target_pkg and pkg not in os_deleted_pkglist:
-                        print("eval \"osc sr -m 'New package in %s' %s %s %s %s\"" % (OPENSUSE_UPDATE, OPENSUSE_UPDATE, target_pkg, OPENSUSE, pkg))
+                self.do_check(OPENSUSE, pkg[0], pkg[1], sle_pkglist, os_deleted_pkglist, os_pkglist)
 
         for pkg in bp_update_pkglist:
-            if pkg.startswith('patchinfo') or pkg.count('.') > 1:
-                continue
-            if pkg in sle_pkglist:
-                logging.info("%s exist in SLE" % pkg)
-                continue
-            if pkg.startswith('rubygem'):
-                continue
-            target_pkg = self.parse_package_link(BACKPORTS_UPDATE, pkg)
-            if pkg in bp_pkglist:
-                if self.has_package_modified(BACKPORTS, pkg):
-                    logging.info("%s has got updated from other place, skip!" % pkg)
-                    continue
-                if target_pkg and not self.parse_package_link(BACKPORTS_UPDATE, target_pkg, True) and self.has_diff(BACKPORTS, pkg, BACKPORTS_UPDATE, target_pkg):
-                    if self.get_request_list(BACKPORTS, target_pkg):
-                        logging.info("There is a request to %s / %s already or it has been declined/revoked, skip!" % (BACKPORTS, target_pkg))
-                    else:
-                        print("eval \"osc sr -m '%s has different source in %s' %s %s %s %s\"" % (pkg, BACKPORTS_UPDATE, BACKPORTS_UPDATE, target_pkg, BACKPORTS, pkg))
-                else:
-                    weird_pkglist[BACKPORTS_UPDATE].append(pkg)
-            else:
-                if target_pkg and pkg not in bp_deleted_pkglist:
-                    print("eval \"osc sr -m 'New package in %s' %s %s %s %s\"" % (BACKPORTS_UPDATE, BACKPORTS_UPDATE, target_pkg, BACKPORTS, pkg))
-
-        print('Package has no diff:')
-        for prj in weird_pkglist.keys():
-            print('\n'.join(weird_pkglist[prj]))
+            self.do_check(BACKPORTS, pkg[0], pkg[1], sle_pkglist, bp_deleted_pkglist, bp_pkglist)
 
 def main(args):
     # Configure OSC
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = FindUpdate(args.project, args.verbose, args.bp_only)
+    uc = UpdateFinder(args.project, args.bp_only)
     uc.crawl()
 
 if __name__ == '__main__':
-    description = 'Compare packages status between two project'
+    description = 'Find update candidates from the last SP Update'
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('-A', '--apiurl', metavar='URL', help='API URL')
     parser.add_argument('-d', '--debug', action='store_true',
@@ -189,8 +199,6 @@ if __name__ == '__main__':
                         default=OPENSUSE)
     parser.add_argument('-b', '--bp-only', action='store_true',
                         help='Check Backports project only')
-    parser.add_argument('-v', '--verbose', action='store_true',
-                        help='show the diff')
 
     args = parser.parse_args()
 
