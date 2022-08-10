@@ -28,9 +28,8 @@ http_POST = osc.core.http_POST
 http_PUT = osc.core.http_PUT
 
 class FindBP(object):
-    def __init__(self, project, verbose, identical):
+    def __init__(self, project, identical):
         self.project = project
-        self.verbose = verbose
         self.identical = identical
         self.apiurl = osc.conf.config['apiurl']
         self.debug = osc.conf.config['debug']
@@ -45,20 +44,6 @@ class FindBP(object):
         packages = [i.get('name') for i in root.findall('entry')]
 
         return packages
-
-    def item_exists(self, project, package=None):
-        """
-        Return true if the given project or package exists
-        """
-        if package:
-            url = makeurl(self.apiurl, ['source', project, package, '_meta'])
-        else:
-            url = makeurl(self.apiurl, ['source', project, '_meta'])
-        try:
-            http_GET(url)
-        except HTTPError:
-            return False
-        return True
 
     def has_diff(self, project, package, target_prj, target_pkg):
         changes_file = package + ".changes"
@@ -75,13 +60,6 @@ class FindBP(object):
             if diffs:
                 return True
         return False
-
-    def origin_metadata_get(self, project, package):
-        meta = ET.fromstringlist(osc.core.show_package_meta(self.apiurl, project, package))
-        if meta is not None:
-            return meta.get('project'), meta.get('name')
-
-        return None, None
 
     def is_links(self, project, package, reverse=False):
         query = {'withlinked': 1}
@@ -116,10 +94,10 @@ class FindBP(object):
                     if self.is_links(OPENSUSE, pkg):
                         continue
                     else:
-                        print("eval \"osc copypac -e -m 'updated package in Backports' %s %s %s %s\"" % (BACKPORTS, pkg, OPENSUSE, pkg))
+                        print("eval \"osc copypac -e -m 'Sync package from Backports' %s %s %s %s\"" % (BACKPORTS, pkg, OPENSUSE, pkg))
                 else:
                     if self.identical:
-                        print("eval \"osc rdelete -m 'no need to fork this package from Backports' %s %s\"" % (OPENSUSE, pkg))
+                        print("eval \"osc rdelete -m 'No need to fork this package from Backports' %s %s\"" % (OPENSUSE, pkg))
                     pass
 
 
@@ -128,7 +106,7 @@ def main(args):
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = FindBP(args.project, args.verbose, args.identical)
+    uc = FindBP(args.project, args.identical)
     uc.crawl()
 
 if __name__ == '__main__':
@@ -142,8 +120,6 @@ if __name__ == '__main__':
                         default=OPENSUSE)
     parser.add_argument('-i', '--identical', action='store_true',
                         help='show identical package')
-    parser.add_argument('-v', '--verbose', action='store_true',
-                        help='show the diff')
 
     args = parser.parse_args()
 
