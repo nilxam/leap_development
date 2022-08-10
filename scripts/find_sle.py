@@ -28,10 +28,9 @@ http_GET = osc.core.http_GET
 http_POST = osc.core.http_POST
 http_PUT = osc.core.http_PUT
 
-class FindSLE(object):
-    def __init__(self, project, verbose, check_slefork):
+class SLESync(object):
+    def __init__(self, project, check_slefork):
         self.project = project
-        self.verbose = verbose
         self.check_slefork = check_slefork
         self.apiurl = osc.conf.config['apiurl']
         self.debug = osc.conf.config['debug']
@@ -46,20 +45,6 @@ class FindSLE(object):
         packages = [i.get('name') for i in root.findall('entry')]
 
         return packages
-
-    def item_exists(self, project, package=None):
-        """
-        Return true if the given project or package exists
-        """
-        if package:
-            url = makeurl(self.apiurl, ['source', project, package, '_meta'])
-        else:
-            url = makeurl(self.apiurl, ['source', project, '_meta'])
-        try:
-            http_GET(url)
-        except HTTPError:
-            return False
-        return True
 
     def has_diff(self, project, package, target_prj, target_pkg):
         changes_file = package + ".changes"
@@ -111,7 +96,6 @@ class FindSLE(object):
         bp_pkglist = self.get_source_packages(BACKPORTS)
         os_pkglist = self.get_source_packages(OPENSUSE)
         slefork_pkglist = self.get_source_packages(SLEFORK)
-        sle_current_pkglist = self.get_source_packages(SLE)
 
         # Backports
         for pkg in bp_pkglist:
@@ -125,11 +109,14 @@ class FindSLE(object):
                         continue
                     if orig_prj != SLE:
                         if src_pkg:
-                            print("eval \"osc copypac -e -m 'Updated package in SLE' %s %s %s %s\"" % (orig_prj, src_pkg, BACKPORTS, pkg))
+                            print("eval \"osc copypac -e -m 'Package update from %s/%s' %s %s %s %s\"" %
+                                    (orig_prj, src_pkg, orig_prj, src_pkg, BACKPORTS, pkg))
                         if orig_prj.endswith(':GA'):
-                            print("eval \"osc copypac -e -m 'Updated package in SLE' %s %s %s %s\"" % (orig_prj, orig_pkg, BACKPORTS, pkg))
+                            logging.debug("Package %s got overrided in %s %s" % (orig_pkg, BACKPORTS, pkg))
                     else:
-                        print("eval \"osc copypac -e -m 'Updated package in SLE' %s %s %s %s\"" % (SLE, pkg, BACKPORTS, pkg))
+                        print("eval \"osc copypac -e -m 'Package update from %s/%s' %s %s %s %s\"" %
+                                (SLE, pkg, SLE, pkg, BACKPORTS, pkg))
+        # Leap
         for pkg in os_pkglist:
             if pkg.startswith('patchinfo'):
                 continue
@@ -139,28 +126,20 @@ class FindSLE(object):
                     if orig_prj != SLE:
                         src_pkg = self.parse_package_link(orig_prj, orig_pkg)
                         if src_pkg:
-                            print("eval \"osc copypac -e -m 'Updated package in SLE' %s %s %s %s\"" % (orig_prj, src_pkg, OPENSUSE, pkg))
+                            print("eval \"osc copypac -e -m 'Package update from %s/%s' %s %s %s %s\"" %
+                                    (orig_prj, src_pkg, orig_prj, src_pkg, OPENSUSE, pkg))
                         if orig_prj.endswith(':GA'):
-                            print("eval \"osc copypac -e -m 'Updated package in SLE' %s %s %s %s\"" % (orig_prj, orig_pkg, OPENSUSE, pkg))
+                            logging.debug("Package %s got overrided in %s %s" % (orig_pkg, OPENSUSE, pkg))
                     else:
-                        print("eval \"osc copypac -e -m 'Updated package in SLE' %s %s %s %s\"" % (SLE, pkg, OPENSUSE, pkg))
- 
-        if self.verbose:
-            new_pkglist = []
-            for pkg in sle_current_pkglist:
-                if pkg not in bp_pkglist:
-                    new_pkglist.append(pkg)
-            print("\nNew packages:")
-            for p in new_pkglist:
-                print(p)
-
+                        print("eval \"osc copypac -e -m 'Package update from %s/%s' %s %s %s %s\"" %
+                                (SLE, pkg, SLE, pkg, OPENSUSE, pkg))
 
 def main(args):
     # Configure OSC
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = FindSLE(args.project, args.verbose, args.check_slefork)
+    uc = SLESync(args.project, args.check_slefork)
     uc.crawl()
 
 if __name__ == '__main__':
@@ -172,8 +151,6 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--project', dest='project', metavar='PROJECT',
                         help='the project where to check (default: %s)' % OPENSUSE,
                         default=OPENSUSE)
-    parser.add_argument('-v', '--verbose', action='store_true',
-                        help='show the diff')
     parser.add_argument('-s', '--check-slefork', action='store_true',
                         help='check SLEFork project')
 

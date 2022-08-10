@@ -80,20 +80,6 @@ class UpdateFinder(object):
             return -1
         return 0
 
-    def item_exists(self, project, package=None):
-        """
-        Return true if the given project or package exists
-        """
-        if package:
-            url = makeurl(self.apiurl, ['source', project, package, '_meta'])
-        else:
-            url = makeurl(self.apiurl, ['source', project, '_meta'])
-        try:
-            http_GET(url)
-        except HTTPError:
-            return False
-        return True
-
     def has_diff(self, project, package, target_prj, target_pkg):
         changes_file = package + ".changes"
         query = {'cmd': 'diff',
