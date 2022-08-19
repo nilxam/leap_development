@@ -30,9 +30,10 @@ http_POST = osc.core.http_POST
 http_PUT = osc.core.http_PUT
 
 class UpdateFinder(object):
-    def __init__(self, project, bp_only):
+    def __init__(self, project, bp_only, submit):
         self.project = project
         self.bp_only = bp_only
+        self.submit = submit
         self.apiurl = osc.conf.config['apiurl']
         self.debug = osc.conf.config['debug']
 
@@ -53,7 +54,7 @@ class UpdateFinder(object):
         return packages
 
     def get_request_list(self, project, package):
-        return osc.core.get_request_list(self.apiurl, project, package, req_state=('new', 'review', 'declined', 'revoked'))
+        return osc.core.get_request_list(self.apiurl, project, package, req_state=('new', 'review'))
 
     def has_package_modified(self, project, package):
         return osc.core.get_request_list(self.apiurl, project, package, req_state=('accepted', ))
@@ -124,23 +125,48 @@ class UpdateFinder(object):
         target_pkg = self.parse_package_link(update_project, package)
         if package in cmp_pkglist:
             req_record = self.has_package_modified(project, package)
-            if req_record and (req_record[0].actions[0].src_project != update_project and \
-                               req_record[0].actions[0].src_package != target_pkg):
+            if req_record and (req_record[len(req_record)-1].actions[0].src_project != update_project and \
+                               req_record[len(req_record)-1].actions[0].src_package != target_pkg):
                 logging.debug("%s has got updated from other place, skip!" % package)
                 return
             if target_pkg and not self.parse_package_link(update_project, target_pkg, True) and\
                     self.has_diff(project, package, update_project, target_pkg):
                 if self.get_request_list(project, target_pkg):
-                    logging.debug("There is a request to %s / %s already or it has been declined/revoked, skip!" % (project, target_pkg))
+                    logging.debug("There is a request to %s / %s already or it has been revoked, skip!" % (project, target_pkg))
                 else:
                     new_ver = self.package_version(update_project, target_pkg)
                     old_ver = self.package_version(project, package)
-                    if self.package_vercmp(new_ver, old_ver) > 0:
-                        print("eval \"osc sr -m '%s has different source in %s/%s' %s %s %s %s\"" %
-                                (package, update_project, target_pkg, update_project, target_pkg, project, package))
+                    if self.package_vercmp(new_ver, old_ver) >= 0:
+                        if self.submit:
+                            print("Submitting %s/%s to %s/%s" %
+                                    (update_project, target_pkg, project, package))
+                            self.do_submit(update_project, target_pkg, project, package)
+                        else:
+                            print("eval \"osc sr -m '%s has different source in %s/%s' %s %s %s %s\"" %
+                                    (package, update_project, target_pkg, update_project, target_pkg, project, package))
         else:
             if target_pkg and package not in deleted_pkglist:
-                print("eval \"osc sr -m 'New package in %s' %s %s %s %s\"" % (update_project, update_project, target_pkg, project, package))
+                if self.submit:
+                    print("Submitting %s/%s to %s/%s" %
+                            (update_project, update_project, target_pkg, project, package))
+                    self.do_submit(update_project, target_pkg, project, package)
+                else:
+                    print("eval \"osc sr -m 'New package in %s' %s %s %s %s\"" %
+                            (update_project, update_project, target_pkg, project, package))
+
+    def do_submit(self, src_project, src_package, dst_project, dst_package):
+        """Create a submit request."""
+
+        msg = "Automatically create request by update submitter. \
+               This is going to update package to %s from %s. \
+               Please review this change and decline it if Leap do not need it." % (dst_project, src_project)
+        res = osc.core.create_submit_request(self.apiurl,
+                                             src_project,
+                                             src_package,
+                                             dst_project,
+                                             dst_package,
+                                             message=msg)
+        return res
 
     def crawl(self):
         """Main method"""
@@ -171,7 +197,7 @@ def main(args):
     osc.conf.get_config(override_apiurl=args.apiurl)
     osc.conf.config['debug'] = args.debug
 
-    uc = UpdateFinder(args.project, args.bp_only)
+    uc = UpdateFinder(args.project, args.bp_only, args.submit)
     uc.crawl()
 
 if __name__ == '__main__':
@@ -185,6 +211,8 @@ if __name__ == '__main__':
                         default=OPENSUSE)
     parser.add_argument('-b', '--bp-only', action='store_true',
                         help='Check Backports project only')
+    parser.add_argument('-s', '--submit', dest='submit', action='store_true',
+                        help='Submit updates to Backports project')
 
     args = parser.parse_args()
 

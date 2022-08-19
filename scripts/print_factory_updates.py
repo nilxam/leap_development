@@ -19,12 +19,12 @@ from osclib.core import project_pseudometa_package
 from osc import oscerr
 from osclib.memoize import memoize
 
-BACKPORTS = 'openSUSE:Backports:SLE-15-SP4'
-OPENSUSE = 'openSUSE:Leap:15.4'
-SLE = 'SUSE:SLE-15-SP4:GA'
-REBUILD_PROJECT = '{}:RebuildFactoryUpdates'.format(BACKPORTS)
+BACKPORTS = 'openSUSE:Backports:SLE-15-SP5'
+OPENSUSE = 'openSUSE:Leap:15.5'
+SLE = 'SUSE:SLE-15-SP5:GA'
+REBUILD_PROJECT = '{}:FactoryCandidates'.format(BACKPORTS)
 FACTORYFORK = '{}:FactoryFork'.format(BACKPORTS)
-SUPPORTED_ARCHS = ['x86_64', 'aarch64', 'ppc64le']
+SUPPORTED_ARCHS = ['x86_64']
 FACTORY = 'openSUSE:Factory'
 
 makeurl = osc.core.makeurl
@@ -87,8 +87,8 @@ class FccFreezer(object):
         if self.freeze_rebuild:
             if package in sle_pkglist or package not in bp_pkglist:
                 return package
-            if package in factoryfork_pkglist:
-                return package
+            #if package in factoryfork_pkglist:
+            #    return package
             if factory_srcmd5[package] == bp_srcmd5[package]:
                 return package
 
@@ -134,7 +134,7 @@ class FccFreezer(object):
             bp_srcmd5[si.get('package')] = [si.get('verifymd5')]
 
         ignored_pkgs = []
-        ignored_develprjs = ['KDE:Applications', 'KDE:Qt5', 'devel:languages:haskell', 'devel:kubic', 'KDE:Frameworks5', 'mozilla:Factory', 'KDE:Qt:5.15', 'devel:languages:ruby:extensions', 'security:SELinux', 'devel:languages:rust', 'science:HPC', 'devel:tools:building', 'server:php:extensions', 'devel:CaaSP', 'devel:CaaSP:Head:ControllerNode', 'system:install:head', 'mobile:synchronization:FACTORY', 'X11:Deepin', 'Java:Factory', 'devel:languages:javascript', 'devel:languages:ruby', 'Base:System', 'windows:mingw:win32', 'Java:packages', 'Virtualization:containers:images', 'X11:Pantheon', 'Virtualization:Appliances:Images:openSUSE-Tumbleweed', 'Application:ERP:GNUHealth:Factory', 'devel:languages:python:jupyter', 'devel:languages:python:azure', 'devel:languages:python:aws', 'Cloud:OpenStack:Factory', 'devel:languages:python:flask', 'devel:languages:python:avocado', 'devel:languages:python:django', 'devel:languages:python:aliyun', 'devel:languages:python:pytest', 'devel:languages:python:pyramid', 'server:monitoring', 'server:monitoring:zabbix','server:monitoring:thruk','server:monitoring:gearman', 'windows:mingw:win64', 'Application:Dochazka', 'devel:languages:python:numeric', 'science:machinelearning', 'Emulators', 'devel:openQA:tested', 'electronics', 'X11:Cinnamon:Factory', 'X11:MATE:Factory', 'X11:LXQt', 'Publishing:TeXLive', 'devel:languages:python', 'devel:languages:lua', 'devel:languages:ocaml']
+        ignored_develprjs = ['KDE:Applications', 'KDE:Qt5', 'devel:languages:haskell', 'devel:kubic', 'KDE:Frameworks5', 'mozilla:Factory', 'KDE:Qt:5.15', 'devel:languages:ruby:extensions', 'security:SELinux', 'devel:languages:rust', 'science:HPC', 'devel:tools:building', 'server:php:extensions', 'devel:CaaSP', 'devel:CaaSP:Head:ControllerNode', 'system:install:head', 'mobile:synchronization:FACTORY', 'Java:Factory', 'devel:languages:javascript', 'devel:languages:ruby', 'Base:System', 'windows:mingw:win32', 'Java:packages', 'Virtualization:containers:images', 'X11:Pantheon', 'Virtualization:Appliances:Images:openSUSE-Tumbleweed', 'Application:ERP:GNUHealth:Factory', 'devel:languages:python:jupyter', 'devel:languages:python:azure', 'devel:languages:python:aws', 'Cloud:OpenStack:Factory', 'devel:languages:python:flask', 'devel:languages:python:avocado', 'devel:languages:python:django', 'devel:languages:python:aliyun', 'devel:languages:python:pytest', 'devel:languages:python:pyramid', 'server:monitoring', 'server:monitoring:zabbix','server:monitoring:thruk','server:monitoring:gearman', 'windows:mingw:win64', 'Application:Dochazka', 'devel:languages:python:numeric', 'science:machinelearning', 'Emulators', 'devel:openQA:tested', 'electronics', 'Publishing:TeXLive', 'devel:languages:python', 'devel:languages:lua', 'devel:languages:ocaml']
 
         for prj in ignored_develprjs:
             ignored_pkgs = ignored_pkgs + self.get_source_packages(prj)
@@ -147,6 +147,7 @@ class FccFreezer(object):
 
     def freeze(self, project):
         """Main method"""
+        print('freezing {}'.format(project))
         flink = ET.Element('frozenlinks')
 
         fl = ET.SubElement(flink, 'frozenlink', {'project': FACTORY})
@@ -158,7 +159,7 @@ class FccFreezer(object):
 
         url = makeurl(self.apiurl, ['source', project, '_project', '_frozenlinks'], {'meta': '1'})
         l = ET.tostring(flink)
-        # print(l)
+
         try:
             http_PUT(url, data=l)
         except HTTPError as e:
@@ -314,7 +315,6 @@ def main(args):
     elif args.submit:
         freezer.send_updates()
     elif args.freeze_rebuild:
-        print('freezing {}'.format(REBUILD_PROJECT))
         freezer.freeze(REBUILD_PROJECT)
 
 if __name__ == '__main__':
