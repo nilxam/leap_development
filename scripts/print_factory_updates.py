@@ -73,7 +73,7 @@ class FccFreezer(object):
         if package.startswith('_') or package.startswith('Test-DVD') or package.startswith('000') or package.startswith('preinstallimage'):
             return None
 
-        if 'tumbleweed' in package:
+        if 'tumbleweed' in package or 'branding' in package:
             return package
 
         if package in ignored_pkgs:
@@ -85,11 +85,11 @@ class FccFreezer(object):
                 return package
 
         if self.freeze_rebuild:
-            if package in sle_pkglist or package not in bp_pkglist:
+            if package in sle_pkglist:
                 return package
             #if package in factoryfork_pkglist:
             #    return package
-            if factory_srcmd5[package] == bp_srcmd5[package]:
+            if package in bp_srcmd5 and factory_srcmd5[package] == bp_srcmd5[package]:
                 return package
 
         for linked in si.findall('linked'):
@@ -134,7 +134,7 @@ class FccFreezer(object):
             bp_srcmd5[si.get('package')] = [si.get('verifymd5')]
 
         ignored_pkgs = []
-        ignored_develprjs = ['KDE:Applications', 'KDE:Qt5', 'devel:languages:haskell', 'devel:kubic', 'KDE:Frameworks5', 'mozilla:Factory', 'KDE:Qt:5.15', 'devel:languages:ruby:extensions', 'security:SELinux', 'devel:languages:rust', 'science:HPC', 'devel:tools:building', 'server:php:extensions', 'devel:CaaSP', 'devel:CaaSP:Head:ControllerNode', 'system:install:head', 'mobile:synchronization:FACTORY', 'Java:Factory', 'devel:languages:javascript', 'devel:languages:ruby', 'Base:System', 'windows:mingw:win32', 'Java:packages', 'Virtualization:containers:images', 'X11:Pantheon', 'Virtualization:Appliances:Images:openSUSE-Tumbleweed', 'Application:ERP:GNUHealth:Factory', 'devel:languages:python:jupyter', 'devel:languages:python:azure', 'devel:languages:python:aws', 'Cloud:OpenStack:Factory', 'devel:languages:python:flask', 'devel:languages:python:avocado', 'devel:languages:python:django', 'devel:languages:python:aliyun', 'devel:languages:python:pytest', 'devel:languages:python:pyramid', 'server:monitoring', 'server:monitoring:zabbix','server:monitoring:thruk','server:monitoring:gearman', 'windows:mingw:win64', 'Application:Dochazka', 'devel:languages:python:numeric', 'science:machinelearning', 'Emulators', 'devel:openQA:tested', 'electronics', 'Publishing:TeXLive', 'devel:languages:python', 'devel:languages:lua', 'devel:languages:ocaml']
+        ignored_develprjs = ['KDE:Applications', 'KDE:Qt5', 'devel:languages:haskell', 'devel:kubic', 'KDE:Frameworks5', 'mozilla:Factory', 'KDE:Qt:5.15', 'devel:languages:ruby:extensions', 'security:SELinux', 'devel:languages:rust', 'science:HPC', 'devel:tools:building', 'server:php:extensions', 'devel:CaaSP', 'devel:CaaSP:Head:ControllerNode', 'system:install:head', 'mobile:synchronization:FACTORY', 'Java:Factory', 'devel:languages:javascript', 'devel:languages:ruby', 'Base:System', 'windows:mingw:win32', 'Java:packages', 'Virtualization:containers:images', 'X11:Pantheon', 'Virtualization:Appliances:Images:openSUSE-Tumbleweed', 'Application:ERP:GNUHealth:Factory', 'devel:languages:python:jupyter', 'devel:languages:python:azure', 'devel:languages:python:aws', 'Cloud:OpenStack:Factory', 'devel:languages:python:flask', 'devel:languages:python:avocado', 'devel:languages:python:django', 'devel:languages:python:aliyun', 'devel:languages:python:pytest', 'devel:languages:python:pyramid', 'server:monitoring', 'server:monitoring:zabbix','server:monitoring:thruk','server:monitoring:gearman', 'windows:mingw:win64', 'Application:Dochazka', 'devel:languages:python:numeric', 'science:machinelearning', 'Emulators', 'devel:openQA:tested', 'electronics', 'Publishing:TeXLive', 'devel:languages:python', 'devel:languages:lua', 'devel:languages:ocaml', 'X11:Cinnamon:Factory', 'devel:gcc']
 
         for prj in ignored_develprjs:
             ignored_pkgs = ignored_pkgs + self.get_source_packages(prj)
@@ -165,10 +165,48 @@ class FccFreezer(object):
         except HTTPError as e:
             raise e
 
+    def has_diff(self, project, package, target_prj, target_pkg):                                                                                 
+        # if package does not exist in taget project return True
+        if not self.item_exists(target_prj, target_pkg):
+            return True
+        changes_file = package + ".changes"
+        query = {'cmd': 'diff',
+                 'view': 'xml',
+                 'file': changes_file,
+                 'oproject': project,
+                 'opackage': package}
+        u = makeurl(self.apiurl, ['source', target_prj, target_pkg], query=query)
+        root = ET.parse(http_POST(u)).getroot()
+        if root:
+            # check if it has diff element
+            diffs = root.findall('files/file/diff')
+            if diffs:
+                return True
+        return False
+
+    def item_exists(self, project, package=None):
+        """
+        Return true if the given project or package exists
+        """
+        if package:
+            url = makeurl(self.apiurl, ['source', project, package, '_meta'])
+        else:
+            url = makeurl(self.apiurl, ['source', project, '_meta'])
+        try:
+            http_GET(url)
+        except HTTPError:
+            return False
+        return True
+
     def create_submitrequest(self, src_project, package, dst_project):
         """Create a submit request using the osc.commandline.Osc class."""
 
-        msg = "Automatically create request by update submitter. This is trying to update package to %s from %s. Please review this change and decline it if Leap do not need it." % (dst_project, src_project)
+        if not self.has_diff(src_project, package, dst_project, package):
+            return None
+
+        msg = ("Automatically create request by update submitter."
+               "This is going to update package to %s from %s."
+               "Please review this change and decline it if Leap do not need it." % (dst_project, src_project))
         res = osc.core.create_submit_request(self.apiurl,
                                              src_project,
                                              package,
@@ -255,15 +293,6 @@ class FccFreezer(object):
         ms_packages = []
         succeeded_packages = self.get_build_succeeded_packages(REBUILD_PROJECT, 'x86_64')
         for package in sorted(succeeded_packages):
-            if package in ['gpsd', 'OpenSceneGraph', 'mpv', 'libbullet', 'nlohmann_json', 'cfitsio', 'votca-tools']:
-                continue
-#            if package[0] == 'a' or package[0] == 'b' or package[0] == 'c' or package[0] == 'd' or\
-#                    package[0] == 'e' or package[0] == 'f' or package[0] == 'g' or\
-#                    package[0] == 'h' or package[0] == 'i' or package[0] == 'j' or\
-#                    package[0] == 'k' or package[0] == 'l' or package[0] == 'm' or\
-#                    package[0] == 'n' or package[0] == 'o' or package[0] == 'p' or\
-#                    package[0] == 'q' or package[0] == 'r':
-#                continue
             to_submit = True
 
             multi_specs = self.check_multiple_specfiles(FACTORY, package)
@@ -290,9 +319,9 @@ class FccFreezer(object):
                 if res and res is not None:
                     logging.info('Created request %s for %s' % (res, package))
                 else:
-                    logging.error('Error occurred when creating submit request')
+                    logging.error('Error occurred when creating submit request for %s' % package)
             else:
-                logging.info('%s is pending on %s, skip!' % (package, BACKPORTS))
+                logging.info('%s has a pending submission on %s or it has been declined/revoked, skip!' % (package, BACKPORTS))
             time.sleep(5)
 
         # dump multi specs packages

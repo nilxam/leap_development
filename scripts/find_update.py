@@ -125,8 +125,8 @@ class UpdateFinder(object):
         target_pkg = self.parse_package_link(update_project, package)
         if package in cmp_pkglist:
             req_record = self.has_package_modified(project, package)
-            if req_record and (req_record[len(req_record)-1].actions[0].src_project != update_project and \
-                               req_record[len(req_record)-1].actions[0].src_package != target_pkg):
+            if req_record and (req_record[-1].actions[0].src_project != update_project and \
+                               req_record[-1].actions[0].src_package != target_pkg):
                 logging.debug("%s has got updated from other place, skip!" % package)
                 return
             if target_pkg and not self.parse_package_link(update_project, target_pkg, True) and\
