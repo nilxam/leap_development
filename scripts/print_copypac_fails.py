@@ -13,11 +13,11 @@ import osc.core
 
 from osc import oscerr
 
-OPENSUSE = 'openSUSE:Leap:15.4'
+OPENSUSE = 'openSUSE:Leap:15.5'
 FACTORY = 'openSUSE:Factory'
-OPENSUSE_UPDATE = 'openSUSE:Leap:15.3:Update'
-BACKPORTS = 'openSUSE:Backports:SLE-15-SP4'
-SLE = 'SUSE:SLE-15-SP4:GA'
+OPENSUSE_UPDATE = 'openSUSE:Leap:15.4:Update'
+BACKPORTS = 'openSUSE:Backports:SLE-15-SP5'
+SLE = 'SUSE:SLE-15-SP5:GA'
 
 makeurl = osc.core.makeurl
 http_GET = osc.core.http_GET
@@ -127,12 +127,14 @@ class FindSLE(object):
 
         print("\nExists in SLE:")
         for pkg in sle_ones:
+            msg = ("%s" % pkg)
             if self.item_exists(FACTORY, pkg):
                 if self.has_diff(FACTORY, pkg, BACKPORTS, pkg):
                     if pkg not in rebuild_pkglist:
-                        print("eval \"osc copypac -e -m 'updated SLE package from Factory' %s %s %s %s\"" % (FACTORY, pkg, self.project, pkg))
+                        msg = ("eval \"osc copypac -e -m 'updated SLE package from Factory' %s %s %s %s\"" % (FACTORY, pkg, self.project, pkg))
             else:
-                print("Deleted in Factory: %s" % pkg)
+                msg = ("SLE package deleted in Factory: %s" % pkg)
+            print(msg)
 
         print("\nHas no diff with Factory version:")
         for pkg in nodiffs:

@@ -17,11 +17,11 @@ import osc.core
 
 from osc import oscerr
 
-OPENSUSE = 'openSUSE:Leap:15.4'
-OPENSUSE_UPDATE = 'openSUSE:Leap:15.3:Update'
-BACKPORTS = 'openSUSE:Backports:SLE-15-SP4'
-SLEFORK = 'openSUSE:Backports:SLE-15-SP4:SLEFork'
-SLE = 'SUSE:SLE-15-SP4:GA'
+OPENSUSE = 'openSUSE:Leap:15.5'
+OPENSUSE_UPDATE = 'openSUSE:Leap:15.4:Update'
+BACKPORTS = 'openSUSE:Backports:SLE-15-SP5'
+SLEFORK = 'openSUSE:Backports:SLE-15-SP5:SLEFork'
+SLE = 'SUSE:SLE-15-SP5:GA'
 
 makeurl = osc.core.makeurl
 http_GET = osc.core.http_GET
@@ -93,6 +93,7 @@ class FindSLE(object):
         # get souce packages from backports
         bp_pkglist = self.get_source_packages(BACKPORTS)
         slefork_pkglist = self.get_source_packages(SLEFORK)
+        ignored_multibuilds = []
 
         # Backports
         for pkg in bp_pkglist:
@@ -104,9 +105,14 @@ class FindSLE(object):
                 continue
             filelist = self.get_filelist_for_package(pkgname=pkg, project=BACKPORTS, expand='1')
             if '_multibuild' in filelist:
-                print(pkg)
-#                continue
+                ignored_multibuilds.append(pkg)
+                continue
+            print("eval \"osc rebuildpac -r standard %s %s\"" % (BACKPORTS, pkg))
 #            print("eval \"osc dr -m 'Package %s does exist in SLE' %s %s\"" % (pkg, BACKPORTS, pkg))
+
+        print("\nIgnored Multibuilds:")
+        for p in ignored_multibuilds:
+            print(p)
 
 
 def main(args):
