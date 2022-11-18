@@ -16,6 +16,7 @@ Tracking package got deleted in openSUSE:Backports:SLE-15-SP5 in case the reason
 | abseil-cpp | **F** | Yes | x86_64 failed only|
 | amavisd-milter | **F** | Yes | |
 | capstone | **F** | Yes | |
+| docker-distribution | **F** | Yes | renamed to distribution, SLE does have distribution package|
 | duktape | **F** | Yes | |
 | helm | **F** | Yes | Coming from container module |
 | ignition | **S** | No | Added to SLE15 SP5 but it seem not exist in any product
