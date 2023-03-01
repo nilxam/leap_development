@@ -13,6 +13,7 @@ Tracking package got deleted in openSUSE:Backports:SLE-15-SP5 in case the reason
 
 | Name  | Build result | Shipped in SLE product | Addtional info |
 | ------------- |:-------------:|:-------------:|:-------------:|
+| DirectX-Headers | **F** | Yes | |
 | abseil-cpp | **F** | Yes | x86_64 failed only|
 | amavisd-milter | **F** | Yes | |
 | capstone | **F** | Yes | |
@@ -22,8 +23,13 @@ Tracking package got deleted in openSUSE:Backports:SLE-15-SP5 in case the reason
 | ignition | **S** | No | Added to SLE15 SP5 but it seem not exist in any product
 | iio-sensor-proxy | **F** | Yes | |
 | iniparser | **F** | Yes | |
+| ipxe | **F** | Yes | |
+| libqrtr-glib | **F** | Yes | |
 | pcm | **F** | Yes | |
 | python-apipkg | **S** | Yes | rpmlink-backports removed all binary but src.rpm left only|
+| source-highlight | **F** | Yes | |
+| warewulf4 | **F** | Yes | |
+| zypper-changelog-plugin | **F** | Yes | |
 
 ## Blocks of code
 
