@@ -32,6 +32,7 @@ Tracking package got deleted in openSUSE:Backports:SLE-15-SP5 in case the reason
 | zypper-changelog-plugin | **F** | Yes | |
 
 ## Potential removal candidates
+# Package does exist in SLE. Package build successed in Backports.
 
 * dragonbox
 * flashrom
