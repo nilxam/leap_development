@@ -27,6 +27,7 @@ Tracking package got deleted in openSUSE:Backports:SLE-15-SP5 in case the reason
 | libqrtr-glib | **F** | Yes | |
 | pcm | **F** | Yes | |
 | python-apipkg | **S** | Yes | rpmlink-backports removed all binary but src.rpm left only|
+| sevctl | **F** | Yes | |
 | source-highlight | **F** | Yes | |
 | warewulf4 | **F** | Yes | |
 | zypper-changelog-plugin | **F** | Yes | |
@@ -197,7 +198,6 @@ Tracking package got deleted in openSUSE:Backports:SLE-15-SP5 in case the reason
 * python-semver
 * python-tomli
 * python-unittest-mixins
-* sevctl
 * texmath
 * xxhash
 * yq
