@@ -16,17 +16,22 @@ Tracking package got deleted in openSUSE:Backports:SLE-15-SP5 in case the reason
 | DirectX-Headers | **F** | Yes | |
 | abseil-cpp | **F** | Yes | x86_64 failed only|
 | amavisd-milter | **F** | Yes | |
+| cblas | **F** | Yes | |
 | capstone | **F** | Yes | |
+| crash-trace | **F** | Yes | |
 | docker-distribution | **F** | Yes | renamed to distribution, SLE does have distribution package|
 | duktape | **F** | Yes | |
+| flashrom | **F** | Yes | |
 | helm | **F** | Yes | Coming from container module |
 | ignition | **S** | No | Added to SLE15 SP5 but it seem not exist in any product
 | iio-sensor-proxy | **F** | Yes | |
 | iniparser | **F** | Yes | |
 | ipxe | **F** | Yes | |
+| libjaylink | **F** | Yes | |
 | libqrtr-glib | **F** | Yes | |
 | pcm | **F** | Yes | |
 | python-apipkg | **S** | Yes | rpmlink-backports removed all binary but src.rpm left only|
+| qt6-wayland | **F** | Yes | |
 | sevctl | **F** | Yes | |
 | source-highlight | **F** | Yes | |
 | warewulf4 | **F** | Yes | |
@@ -36,7 +41,6 @@ Tracking package got deleted in openSUSE:Backports:SLE-15-SP5 in case the reason
 ### Package does exist in SLE. Package build successed in Backports.
 
 * dragonbox
-* flashrom
 * ghc
 * ghc-Glob
 * ghc-HsYAML
@@ -182,7 +186,6 @@ Tracking package got deleted in openSUSE:Backports:SLE-15-SP5 in case the reason
 * httpcomponents-project
 * kio
 * libcuckoo
-* libjaylink
 * pandoc
 * perl-Text-Markdown
 * plasma-wayland-protocols
