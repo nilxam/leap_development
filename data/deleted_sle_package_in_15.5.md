@@ -40,6 +40,7 @@ Tracking package got deleted in openSUSE:Backports:SLE-15-SP5 in case the reason
 ## Potential removal candidates
 ### Package does exist in SLE. Package build successed in Backports.
 
+* apache-commons-math
 * dragonbox
 * ghc
 * ghc-Glob
@@ -181,17 +182,21 @@ Tracking package got deleted in openSUSE:Backports:SLE-15-SP5 in case the reason
 * ghc-yaml
 * ghc-zip-archive
 * ghc-zlib
+* glassfish-dtd-parser
 * golang-github-prometheus-promu
 * happy
 * httpcomponents-project
 * kio
 * libcuckoo
+* maven-mapping
 * pandoc
+* patchelf
 * perl-Text-Markdown
 * plasma-wayland-protocols
 * python-ansi2html
 * python-cached-property
 * python-docker-pycreds
+* python-flit-core
 * python-osc-tiny
 * python-pefile
 * python-pytest-html
@@ -201,7 +206,10 @@ Tracking package got deleted in openSUSE:Backports:SLE-15-SP5 in case the reason
 * python-semver
 * python-tomli
 * python-unittest-mixins
+* qca
+* qt6-qt5compat
 * texmath
+* utfcpp
 * xxhash
 * yq
 
