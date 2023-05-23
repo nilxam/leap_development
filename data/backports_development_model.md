@@ -39,7 +39,7 @@ Backports package will delivered to SLE customer via PackageHub, therefore licen
 
 ### Staging project checks
 
-New change will be staged in a staging project, package will have a rebuild there, staging project ensure new change build success and binary RPMs passed installcheck
+New change will be staged in a staging project, package would rebuild in the staging project, new change must build successful and binary RPMs passed installcheck verification
 
 ## Tools
 
