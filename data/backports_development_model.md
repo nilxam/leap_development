@@ -6,7 +6,7 @@ This document describles the development model of Backports project after CtLG
 
 ## Background
 
-Backprots used to rebuild Leap sources, after CtLG, package source will go to Backprots project and be maintained in Backports project, Leap project just maintain a small amount of Leap specific packages; brandings and KMPs, tools/checkers been used in Leap have to re-implement towards Backports.
+Backprots used to rebuild Leap sources, after CtLG, package source will go to Backprots project and be maintained in Backports project, Leap project just maintain a small amount of Leap specific packages; brandings and KMPs, tools/checkers been used in Leap is re-implementation towards Backports.
 
 ## Pre-Integration
 
