@@ -12,7 +12,7 @@ Backprots used to rebuild Leap sources, after CtLG, package source will go to Ba
 
 ### Source checker + Origin checker
 
-factory-auto checks the basic rules, and according to the config bits, it will add additional review to SR if needed, other than that there are several particular rules/reactions for Backprots
+[factory-auto](https://github.com/openSUSE/openSUSE-release-tools/blob/master/check_source.py) checks the basic rules, and according to the config bits, it will add additional review to SR if needed, other than that there are several particular rules/reactions for Backprots
 
 * origin-reviewers will be added if submission's source origin is not from a valid project, for Backports that should be openSUSE:Factory, openSUSE:Backports:SLE-XX-SPX:Update, openSUSE:Leap:XX.X:Update, etc. This is needed because in some cases we can not reuses Factory's source but have to take patched package with specify version, origin-reviewers need to review the change since the change has not been reviewed, submission from a valid project __openSUSE:XXX__ namespace must been reviewed somehow
 * devel_project/devel_pacage reivew will be added if submitter is not package maintainer
