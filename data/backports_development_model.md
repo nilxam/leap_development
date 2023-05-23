@@ -4,24 +4,57 @@
 
 This document describles the development model of Backports project after CtLG
 
+## Background
+
+Backprots used to rebuild Leap sources, after CtLG, package source will go to Backprots project and be maintained in Backports project, Leap project just maintain a small amount of Leap specific packages; brandings and KMPs, tools/checkers been used in Leap have to re-implement towards Backports.
+
 ## Pre-Integration
 
-## Potential removal candidates
-### Package does exist in SLE. Package build successed in Backports.
+### Source checker + Origin checker
 
-* ghc-bootstrap (got forked because of the default llvm version issue)
+factory-auto checks the basic rules, and according to the config bits, it will add additional review to SR if needed, other than that there are several particular rules/reactions for Backprots
 
-## Tooling for the source management
+* origin-reviewers will be added if submission's source origin is not from a valid project, for Backports that should be openSUSE:Factory, openSUSE:Backports:SLE-XX-SPX:Update, openSUSE:Leap:XX.X:Update, etc. This is needed because in some cases we can not reuses Factory's source but have to take patched package with specify version, origin-reviewers need to review the change since the change has not been reviewed, submission from a valid project __openSUSE:XXX__ namespace must been reviewed somehow
+* devel_project/devel_pacage reivew will be added if submitter is not package maintainer
+* SR will be declined if the target package does exist in SLE
+* SR will be decliend if the target package does NOT exist in openSUSE:Factory
+* A declined submission by factory-auto can be overriden via commenting __@factory-auto override accept__ on the SR, the override command is only valid if was project maintainer
+
+The checker configuration bits of openSUSE:Backprots:SLE-15-SP5 like below
+
+```
+check-source-ensure-source-exist-in-baseproject: True
+check-source-devel-baseproject: openSUSE:Factory
+check-source-allow-source-in-sle: False
+check-source-sle-project: SUSE:SLE-15-SP5:GA
+check-source-allow-valid-source-origin: True
+check-source-valid-source-origins: openSUSE:Leap:15.4:Update openSUSE:Backports:SLE-15-SP4:Update openSUSE:Factory openSUSE:Backports:SLE-15-SP5:SLEFork openSUSE:Backports:SLE-15-SP5:FactoryFork
+check-source-add-devel-project-review: True
+review-team = origin-reviewers
+```
+
+### License checker
+
+Backports package will delivered to SLE customer via PackageHub, therefore license check must to be done on legaldb, human legal review is finished on legaldb
+
+### Staging project checks
+
+New change will be staged in a staging project, package will have a rebuild there, staging project ensure new change build success and binary RPMs passed installcheck
+
+## Tools
 
 ### Package updater for the previous Backports
 
-[find_update.py](https://github.com/nilxam/leap_development/blob/master/scripts/find_update.py) can go
-through Update project of the previous Backports project, and dump a submission list with osc command
+[find_update.py](https://github.com/nilxam/leap_development/blob/master/scripts/find_update.py) can go through Update project of the previous Backports project, and dump a submission list with osc command
 wrapped.
 
 ### Package updater for Factory origin sources
 
-Since we don't want to submit Factory package to Backports blindly, therefore we did rebuild Factory sources
-on Backports in the an experiment project that called [FactoryCandidates](https://build.opensuse.org/project/show/openSUSE:Backports:SLE-15-SP5:FactoryCandidates)
+Since we don't want to submit Factory package to Backports blindly, therefore we did rebuild Factory sources on Backports in the an experiment project that called [FactoryCandidates](https://build.opensuse.org/project/show/openSUSE:Backports:SLE-15-SP5:FactoryCandidates), the build succeeded pacakge is the good candidate  to be submitted to Backports project. We have [print_factory_updates.py](https://github.com/nilxam/leap_development/blob/master/scripts/print_factory_updates.py) help to manage FactoryCandidates project, it can update project_link; creating a submit request to Backports project in case package build successfully.
 
-We have [print_factory_updates.py](https://github.com/nilxam/leap_development/blob/master/scripts/print_factory_updates.py) 
+Note: **find_update.py** and **print_factory_updates.py** are not just handle package updates, it handles __new package__ as well.
+Note2: the project link being used in FactoryCandidates project is created by print_factory_updates.py, print_factory_updates.py has filter out SLE sources beforehand.
+
+### find_bp_src_rpm_only.py
+
+rpmlint-backports has a special python build handling, it removes python3-XX RPM if it conflicts to the ones from SLE, but the package build doesn't resulting to a fail, this means other RPMs are remaining like src.rpm, this issue can not be caught while staging project, find_bp_src_rpm_only.py tries to find these affecting packages, they should be deleted in Backports.
