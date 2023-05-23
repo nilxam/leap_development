@@ -58,3 +58,7 @@ Note2: the project link being used in FactoryCandidates project is created by pr
 ### find_bp_src_rpm_only.py
 
 rpmlint-backports has a special python build handling, it removes python3-XX RPM if it conflicts to the ones from SLE, but the package build doesn't resulting to a fail, this means other RPMs are remaining like src.rpm, this issue can not be caught while staging project, find_bp_src_rpm_only.py tries to find these affecting packages, they should be deleted in Backports.
+
+## Post-Integration
+
+There is not much we can do for the post-integrtion check for Backports, neither image build nor openqa test are available, but a [rebuildpac report](https://build.opensuse.org/package/view_file/openSUSE:Backports:SLE-15-SP5:Staging/dashboard/rebuildpacs.openSUSE:Backports:SLE-15-SP5-standard.yaml?expand=1) was there, it can be taken as a kind of installcheck report of Backprots project, uninstallable RPMs should be listed, however this is from __buildservice__ view, that doesn't reflect to the real status on users system, because that depending what SLE products user's had on their system, from __buildservice__ view all dependencies are perfect filled(at least that is true on x86_64) because we have almost everything from SLE pool, note that, it's binaries pool, not equals to stuff SLE released.
