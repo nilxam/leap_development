@@ -52,7 +52,18 @@ wrapped.
 
 Since we don't want to submit Factory package to Backports blindly, therefore we did rebuild Factory sources on Backports in the an experiment project that called [FactoryCandidates](https://build.opensuse.org/project/show/openSUSE:Backports:SLE-15-SP5:FactoryCandidates), the build succeeded pacakge is the good candidate  to be submitted to Backports project. We have [print_factory_updates.py](https://github.com/nilxam/leap_development/blob/master/scripts/print_factory_updates.py) help to manage FactoryCandidates project, it can update project_link; creating a submit request to Backports project in case package build successfully.
 
+Update frozenlinks to the current Factory sources
+```
+python3 print_factory_updates.py --freeze
+```
+
+Submit updates from Factory to Backports per the build succeed packagelist in FactoryCandidates project
+```
+python3 print_factory_updates.py --submit
+```
+
 Note: **find_update.py** and **print_factory_updates.py** are not just handle package updates, it handles __new package__ as well.
+
 Note2: the project link being used in FactoryCandidates project is created by print_factory_updates.py, print_factory_updates.py has filter out SLE sources beforehand.
 
 ### find_bp_src_rpm_only.py
