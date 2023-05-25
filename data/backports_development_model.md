@@ -35,7 +35,7 @@ review-team = origin-reviewers
 
 ### License checker
 
-Backports package will delivered to SLE customer via PackageHub, therefore license check must to be done on legaldb, human legal review is finished on legaldb
+Backports package will delivered to SLE customer via PackageHub, therefore license check must to be done on legaldb, human legal review will review the request on legaldb
 
 ### Staging project checks
 
