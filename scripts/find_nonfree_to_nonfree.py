@@ -17,8 +17,8 @@ import osc.core
 
 from osc import oscerr
 
-OPENSUSE = 'openSUSE:Leap:15.4'
-LEAP_NF = 'openSUSE:Leap:15.4:NonFree'
+OPENSUSE = 'openSUSE:Leap:15.5'
+LEAP_NF = 'openSUSE:Leap:15.5:NonFree'
 FACTORY_NF = 'openSUSE:Factory:NonFree'
 
 makeurl = osc.core.makeurl
@@ -113,6 +113,7 @@ class FindNF(object):
                         print("eval \"osc copypac -e -m 'Newer package in Factory NonFree' %s %s %s %s\"" % (FACTORY_NF, pkg, LEAP_NF, pkg))
             else:
                 print("New package: %s" % pkg)
+                print("eval \"osc copypac -e -m 'New package in Factory NonFree' %s %s %s %s\"" % (FACTORY_NF, pkg, LEAP_NF, pkg))
 
 
 def main(args):

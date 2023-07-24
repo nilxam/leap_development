@@ -74,7 +74,8 @@ class FindBP(object):
                 if not r.endswith('.rpm') or r.startswith('::'):
                     continue
                 else:
-                    if not (r.endswith('.src.rpm') or '-doc-' in r or '-lang-' in r or r.startswith('python2-')):
+                    if not (r.endswith('.src.rpm') or '-debuginfo' in r or '-debugsource' in r or \
+                            '-doc-' in r or '-lang-' in r or r.startswith('python2-')):
                         result = False
         else:
             result = False
@@ -107,6 +108,22 @@ class FindBP(object):
         url = makeurl(self.apiurl, ['source', project, package], query)
         http_POST(url)
 
+    def has_diff(self, project, package, target_prj, target_pkg):
+        changes_file = package + ".changes"
+        query = {'cmd': 'diff',
+                 'view': 'xml',
+                 'file': changes_file,
+                 'oproject': project,
+                 'opackage': package}
+        u = makeurl(self.apiurl, ['source', target_prj, target_pkg], query=query)
+        root = ET.parse(http_POST(u)).getroot()
+        if root:
+            # check if it has diff element
+            diffs = root.findall('files/file/diff')
+            if diffs:
+                return True
+        return False
+
     def crawl(self):
         """Main method"""
         # get souce packages from SLE
@@ -118,13 +135,17 @@ class FindBP(object):
             if pkg.startswith('patchinfo') or pkg.startswith('preinstallimage') or pkg.startswith('elixir') or \
                     pkg.startswith('python2'):
                 continue
+            if not pkg.startswith('python-'):
+                continue
             if pkg in sle_pkglist:
-                if self.src_rpm_only(BACKPORTS, pkg, 'standard', 'x86_64') and \
-                        self.src_rpm_only(BACKPORTS, pkg, 'standard', 'aarch64'):
+                if self.src_rpm_only(BACKPORTS, pkg, 'standard', 'x86_64'):
                     if self.wipe:
                         self.switch_flag_in_pkg(BACKPORTS, pkg, flag='build', state='disable', repository='standard')
                         self.do_wipe_package(BACKPORTS, pkg, repository='standard')
-                    print("Package exists in SLE and was produced src.rpm only in %s %s" % (BACKPORTS, pkg))
+                    if not self.has_diff(SLE, pkg, BACKPORTS, pkg):
+                        print("Identical source compared to SLE %s" % pkg)
+                    else:
+                        print("Package exists in SLE and was produced src.rpm only in %s %s" % (BACKPORTS, pkg))
 
 
 def main(args):

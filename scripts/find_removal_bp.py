@@ -61,6 +61,22 @@ class FindSLE(object):
             return False
         return True
 
+    def has_diff(self, project, package, target_prj, target_pkg):
+        changes_file = package + ".changes"
+        query = {'cmd': 'diff',
+                 'view': 'xml',
+                 'file': changes_file,
+                 'oproject': project,
+                 'opackage': package}
+        u = makeurl(self.apiurl, ['source', target_prj, target_pkg], query=query)
+        root = ET.parse(http_POST(u)).getroot()
+        if root:
+            # check if it has diff element
+            diffs = root.findall('files/file/diff')
+            if diffs:
+                return True
+        return False
+
     def get_filelist_for_package(self, pkgname, project, expand=None, extension=None):
         filelist = []
         query = {}
@@ -97,8 +113,6 @@ class FindSLE(object):
 
         # Backports
         for pkg in bp_pkglist:
-            if pkg.startswith('patchinfo'):
-                continue
             if pkg not in sle_pkglist:
                 continue
             if pkg in slefork_pkglist:
@@ -107,8 +121,9 @@ class FindSLE(object):
             if '_multibuild' in filelist:
                 ignored_multibuilds.append(pkg)
                 continue
+
             print("eval \"osc rebuildpac -r standard %s %s\"" % (BACKPORTS, pkg))
-#            print("eval \"osc dr -m 'Package %s does exist in SLE' %s %s\"" % (pkg, BACKPORTS, pkg))
+            #print("eval \"osc dr -m 'Package %s does exist in SLE' %s %s\"" % (pkg, BACKPORTS, pkg))
 
         print("\nIgnored Multibuilds:")
         for p in ignored_multibuilds:

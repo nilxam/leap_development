@@ -17,6 +17,7 @@ OPENSUSE = 'openSUSE:Leap:15.5'
 FACTORY = 'openSUSE:Factory'
 OPENSUSE_UPDATE = 'openSUSE:Leap:15.4:Update'
 BACKPORTS = 'openSUSE:Backports:SLE-15-SP5'
+SLEFORKS = 'openSUSE:Backports:SLE-15-SP5:SLEFork'
 SLE = 'SUSE:SLE-15-SP5:GA'
 
 makeurl = osc.core.makeurl
@@ -102,7 +103,10 @@ class FindSLE(object):
         # get souce packages from Factory
         sle_pkglist = self.get_source_packages(SLE, True)
         bp_pkglist = self.get_source_packages(BACKPORTS)
+        forks_pkglist = self.get_source_packages(SLEFORKS)
         rebuild_pkglist = self.get_source_packages(self.project)
+        pending_requests = \
+                [r.actions[0].tgt_package for r in osc.core.get_request_list(self.apiurl, project=BACKPORTS, req_state=('new', 'review'))]
         sle_ones = []
         nodiffs = []
         deletes = []
@@ -118,7 +122,7 @@ class FindSLE(object):
             else:
                 if self.item_exists(FACTORY, pkg):
                     if self.has_diff(FACTORY, pkg, BACKPORTS, pkg):
-                        if pkg not in rebuild_pkglist:
+                        if pkg not in rebuild_pkglist and pkg not in pending_requests:
                             print("eval \"osc copypac -e -m 'updated package from Factory' %s %s %s %s\"" % (FACTORY, pkg, self.project, pkg))
                     else:
                         nodiffs.append(pkg)
@@ -131,6 +135,8 @@ class FindSLE(object):
             if self.item_exists(FACTORY, pkg):
                 if self.has_diff(FACTORY, pkg, BACKPORTS, pkg):
                     if pkg not in rebuild_pkglist:
+                        if pkg in forks_pkglist:
+                            print("%s exist in SLEFork" % pkg)
                         msg = ("eval \"osc copypac -e -m 'updated SLE package from Factory' %s %s %s %s\"" % (FACTORY, pkg, self.project, pkg))
             else:
                 msg = ("SLE package deleted in Factory: %s" % pkg)
