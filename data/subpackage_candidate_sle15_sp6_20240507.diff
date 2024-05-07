@@ -1,0 +1,1896 @@
+--- subpackage_candidate_sle15_sp6	2024-04-15 17:07:29.053153275 +0800
++++ subpackage_candidate_sle15_sp6_20240507	2024-05-07 19:29:25.052815635 +0800
+@@ -18,7 +18,9 @@
+ MozillaThunderbird-translations-common
+ MozillaThunderbird-translations-other
+ NetworkManager-applet
++NetworkManager-applet-openconnect
+ NetworkManager-applet-openvpn
++NetworkManager-applet-pptp
+ NetworkManager-applet-strongswan
+ NetworkManager-bluetooth
+ NetworkManager-cloud-setup
+@@ -38,6 +40,8 @@
+ PackageKit-gtk3-module
+ QGnomePlatform-qt5
+ QR-Code-generator-devel
++SVT-AV1
++SVT-AV1-devel
+ a52dec
+ aaa_base-wsl
+ aalib
+@@ -81,6 +85,7 @@
+ asn1c
+ aspell-ispell
+ aspell-spell
++atkmm-devel
+ attica-qt5
+ attica-qt5-devel
+ audiofile
+@@ -185,6 +190,8 @@
+ cargo1.71
+ cargo1.72
+ cargo1.73
++cargo1.74
++cargo1.75
+ catatonit
+ cblas-devel-static
+ cd-paranoia
+@@ -414,7 +421,6 @@
+ cyrus-sasl-gs2
+ cyrus-sasl-ldap-auxprop
+ cyrus-sasl-ldap-auxprop-bdb
+-cyrus-sasl-ntlm
+ cyrus-sasl-scram
+ d-spy
+ d-spy-devel
+@@ -503,7 +509,6 @@
+ editorconfig
+ eiciel
+ ekiga
+-ekiga-plugins-evolution
+ elfutils-debuginfod
+ elixir-ex_doc
+ enca
+@@ -1272,7 +1277,6 @@
+ gnome-remote-desktop
+ gnome-session-wayland
+ gnome-shell-calendar
+-gnome-shell-extension-desktop-icons
+ gnome-shell-search-provider-bijiben
+ gnome-shell-search-provider-contacts
+ gnome-shell-search-provider-documents
+@@ -1320,9 +1324,6 @@
+ go1.19-race
+ go1.20
+ go1.20-doc
+-go1.20-openssl
+-go1.20-openssl-doc
+-go1.20-openssl-race
+ go1.20-race
+ go1.7
+ go1.7-doc
+@@ -1597,7 +1598,6 @@
+ kio-core
+ kio-devel
+ kitemviews-devel
+-kiwi-boot-requires
+ kiwi-filesystem-requires
+ kiwi-image-docker-requires
+ kiwi-image-iso-requires
+@@ -1700,7 +1700,6 @@
+ libLLVMSPIRVLib17
+ libLTO11
+ libLTO15
+-libLTO17
+ libLTO9
+ libOpenCL1
+ libQt5Bootstrap-devel-static
+@@ -1732,6 +1731,7 @@
+ libQt6Xml6
+ libSDL2_image-devel
+ libSPIRV-Tools-suse15
++libSvtAv1Dec0
+ libXiterm-devel
+ libXiterm1
+ libXpm-tools
+@@ -1741,7 +1741,6 @@
+ liba52-0
+ liba52-devel
+ libaa1
+-libabsl2401_0_0
+ libabw-0_1-1
+ libabw-devel
+ libabw-tools
+@@ -1768,7 +1767,10 @@
+ libasan5-gcc8
+ libasan6
+ libasan6-gcc10
++libasan8-gcc12
++libatkmm-2_36-1
+ libatomic1-gcc10
++libatomic1-gcc12
+ libatomic1-gcc7
+ libatomic1-gcc8
+ libattr-devel-static
+@@ -1988,6 +1990,9 @@
+ libdca-devel
+ libdebuginfod-dummy-devel
+ libdebuginfod1-dummy
++libdecor
++libdecor-0-0
++libdecor-devel
+ libdirac_decoder0
+ libdirac_encoder0
+ libdisplay-info-devel
+@@ -2085,6 +2090,7 @@
+ libganglia0
+ libgcalc-2-1_0_1
+ libgcc_s1-gcc10
++libgcc_s1-gcc12
+ libgcc_s1-gcc7
+ libgcc_s1-gcc8
+ libgci-1-0_0_0
+@@ -2104,6 +2110,7 @@
+ libgfbgraph-0_2-0
+ libgfdb0
+ libgfortran5-gcc10
++libgfortran5-gcc12
+ libgfortran5-gcc8
+ libgimp-2_0-0
+ libgimpui-2_0-0
+@@ -2130,6 +2137,7 @@
+ libgo22
+ libgom-1_0-0
+ libgomp1-gcc10
++libgomp1-gcc12
+ libgomp1-gcc7
+ libgomp1-gcc8
+ libgovirt-devel
+@@ -2230,6 +2238,7 @@
+ libheif-devel
+ libhfstospell10
+ libhugetlbfs-tests
++libhwasan0-gcc12
+ libi2c0
+ libi2c0-devel
+ libib_util
+@@ -2258,6 +2267,7 @@
+ libiscsi-test
+ libiso9660-10
+ libitm1-gcc10
++libitm1-gcc12
+ libitm1-gcc7
+ libitm1-gcc8
+ libixion-0_18-0
+@@ -2287,6 +2297,7 @@
+ liblouis-tools
+ liblpsolve55-0
+ liblsan0-gcc10
++liblsan0-gcc12
+ liblsan0-gcc7
+ liblsan0-gcc8
+ liblsof0
+@@ -2342,7 +2353,6 @@
+ libmysqlcppconn-devel
+ libmysqlcppconn7
+ libmythes-1_2-0
+-libnbd
+ libnbd-devel
+ libndp
+ libnet-doc
+@@ -2400,6 +2410,7 @@
+ libnvidia-egl-wayland-devel
+ libnvidia-egl-wayland1
+ libobjc4-gcc10
++libobjc4-gcc12
+ libobjc4-gcc7
+ libodfgen-0_1-1
+ libodfgen-devel
+@@ -2408,7 +2419,6 @@
+ liboil-doc
+ libomp11-devel
+ libomp15-devel
+-libomp17-devel
+ libomp7-devel
+ libomp9-devel
+ libopal-devel
+@@ -2523,7 +2533,6 @@
+ libpotrace0
+ libpresage-devel
+ libpresage1
+-libprocps7
+ libprotobuf-lite20
+ libprotoc20
+ libproxy-tools
+@@ -2685,12 +2694,14 @@
+ libstdc++6-devel-gcc9
+ libstdc++6-gcc10
+ libstdc++6-gcc10-locale
++libstdc++6-gcc12
++libstdc++6-gcc12-locale
+ libstdc++6-gcc7
+ libstdc++6-gcc7-locale
+ libstdc++6-gcc8
+ libstdc++6-gcc8-locale
+ libstdc++6-pp-gcc10
+-libstdc++6-pp-gcc11
++libstdc++6-pp-gcc12
+ libstdc++6-pp-gcc9
+ libstoken1
+ libstorage-ng-python3
+@@ -2724,10 +2735,12 @@
+ libtsan0-gcc10
+ libtsan0-gcc7
+ libtsan0-gcc8
++libtsan2-gcc12
+ libtsm-devel
+ libtukit-devel
+ libu2f-host-doc
+ libubsan1-gcc10
++libubsan1-gcc12
+ libubsan1-gcc8
+ libuchardet-devel
+ libuchardet0
+@@ -3005,11 +3018,6 @@
+ llvm15-gold
+ llvm15-polly
+ llvm15-polly-devel
+-llvm17
+-llvm17-devel
+-llvm17-gold
+-llvm17-polly
+-llvm17-polly-devel
+ llvm9
+ llvm9-LTO-devel
+ llvm9-devel
+@@ -3053,7 +3061,6 @@
+ memkind-devel
+ memphis-devel
+ mercurial-tests
+-meson-test
+ metis
+ metis-devel
+ metis_5_1_0-gnu-hpc
+@@ -3157,19 +3164,10 @@
+ nautilus-eiciel
+ nautilus-file-roller
+ nbd
+-nbdfuse
+-nbdkit
+-nbdkit-basic-filters
+-nbdkit-basic-plugins
+-nbdkit-curl-plugin
+ nbdkit-devel
+ nbdkit-example-plugins
+ nbdkit-gzip-filter
+ nbdkit-linuxdisk-plugin
+-nbdkit-nbd-plugin
+-nbdkit-python-plugin
+-nbdkit-server
+-nbdkit-ssh-plugin
+ nbdkit-tar-filter
+ nbdkit-tmpdisk-plugin
+ nbdkit-xz-filter
+@@ -3222,6 +3220,7 @@
+ nettle
+ netty
+ newt-static
++nfsidmap
+ nftables-devel
+ nghttp2
+ noping
+@@ -3332,7 +3331,9 @@
+ openSUSE-signkey-cert
+ openal-soft
+ openblas-pthreads_0_3_25-gnu-hpc-devel-static
++openblas-pthreads_0_3_25-gnu12-hpc-devel-static
+ openblas_0_3_25-gnu-hpc-devel-static
++openblas_0_3_25-gnu12-hpc-devel-static
+ openblas_openmp-devel-static
+ openblas_pthreads-devel-static
+ openblas_serial-devel-static
+@@ -3395,7 +3396,6 @@
+ opensaml-bin
+ openssh-cavs
+ openssl-1_0_0-cavs
+-openssl-1_1
+ openvpn-down-root-plugin
+ openvswitch3
+ openvswitch3-devel
+@@ -3507,6 +3507,8 @@
+ pcre2-devel-static
+ perf-bash-completion
+ perf-gtk
++perl-AnyEvent
++perl-Devel-CoreStack
+ perl-GraphicsMagick
+ perl-Mozilla-LDAP
+ perl-PerlIO-utf8_strict
+@@ -3777,7 +3779,9 @@
+ python3-yui
+ python311-Cython0
+ python311-Genshi
++python311-M2Crypto
+ python311-SQLAlchemy1
++python311-argon2-cffi-bindings
+ python311-asyncpg
+ python311-dbus-python
+ python311-dbus-python-devel
+@@ -3789,6 +3793,15 @@
+ python311-gmpy2
+ python311-grpcio
+ python311-lxml-devel
++python311-matplotlib
++python311-matplotlib-cairo
++python311-matplotlib-gtk-common
++python311-matplotlib-gtk3
++python311-matplotlib-gtk4
++python311-matplotlib-qt
++python311-matplotlib-testdata
++python311-matplotlib-tk
++python311-matplotlib-web
+ python311-maturin
+ python311-msgpack
+ python311-numpy-devel
+@@ -3799,6 +3812,7 @@
+ python311-opencv
+ python311-orjson
+ python311-peewee
++python311-pendulum
+ python311-protobuf
+ python311-qt5
+ python311-qt5-devel
+@@ -3808,6 +3822,8 @@
+ python311-qt5-remoteobjects-devel
+ python311-qt5-sip
+ python311-ruamel.yaml.clib
++python311-sip4
++python311-sip4-devel
+ python311-solv
+ python311-speechd
+ python311-testsuite
+@@ -4206,8 +4222,6 @@
+ ruby2.5-rubygem-ruby-augeas-doc
+ ruby2.5-rubygem-ruby-dbus-doc
+ ruby2.5-rubygem-ruby-dbus-testsuite
+-ruby2.5-rubygem-ruby-terraform
+-ruby2.5-rubygem-ruby-terraform-doc
+ ruby2.5-rubygem-ruby_parser
+ ruby2.5-rubygem-ruby_parser-doc
+ ruby2.5-rubygem-ruby_parser-testsuite
+@@ -4274,6 +4288,8 @@
+ rust1.71
+ rust1.72
+ rust1.73
++rust1.74
++rust1.75
+ samba-test
+ sanlk-reset
+ sbc
+@@ -4392,18 +4408,6 @@
+ telepathy-glib-doc
+ telepathy-logger
+ telepathy-sipe
+-terraform
+-terraform-provider-aws
+-terraform-provider-azurerm
+-terraform-provider-external
+-terraform-provider-google
+-terraform-provider-helm
+-terraform-provider-kubernetes
+-terraform-provider-local
+-terraform-provider-null
+-terraform-provider-random
+-terraform-provider-susepubliccloud
+-terraform-provider-tls
+ texmath
+ thunderbolt-user-space
+ tidyp
+@@ -4735,7 +4739,9 @@
+ MozillaThunderbird-translations-common
+ MozillaThunderbird-translations-other
+ NetworkManager-applet
++NetworkManager-applet-openconnect
+ NetworkManager-applet-openvpn
++NetworkManager-applet-pptp
+ NetworkManager-applet-strongswan
+ NetworkManager-bluetooth
+ NetworkManager-cloud-setup
+@@ -4800,6 +4806,7 @@
+ asn1c
+ aspell-ispell
+ aspell-spell
++atkmm-devel
+ attica-qt5
+ attica-qt5-devel
+ audiofile
+@@ -4870,6 +4877,8 @@
+ cargo1.71
+ cargo1.72
+ cargo1.73
++cargo1.74
++cargo1.75
+ cblas-devel-static
+ cd-paranoia
+ cdio-utils
+@@ -4926,6 +4935,7 @@
+ coreutils-testsuite
+ cpp10
+ cpp11
++cpp12
+ cpp8
+ cpp9
+ cpupower-bench
+@@ -5086,7 +5096,6 @@
+ cyrus-sasl-gs2
+ cyrus-sasl-ldap-auxprop
+ cyrus-sasl-ldap-auxprop-bdb
+-cyrus-sasl-ntlm
+ cyrus-sasl-scram
+ d-spy
+ d-spy-devel
+@@ -5143,7 +5152,6 @@
+ efibootmgr
+ eiciel
+ ekiga
+-ekiga-plugins-evolution
+ elfutils-debuginfod
+ elixir-ex_doc
+ enca
+@@ -5306,6 +5314,7 @@
+ gcc11-obj-c++
+ gcc11-objc
+ gcc11-testresults
++gcc12
+ gcc12-PIE
+ gcc12-ada
+ gcc12-c++
+@@ -5908,7 +5917,6 @@
+ gnome-remote-desktop
+ gnome-session-wayland
+ gnome-shell-calendar
+-gnome-shell-extension-desktop-icons
+ gnome-shell-search-provider-bijiben
+ gnome-shell-search-provider-contacts
+ gnome-shell-search-provider-documents
+@@ -5950,9 +5958,6 @@
+ go1.19-race
+ go1.20
+ go1.20-doc
+-go1.20-openssl
+-go1.20-openssl-doc
+-go1.20-openssl-race
+ go1.20-race
+ go1.7
+ go1.7-doc
+@@ -6234,7 +6239,6 @@
+ kernel-default-optional
+ kernel-kvmsmall
+ kernel-kvmsmall-devel
+-kernel-livepatch-6_4_0-150600_12-default
+ kernel-obs-qa
+ kf5-filesystem
+ kglobalaccel-devel
+@@ -6248,7 +6252,6 @@
+ kio-core
+ kio-devel
+ kitemviews-devel
+-kiwi-boot-requires
+ kiwi-filesystem-requires
+ kiwi-image-docker-requires
+ kiwi-image-iso-requires
+@@ -6349,7 +6352,6 @@
+ libLLVMSPIRVLib17
+ libLTO11
+ libLTO15
+-libLTO17
+ libLTO9
+ libOpenCL1
+ libQt5Bootstrap-devel-static
+@@ -6391,7 +6393,6 @@
+ liba52-0
+ liba52-devel
+ libaa1
+-libabsl2401_0_0
+ libabw-0_1-1
+ libabw-devel
+ libabw-tools
+@@ -6418,7 +6419,10 @@
+ libasan5-gcc8
+ libasan6
+ libasan6-gcc10
++libasan8-gcc12
++libatkmm-2_36-1
+ libatomic1-gcc10
++libatomic1-gcc12
+ libatomic1-gcc7
+ libatomic1-gcc8
+ libattr-devel-static
+@@ -6639,6 +6643,9 @@
+ libdca-devel
+ libdebuginfod-dummy-devel
+ libdebuginfod1-dummy
++libdecor
++libdecor-0-0
++libdecor-devel
+ libdfp-devel-static
+ libdirac_decoder0
+ libdirac_encoder0
+@@ -6737,6 +6744,7 @@
+ libganglia0
+ libgcalc-2-1_0_1
+ libgcc_s1-gcc10
++libgcc_s1-gcc12
+ libgcc_s1-gcc7
+ libgcc_s1-gcc8
+ libgci-1-0_0_0
+@@ -6754,6 +6762,7 @@
+ libgfbgraph-0_2-0
+ libgfdb0
+ libgfortran5-gcc10
++libgfortran5-gcc12
+ libgfortran5-gcc8
+ libgimp-2_0-0
+ libgimpui-2_0-0
+@@ -6780,6 +6789,7 @@
+ libgo22
+ libgom-1_0-0
+ libgomp1-gcc10
++libgomp1-gcc12
+ libgomp1-gcc7
+ libgomp1-gcc8
+ libgovirt-devel
+@@ -6953,6 +6963,7 @@
+ libiscsi-test
+ libiso9660-10
+ libitm1-gcc10
++libitm1-gcc12
+ libitm1-gcc7
+ libitm1-gcc8
+ libixion-0_18-0
+@@ -6981,6 +6992,7 @@
+ liblouis-tools
+ liblpsolve55-0
+ liblsan0-gcc10
++liblsan0-gcc12
+ liblsan0-gcc7
+ liblsan0-gcc8
+ liblsof0
+@@ -7042,9 +7054,7 @@
+ libmysqlcppconn-devel
+ libmysqlcppconn7
+ libmythes-1_2-0
+-libnbd
+ libnbd-devel
+-libnbd0
+ libndp
+ libnet-doc
+ libnetcdf-cxx4-gnu-hpc
+@@ -7098,6 +7108,7 @@
+ libnvidia-egl-wayland-devel
+ libnvidia-egl-wayland1
+ libobjc4-gcc10
++libobjc4-gcc12
+ libobjc4-gcc7
+ libodfgen-0_1-1
+ libodfgen-devel
+@@ -7106,19 +7117,26 @@
+ liboil-doc
+ libomp11-devel
+ libomp15-devel
+-libomp17-devel
+ libomp9-devel
+ libopal-devel
+ libopal3_10_10
+ libopenal0
+ libopenblas-gnu-hpc
+ libopenblas-gnu-hpc-devel
++libopenblas-gnu12-hpc
++libopenblas-gnu12-hpc-devel
+ libopenblas-pthreads-gnu-hpc
+ libopenblas-pthreads-gnu-hpc-devel
++libopenblas-pthreads-gnu12-hpc
++libopenblas-pthreads-gnu12-hpc-devel
+ libopenblas-pthreads_0_3_25-gnu-hpc
+ libopenblas-pthreads_0_3_25-gnu-hpc-devel
++libopenblas-pthreads_0_3_25-gnu12-hpc
++libopenblas-pthreads_0_3_25-gnu12-hpc-devel
+ libopenblas_0_3_25-gnu-hpc
+ libopenblas_0_3_25-gnu-hpc-devel
++libopenblas_0_3_25-gnu12-hpc
++libopenblas_0_3_25-gnu12-hpc-devel
+ libopenblas_serial-devel
+ libopenblas_serial0
+ libopenconnect5
+@@ -7229,7 +7247,6 @@
+ libpotrace0
+ libpresage-devel
+ libpresage1
+-libprocps7
+ libprotobuf-lite20
+ libprotoc20
+ libproxy-tools
+@@ -7305,6 +7322,7 @@
+ libqt5-qtxmlpatterns-examples
+ libqt5-qtxmlpatterns-imports
+ libquadmath0-gcc10
++libquadmath0-gcc12
+ libquadmath0-gcc8
+ libquicktime-tools
+ libquvi-scripts-nsfw
+@@ -7398,12 +7416,14 @@
+ libstdc++6-devel-gcc9
+ libstdc++6-gcc10
+ libstdc++6-gcc10-locale
++libstdc++6-gcc12
++libstdc++6-gcc12-locale
+ libstdc++6-gcc7
+ libstdc++6-gcc7-locale
+ libstdc++6-gcc8
+ libstdc++6-gcc8-locale
+ libstdc++6-pp-gcc10
+-libstdc++6-pp-gcc11
++libstdc++6-pp-gcc12
+ libstdc++6-pp-gcc9
+ libstoken1
+ libstorage-ng-python3
+@@ -7437,10 +7457,12 @@
+ libtsan0-gcc10
+ libtsan0-gcc7
+ libtsan0-gcc8
++libtsan2-gcc12
+ libtsm-devel
+ libtukit-devel
+ libu2f-host-doc
+ libubsan1-gcc10
++libubsan1-gcc12
+ libubsan1-gcc8
+ libuchardet-devel
+ libuchardet0
+@@ -7709,11 +7731,6 @@
+ llvm15-gold
+ llvm15-polly
+ llvm15-polly-devel
+-llvm17
+-llvm17-devel
+-llvm17-gold
+-llvm17-polly
+-llvm17-polly-devel
+ llvm9
+ llvm9-LTO-devel
+ llvm9-devel
+@@ -7763,7 +7780,6 @@
+ memkind-devel
+ memphis-devel
+ mercurial-tests
+-meson-test
+ metis
+ metis-devel
+ metis_5_1_0-gnu-hpc
+@@ -7906,19 +7922,10 @@
+ nautilus-eiciel
+ nautilus-file-roller
+ nbd
+-nbdfuse
+-nbdkit
+-nbdkit-basic-filters
+-nbdkit-basic-plugins
+-nbdkit-curl-plugin
+ nbdkit-devel
+ nbdkit-example-plugins
+ nbdkit-gzip-filter
+ nbdkit-linuxdisk-plugin
+-nbdkit-nbd-plugin
+-nbdkit-python-plugin
+-nbdkit-server
+-nbdkit-ssh-plugin
+ nbdkit-tar-filter
+ nbdkit-tmpdisk-plugin
+ nbdkit-xz-filter
+@@ -7970,6 +7977,7 @@
+ nettle
+ netty
+ newt-static
++nfsidmap
+ nftables-devel
+ nghttp2
+ noping
+@@ -8075,7 +8083,9 @@
+ openSUSE-signkey-cert
+ openal-soft
+ openblas-pthreads_0_3_25-gnu-hpc-devel-static
++openblas-pthreads_0_3_25-gnu12-hpc-devel-static
+ openblas_0_3_25-gnu-hpc-devel-static
++openblas_0_3_25-gnu12-hpc-devel-static
+ openblas_openmp-devel-static
+ openblas_pthreads-devel-static
+ openblas_serial-devel-static
+@@ -8145,7 +8155,6 @@
+ opensaml-bin
+ openssh-cavs
+ openssl-1_0_0-cavs
+-openssl-1_1
+ openvpn-down-root-plugin
+ openvswitch3
+ openvswitch3-devel
+@@ -8267,6 +8276,8 @@
+ pdsh-slurm
+ perf-bash-completion
+ perf-gtk
++perl-AnyEvent
++perl-Devel-CoreStack
+ perl-GraphicsMagick
+ perl-Mozilla-LDAP
+ perl-PerlIO-utf8_strict
+@@ -8545,7 +8556,9 @@
+ python3-yui
+ python311-Cython0
+ python311-Genshi
++python311-M2Crypto
+ python311-SQLAlchemy1
++python311-argon2-cffi-bindings
+ python311-asyncpg
+ python311-dbus-python
+ python311-dbus-python-devel
+@@ -8557,6 +8570,15 @@
+ python311-gmpy2
+ python311-grpcio
+ python311-lxml-devel
++python311-matplotlib
++python311-matplotlib-cairo
++python311-matplotlib-gtk-common
++python311-matplotlib-gtk3
++python311-matplotlib-gtk4
++python311-matplotlib-qt
++python311-matplotlib-testdata
++python311-matplotlib-tk
++python311-matplotlib-web
+ python311-maturin
+ python311-msgpack
+ python311-numpy-devel
+@@ -8567,6 +8589,7 @@
+ python311-opencv
+ python311-orjson
+ python311-peewee
++python311-pendulum
+ python311-protobuf
+ python311-qt5
+ python311-qt5-devel
+@@ -8576,6 +8599,8 @@
+ python311-qt5-remoteobjects-devel
+ python311-qt5-sip
+ python311-ruamel.yaml.clib
++python311-sip4
++python311-sip4-devel
+ python311-solv
+ python311-speechd
+ python311-testsuite
+@@ -8970,8 +8995,6 @@
+ ruby2.5-rubygem-ruby-augeas-doc
+ ruby2.5-rubygem-ruby-dbus-doc
+ ruby2.5-rubygem-ruby-dbus-testsuite
+-ruby2.5-rubygem-ruby-terraform
+-ruby2.5-rubygem-ruby-terraform-doc
+ ruby2.5-rubygem-ruby_parser
+ ruby2.5-rubygem-ruby_parser-doc
+ ruby2.5-rubygem-ruby_parser-testsuite
+@@ -9033,6 +9056,8 @@
+ rust1.71
+ rust1.72
+ rust1.73
++rust1.74
++rust1.75
+ samba-test
+ sanlk-reset
+ sbc
+@@ -9165,18 +9190,6 @@
+ telepathy-glib-doc
+ telepathy-logger
+ telepathy-sipe
+-terraform
+-terraform-provider-aws
+-terraform-provider-azurerm
+-terraform-provider-external
+-terraform-provider-google
+-terraform-provider-helm
+-terraform-provider-kubernetes
+-terraform-provider-local
+-terraform-provider-null
+-terraform-provider-random
+-terraform-provider-susepubliccloud
+-terraform-provider-tls
+ texmath
+ thunderbolt-user-space
+ tidyp
+@@ -9435,6 +9448,8 @@
+ PackageKit-backend-dnf
+ QGnomePlatform-qt5
+ SDL2-devel-32bit
++SVT-AV1
++SVT-AV1-devel
+ a52dec
+ aaa_base-wsl
+ aalib
+@@ -9487,6 +9502,7 @@
+ aspell-ispell
+ aspell-spell
+ at-spi2-core-devel-32bit
++atkmm-devel
+ atkmm1_6-devel-32bit
+ attica-qt5
+ attica-qt5-devel
+@@ -9591,6 +9607,8 @@
+ cargo1.71
+ cargo1.72
+ cargo1.73
++cargo1.74
++cargo1.75
+ cblas-devel-32bit
+ cblas-devel-static
+ cd-paranoia
+@@ -9830,7 +9848,6 @@
+ cyrus-sasl-ldap-auxprop
+ cyrus-sasl-ldap-auxprop-32bit
+ cyrus-sasl-ldap-auxprop-bdb
+-cyrus-sasl-ntlm
+ cyrus-sasl-otp-32bit
+ cyrus-sasl-scram
+ cyrus-sasl-sqlauxprop-32bit
+@@ -10695,7 +10712,6 @@
+ gnome-code-assistance
+ gnome-keysign
+ gnome-packagekit-extras
+-gnome-shell-extension-desktop-icons
+ gnome-shell-search-provider-bijiben
+ gnome-user-share
+ gnome-version
+@@ -10743,9 +10759,6 @@
+ go1.19-race
+ go1.20
+ go1.20-doc
+-go1.20-openssl
+-go1.20-openssl-doc
+-go1.20-openssl-race
+ go1.20-race
+ go1.7
+ go1.7-doc
+@@ -11051,7 +11064,6 @@
+ kernel-kvmsmall
+ kernel-kvmsmall-devel
+ kernel-kvmsmall-vdso
+-kernel-livepatch-6_4_0-150600_12-default
+ kernel-obs-qa
+ kernel-rt
+ kernel-rt-devel
+@@ -11083,7 +11095,6 @@
+ kio-devel-32bit
+ kitemviews-devel
+ kitemviews-devel-32bit
+-kiwi-boot-requires
+ kiwi-filesystem-requires
+ kiwi-image-docker-requires
+ kiwi-image-iso-requires
+@@ -11258,7 +11269,6 @@
+ libLTO11
+ libLTO11-32bit
+ libLTO15
+-libLTO17
+ libLTO5-32bit
+ libLTO7-32bit
+ libLTO9
+@@ -11371,6 +11381,7 @@
+ libSPIRV-Tools-suse15
+ libSPIRV-Tools-suse15-32bit
+ libSoundTouch0-32bit
++libSvtAv1Dec0
+ libWPEBackend-fdo-1_0-1-32bit
+ libX11-devel-32bit
+ libXRes1-32bit
+@@ -11436,8 +11447,6 @@
+ liba52-0-32bit
+ libaa1
+ libaa1-32bit
+-libabsl2308_0_0-32bit
+-libabsl2401_0_0
+ libabsl2401_0_0-32bit
+ libabw-tools
+ libacl-devel-32bit
+@@ -11485,6 +11494,8 @@
+ libasan6-32bit
+ libasan6-gcc10
+ libasan6-gcc10-32bit
++libasan8-gcc12
++libasan8-gcc12-32bit
+ libase1
+ libasm1-32bit
+ libaspell15-32bit
+@@ -11492,8 +11503,11 @@
+ libassuan0-32bit
+ libatk-bridge-2_0-0-32bit
+ libatkmm-1_6-1-32bit
++libatkmm-2_36-1
+ libatomic1-gcc10
+ libatomic1-gcc10-32bit
++libatomic1-gcc12
++libatomic1-gcc12-32bit
+ libatomic1-gcc7
+ libatomic1-gcc7-32bit
+ libatomic1-gcc8
+@@ -11881,8 +11895,11 @@
+ libdconf1-32bit
+ libdebuginfod-dummy-devel
+ libdebuginfod1-dummy
++libdecor
++libdecor-0-0
+ libdecor-0-0-32bit
+ libdecor-32bit
++libdecor-devel
+ libdevmapper-event1_03-32bit
+ libdfp-devel
+ libdfp-devel-static
+@@ -12028,6 +12045,8 @@
+ libgcalc-2-1_0_1
+ libgcc_s1-gcc10
+ libgcc_s1-gcc10-32bit
++libgcc_s1-gcc12
++libgcc_s1-gcc12-32bit
+ libgcc_s1-gcc7
+ libgcc_s1-gcc7-32bit
+ libgcc_s1-gcc8
+@@ -12064,6 +12083,8 @@
+ libgfdb0
+ libgfortran5-gcc10
+ libgfortran5-gcc10-32bit
++libgfortran5-gcc12
++libgfortran5-gcc12-32bit
+ libgfortran5-gcc8
+ libgfortran5-gcc8-32bit
+ libgif7-32bit
+@@ -12118,6 +12139,8 @@
+ libgoa-backend-1_0-1-32bit
+ libgomp1-gcc10
+ libgomp1-gcc10-32bit
++libgomp1-gcc12
++libgomp1-gcc12-32bit
+ libgomp1-gcc7
+ libgomp1-gcc7-32bit
+ libgomp1-gcc8
+@@ -12142,6 +12165,7 @@
+ libgpm2-32bit
+ libgraphblas2
+ libgraphene-1_0-0-32bit
++libgrpc++1
+ libgsf-1-114-32bit
+ libgsf-tools
+ libgsl-gnu-hpc
+@@ -12326,9 +12350,7 @@
+ libiga-devel
+ libiga64-1
+ libigc-devel
+-libigc1
+ libigdfcl-devel
+-libigdfcl1
+ libigdgmm12-32bit
+ libigfxcmrt-devel
+ libigfxcmrt7
+@@ -12363,6 +12385,8 @@
+ libiso9660-11-32bit
+ libitm1-gcc10
+ libitm1-gcc10-32bit
++libitm1-gcc12
++libitm1-gcc12-32bit
+ libitm1-gcc7
+ libitm1-gcc7-32bit
+ libitm1-gcc8
+@@ -12418,6 +12442,7 @@
+ liblldb5
+ liblldb7
+ liblldb9
++liblmdb-0_9_17-32bit
+ liblmdb-0_9_30-32bit
+ liblo10k1-0
+ liblockdev1-32bit
+@@ -12426,6 +12451,7 @@
+ liblqr-1-0-32bit
+ liblrdf2-32bit
+ liblsan0-gcc10
++liblsan0-gcc12
+ liblsan0-gcc7
+ liblsan0-gcc8
+ liblsof0
+@@ -12515,7 +12541,6 @@
+ libmysofa-devel
+ libmysofa1-32bit
+ libnautilus-extension1-32bit
+-libnbd
+ libnbd-devel
+ libndp
+ libneon27-32bit
+@@ -12585,6 +12610,8 @@
+ liboauth0-32bit
+ libobjc4-gcc10
+ libobjc4-gcc10-32bit
++libobjc4-gcc12
++libobjc4-gcc12-32bit
+ libobjc4-gcc7
+ libobjc4-gcc7-32bit
+ libodbc2-32bit
+@@ -12599,7 +12626,6 @@
+ liboldX6-32bit
+ libomp11-devel
+ libomp15-devel
+-libomp17-devel
+ libomp9-devel
+ libopenal0
+ libopenal0-32bit
+@@ -12612,7 +12638,6 @@
+ libopenblas_serial-devel-32bit
+ libopenblas_serial0
+ libopenblas_serial0-32bit
+-libopencl-clang11
+ libopencore-amr-devel
+ libopencore-amrnb0-32bit
+ libopencore-amrwb0-32bit
+@@ -12755,7 +12780,6 @@
+ libpq5-32bit
+ libpresage-devel
+ libpresage1
+-libprocps7
+ libprotobuf-lite20
+ libprotobuf-lite20-32bit
+ libprotobuf-lite25_1_0-32bit
+@@ -12860,6 +12884,8 @@
+ libqt5-qtxmlpatterns-imports-32bit
+ libquadmath0-gcc10
+ libquadmath0-gcc10-32bit
++libquadmath0-gcc12
++libquadmath0-gcc12-32bit
+ libquadmath0-gcc7
+ libquadmath0-gcc7-32bit
+ libquadmath0-gcc8
+@@ -12987,6 +13013,9 @@
+ libstdc++6-gcc10
+ libstdc++6-gcc10-32bit
+ libstdc++6-gcc10-locale
++libstdc++6-gcc12
++libstdc++6-gcc12-32bit
++libstdc++6-gcc12-locale
+ libstdc++6-gcc7
+ libstdc++6-gcc7-32bit
+ libstdc++6-gcc7-locale
+@@ -12995,8 +13024,8 @@
+ libstdc++6-gcc8-locale
+ libstdc++6-pp-gcc10
+ libstdc++6-pp-gcc10-32bit
+-libstdc++6-pp-gcc11
+-libstdc++6-pp-gcc11-32bit
++libstdc++6-pp-gcc12
++libstdc++6-pp-gcc12-32bit
+ libstdc++6-pp-gcc9
+ libstdc++6-pp-gcc9-32bit
+ libstorage-ng-python3
+@@ -13045,6 +13074,7 @@
+ libtsan0-gcc10
+ libtsan0-gcc7
+ libtsan0-gcc8
++libtsan2-gcc12
+ libtsm-devel
+ libtspi1-32bit
+ libtss2-esys0-32bit
+@@ -13063,6 +13093,8 @@
+ libu2f-host-doc
+ libubsan1-gcc10
+ libubsan1-gcc10-32bit
++libubsan1-gcc12
++libubsan1-gcc12-32bit
+ libubsan1-gcc8
+ libubsan1-gcc8-32bit
+ libuchardet-devel
+@@ -13454,7 +13486,6 @@
+ libzvbi-chains0
+ libzvbi-chains0-32bit
+ libzvbi0-32bit
+-libzxcvbn0
+ libzypp-devel-doc
+ libzzip-0-13-32bit
+ lilv
+@@ -13493,11 +13524,6 @@
+ llvm15-gold
+ llvm15-polly
+ llvm15-polly-devel
+-llvm17
+-llvm17-devel
+-llvm17-gold
+-llvm17-polly
+-llvm17-polly-devel
+ llvm5-LTO-devel-32bit
+ llvm5-devel-32bit
+ llvm7-LTO-devel-32bit
+@@ -13544,7 +13570,6 @@
+ memphis-devel
+ memtest86+
+ mercurial-tests
+-meson-test
+ metis
+ metis_5_1_0-gnu-hpc
+ metis_5_1_0-gnu-hpc-devel
+@@ -13659,22 +13684,12 @@
+ nano-plugin-conky
+ nautilus-file-roller
+ nbd
+-nbdfuse
+-nbdkit
+-nbdkit-basic-filters
+-nbdkit-basic-plugins
+-nbdkit-curl-plugin
+ nbdkit-devel
+ nbdkit-example-plugins
+ nbdkit-gzip-filter
+ nbdkit-linuxdisk-plugin
+-nbdkit-nbd-plugin
+-nbdkit-python-plugin
+-nbdkit-server
+-nbdkit-ssh-plugin
+ nbdkit-tar-filter
+ nbdkit-tmpdisk-plugin
+-nbdkit-vddk-plugin
+ nbdkit-xz-filter
+ ncat
+ ncurses5-devel-32bit
+@@ -13726,6 +13741,7 @@
+ nettle
+ netty
+ newt-static
++nfsidmap
+ nftables-devel
+ nghttp2
+ noping
+@@ -13839,7 +13855,9 @@
+ openal-soft
+ openal-soft-devel-32bit
+ openblas-pthreads_0_3_25-gnu-hpc-devel-static
++openblas-pthreads_0_3_25-gnu12-hpc-devel-static
+ openblas_0_3_25-gnu-hpc-devel-static
++openblas_0_3_25-gnu12-hpc-devel-static
+ openblas_openmp-devel-static
+ openblas_pthreads-devel-static
+ openblas_serial-devel-static
+@@ -13903,7 +13921,6 @@
+ opensm-devel-32bit
+ openssh-cavs
+ openssl-1_0_0-cavs
+-openssl-1_1
+ openvpn-down-root-plugin
+ openvswitch3
+ openvswitch3-devel
+@@ -14025,6 +14042,8 @@
+ perf-bash-completion
+ perf-gtk
+ perl-32bit
++perl-AnyEvent
++perl-Devel-CoreStack
+ perl-GraphicsMagick
+ perl-Mozilla-LDAP
+ perl-PerlIO-utf8_strict
+@@ -14297,7 +14316,9 @@
+ python311-32bit
+ python311-Cython0
+ python311-Genshi
++python311-M2Crypto
+ python311-SQLAlchemy1
++python311-argon2-cffi-bindings
+ python311-asyncpg
+ python311-base-32bit
+ python311-dbus-python
+@@ -14310,6 +14331,15 @@
+ python311-gmpy2
+ python311-grpcio
+ python311-lxml-devel
++python311-matplotlib
++python311-matplotlib-cairo
++python311-matplotlib-gtk-common
++python311-matplotlib-gtk3
++python311-matplotlib-gtk4
++python311-matplotlib-qt
++python311-matplotlib-testdata
++python311-matplotlib-tk
++python311-matplotlib-web
+ python311-maturin
+ python311-msgpack
+ python311-numpy-devel
+@@ -14320,6 +14350,7 @@
+ python311-opencv
+ python311-orjson
+ python311-peewee
++python311-pendulum
+ python311-protobuf
+ python311-qt5
+ python311-qt5-devel
+@@ -14329,6 +14360,8 @@
+ python311-qt5-remoteobjects-devel
+ python311-qt5-sip
+ python311-ruamel.yaml.clib
++python311-sip4
++python311-sip4-devel
+ python311-solv
+ python311-speechd
+ python311-testsuite
+@@ -14717,8 +14750,6 @@
+ ruby2.5-rubygem-ruby-augeas-doc
+ ruby2.5-rubygem-ruby-dbus-doc
+ ruby2.5-rubygem-ruby-dbus-testsuite
+-ruby2.5-rubygem-ruby-terraform
+-ruby2.5-rubygem-ruby-terraform-doc
+ ruby2.5-rubygem-ruby_parser
+ ruby2.5-rubygem-ruby_parser-doc
+ ruby2.5-rubygem-ruby_parser-testsuite
+@@ -14784,6 +14815,8 @@
+ rust1.71
+ rust1.72
+ rust1.73
++rust1.74
++rust1.75
+ samba-client-32bit
+ samba-devel-32bit
+ samba-libs-python3-32bit
+@@ -14836,6 +14869,7 @@
+ snipl
+ snowball
+ snowball-devel
++snphost
+ solid-devel
+ solid-devel-32bit
+ solid-imports
+@@ -14900,18 +14934,6 @@
+ telepathy-logger
+ telepathy-sipe
+ termcap-32bit
+-terraform
+-terraform-provider-aws
+-terraform-provider-azurerm
+-terraform-provider-external
+-terraform-provider-google
+-terraform-provider-helm
+-terraform-provider-kubernetes
+-terraform-provider-local
+-terraform-provider-null
+-terraform-provider-random
+-terraform-provider-susepubliccloud
+-terraform-provider-tls
+ texmath
+ thunderbolt-user-space
+ tidyp
+@@ -15139,6 +15161,7 @@
+ adolc-doc
+ alsa-docs
+ alsa-topology-conf
++ansible-doc
+ ant-apache-xalan2
+ ant-commons-net
+ ant-contrib-javadoc
+@@ -15232,6 +15255,7 @@
+ asm3-javadoc
+ atinject-javadoc
+ atinject-tck
++atkmm-doc
+ auto
+ auto-common
+ auto-javadoc
+@@ -15364,10 +15388,6 @@
+ bananapir2-firmware
+ base64coder-javadoc
+ beust-jcommander-javadoc
+-blue-horizon
+-blue-horizon-config-deploy-cap-aks
+-blue-horizon-config-deploy-cap-eks
+-blue-horizon-config-deploy-cap-gke
+ blueprint-cursor-theme
+ bluez-auto-enable-devices
+ bnd-maven-plugin
+@@ -16327,7 +16347,6 @@
+ lucene-sandbox
+ lucene-spatial3d
+ lxde-common
+-lxde-common-branding-openSUSE
+ lxde-common-branding-upstream
+ lxqt-build-tools-devel
+ malcontent-lang
+@@ -16771,12 +16790,15 @@
+ pegdown-javadoc
+ pentaho-libxml-javadoc
+ pentaho-reporting-flow-engine-javadoc
++perl-Canary-Stability
++perl-HTTP-DAV
+ perl-Parse-Yapp
++perl-Protocol-HTTP2
++perl-Test-SharedFork
+ perl-Test-TCP
+ perl-Text-Markdown
+ pesign-systemd
+ petsc-doc
+-pgadmin4-cloud
+ pgadmin4-desktop
+ pgadmin4-web-uwsgi
+ php8-fpm-apache
+@@ -16881,7 +16903,6 @@
+ python3-Babel-doc
+ python3-CommonMark
+ python3-Cycler
+-python3-Deprecated
+ python3-EasyProcess
+ python3-Flask-Security
+ python3-Flask-doc
+@@ -16971,11 +16992,13 @@
+ python3-jabberpy
+ python3-jdatetime
+ python3-joblib
++python3-jsmin
+ python3-kafka-python
+ python3-lxml-doc
+ python3-m2r
+ python3-makefun
+ python3-mccabe
++python3-mock
+ python3-mox3
+ python3-mypy_extensions
+ python3-nine
+@@ -16983,7 +17006,6 @@
+ python3-nose2
+ python3-numpydoc
+ python3-openstackdocstheme
+-python3-opentelemetry-api
+ python3-os-testr
+ python3-oslosphinx
+ python3-osprofiler
+@@ -17064,10 +17086,11 @@
+ python3-ruamel.base
+ python3-ruamel.yaml
+ python3-scales
+-python3-semver
+ python3-setuptools-git
+ python3-setuptools_scm
+ python3-setuptools_scm_git_archive
++python3-sip4-common
++python3-sip4-doc
+ python3-slip
+ python3-slip-dbus
+ python3-smartypants
+@@ -17103,6 +17126,7 @@
+ python3-vcversioner
+ python3-vine
+ python3-vsts
++python3-vsts-cd-manager
+ python3-ws4py
+ python3-wtf-peewee
+ python3-xcffib
+@@ -17114,6 +17138,7 @@
+ python311-EasyProcess
+ python311-Flask-Mailman
+ python311-Flask-doc
++python311-FontTools
+ python311-Js2Py
+ python311-Markdown
+ python311-PyMySQL
+@@ -17126,6 +17151,7 @@
+ python311-WebOb
+ python311-aiodns
+ python311-aiosqlite
++python311-argon2-cffi
+ python311-asgiref
+ python311-aspectlib
+ python311-astor
+@@ -17138,7 +17164,9 @@
+ python311-cachy
+ python311-chai
+ python311-check-manifest
++python311-cleo
+ python311-cookies
++python311-crashtest
+ python311-csv23
+ python311-curio
+ python311-databases
+@@ -17156,6 +17184,7 @@
+ python311-flex
+ python311-flexmock
+ python311-genty
++python311-geoip2
+ python311-greenlet-devel
+ python311-hatch-fancy-pypi-readme
+ python311-hatch_vcs
+@@ -17175,6 +17204,7 @@
+ python311-langdetect
+ python311-linkify-it-py
+ python311-marshmallow
++python311-matplotlib-latex
+ python311-mypy
+ python311-natsort
+ python311-nftables
+@@ -17185,6 +17215,7 @@
+ python311-pip-api
+ python311-pip-run
+ python311-pipreqs
++python311-poetry
+ python311-polib
+ python311-pook
+ python311-pretend
+@@ -17203,6 +17234,7 @@
+ python311-pygaljs
+ python311-pygments-ansi-color
+ python311-pygments-pytest
++python311-pylev
+ python311-pypng
+ python311-pyqt-builder
+ python311-pyquery
+@@ -17211,6 +17243,7 @@
+ python311-python-jose
+ python311-python-jose-cryptography
+ python311-python-multipart
++python311-pytzdata
+ python311-qt5-doc
+ python311-railroad-diagrams
+ python311-random2
+@@ -17218,6 +17251,7 @@
+ python311-redis
+ python311-rst.linker
+ python311-ruamel.yaml
++python311-scikit-build
+ python311-scripttest
+ python311-setuptools-rust
+ python311-setuptools-wheel
+@@ -17226,6 +17260,7 @@
+ python311-speaklater
+ python311-starlette
+ python311-sure
++python311-tblib
+ python311-validate-pyproject
+ python311-versioneer
+ python311-vncdotool
+@@ -20917,7 +20952,6 @@
+ tuned-utils-systemtap
+ txt2man
+ tycho
+-tycho-bootstrap
+ tycho-javadoc
+ typesafe-config
+ typesafe-config-javadoc
+@@ -20947,6 +20981,7 @@
+ wget-lang
+ whois-bash-completion
+ wireplumber-audio
++wireplumber-doc
+ wireplumber-lang
+ wol-lang
+ woodstox-core
+@@ -21080,6 +21115,7 @@
+ MozillaThunderbird-translations-other
+ NetworkManager-applet
+ NetworkManager-applet-openvpn
++NetworkManager-applet-pptp
+ NetworkManager-bluetooth
+ NetworkManager-cloud-setup
+ NetworkManager-connection-editor
+@@ -21140,6 +21176,7 @@
+ asn1c
+ aspell-ispell
+ aspell-spell
++atkmm-devel
+ attica-qt5
+ attica-qt5-devel
+ audiofile
+@@ -21210,6 +21247,8 @@
+ cargo1.71
+ cargo1.72
+ cargo1.73
++cargo1.74
++cargo1.75
+ cblas-devel-static
+ cd-paranoia
+ cdio-utils
+@@ -21264,6 +21303,7 @@
+ coreutils-testsuite
+ cpp10
+ cpp11
++cpp12
+ cpp8
+ cpp9
+ cpupower-bench
+@@ -21424,7 +21464,6 @@
+ cyrus-sasl-gs2
+ cyrus-sasl-ldap-auxprop
+ cyrus-sasl-ldap-auxprop-bdb
+-cyrus-sasl-ntlm
+ cyrus-sasl-scram
+ d-spy
+ d-spy-devel
+@@ -21480,7 +21519,6 @@
+ efibootmgr
+ eiciel
+ ekiga
+-ekiga-plugins-evolution
+ elfutils-debuginfod
+ elixir-ex_doc
+ enca
+@@ -21665,6 +21703,7 @@
+ gcc11-objc
+ gcc11-objc-32bit
+ gcc11-testresults
++gcc12
+ gcc12-32bit
+ gcc12-PIE
+ gcc12-ada
+@@ -22302,7 +22341,6 @@
+ gnome-photos
+ gnome-remote-desktop
+ gnome-shell-calendar
+-gnome-shell-extension-desktop-icons
+ gnome-shell-search-provider-bijiben
+ gnome-shell-search-provider-contacts
+ gnome-shell-search-provider-documents
+@@ -22344,9 +22382,6 @@
+ go1.19-race
+ go1.20
+ go1.20-doc
+-go1.20-openssl
+-go1.20-openssl-doc
+-go1.20-openssl-race
+ go1.20-race
+ go1.7
+ go1.7-doc
+@@ -22622,7 +22657,6 @@
+ kernel-default-base-rebuild
+ kernel-default-extra
+ kernel-default-optional
+-kernel-livepatch-6_4_0-150600_12-default
+ kernel-obs-qa
+ kf5-filesystem
+ kglobalaccel-devel
+@@ -22636,7 +22670,6 @@
+ kio-core
+ kio-devel
+ kitemviews-devel
+-kiwi-boot-requires
+ kiwi-filesystem-requires
+ kiwi-image-docker-requires
+ kiwi-image-iso-requires
+@@ -22732,11 +22765,11 @@
+ libKF5WindowSystem5
+ libKF5XmlGui5
+ libLLVM11
++libLLVM15
+ libLLVMSPIRVLib-devel
+ libLLVMSPIRVLib17
+ libLTO11
+ libLTO15
+-libLTO17
+ libLTO9
+ libOpenCL1
+ libQt5Bootstrap-devel-static
+@@ -22775,7 +22808,6 @@
+ liba52-0
+ liba52-devel
+ libaa1
+-libabsl2401_0_0
+ libabw-0_1-1
+ libabw-devel
+ libabw-tools
+@@ -22815,9 +22847,14 @@
+ libasan6-gcc10
+ libasan6-gcc10-32bit
+ libasan8-32bit
++libasan8-gcc12
++libasan8-gcc12-32bit
++libatkmm-2_36-1
+ libatomic1-32bit
+ libatomic1-gcc10
+ libatomic1-gcc10-32bit
++libatomic1-gcc12
++libatomic1-gcc12-32bit
+ libatomic1-gcc7
+ libatomic1-gcc7-32bit
+ libatomic1-gcc8
+@@ -23037,6 +23074,9 @@
+ libdca-devel
+ libdebuginfod-dummy-devel
+ libdebuginfod1-dummy
++libdecor
++libdecor-0-0
++libdecor-devel
+ libdfp-devel-static
+ libdirac_decoder0
+ libdirac_encoder0
+@@ -23136,6 +23176,8 @@
+ libgcc_s1-32bit
+ libgcc_s1-gcc10
+ libgcc_s1-gcc10-32bit
++libgcc_s1-gcc12
++libgcc_s1-gcc12-32bit
+ libgcc_s1-gcc7
+ libgcc_s1-gcc7-32bit
+ libgcc_s1-gcc8
+@@ -23166,6 +23208,8 @@
+ libgfortran5-32bit
+ libgfortran5-gcc10
+ libgfortran5-gcc10-32bit
++libgfortran5-gcc12
++libgfortran5-gcc12-32bit
+ libgfortran5-gcc8
+ libgfortran5-gcc8-32bit
+ libgimp-2_0-0
+@@ -23202,6 +23246,8 @@
+ libgomp1-32bit
+ libgomp1-gcc10
+ libgomp1-gcc10-32bit
++libgomp1-gcc12
++libgomp1-gcc12-32bit
+ libgomp1-gcc7
+ libgomp1-gcc7-32bit
+ libgomp1-gcc8
+@@ -23359,6 +23405,9 @@
+ libhugetlbfs-tests
+ libib_util
+ libib_util-devel
++libica-openssl1_1-devel
++libica-openssl1_1-devel-static
++libica-openssl1_1-tools
+ libica-openssl3-devel
+ libica-openssl3-devel-static
+ libica-openssl3-tools
+@@ -23388,6 +23437,8 @@
+ libitm1-32bit
+ libitm1-gcc10
+ libitm1-gcc10-32bit
++libitm1-gcc12
++libitm1-gcc12-32bit
+ libitm1-gcc7
+ libitm1-gcc7-32bit
+ libitm1-gcc8
+@@ -23418,6 +23469,7 @@
+ liblouis-doc
+ liblouis-tools
+ liblpsolve55-0
++liblsan0-gcc12
+ liblsof0
+ libm2cor18-32bit
+ libm2iso18-32bit
+@@ -23480,9 +23532,7 @@
+ libmysqlcppconn-devel
+ libmysqlcppconn7
+ libmythes-1_2-0
+-libnbd
+ libnbd-devel
+-libnbd0
+ libndp
+ libnet-doc
+ libnetcdf-gnu-hpc
+@@ -23521,6 +23571,8 @@
+ libobjc4-32bit
+ libobjc4-gcc10
+ libobjc4-gcc10-32bit
++libobjc4-gcc12
++libobjc4-gcc12-32bit
+ libobjc4-gcc7
+ libobjc4-gcc7-32bit
+ libodfgen-0_1-1
+@@ -23533,12 +23585,20 @@
+ libopenal0
+ libopenblas-gnu-hpc
+ libopenblas-gnu-hpc-devel
++libopenblas-gnu12-hpc
++libopenblas-gnu12-hpc-devel
+ libopenblas-pthreads-gnu-hpc
+ libopenblas-pthreads-gnu-hpc-devel
++libopenblas-pthreads-gnu12-hpc
++libopenblas-pthreads-gnu12-hpc-devel
+ libopenblas-pthreads_0_3_25-gnu-hpc
+ libopenblas-pthreads_0_3_25-gnu-hpc-devel
++libopenblas-pthreads_0_3_25-gnu12-hpc
++libopenblas-pthreads_0_3_25-gnu12-hpc-devel
+ libopenblas_0_3_25-gnu-hpc
+ libopenblas_0_3_25-gnu-hpc-devel
++libopenblas_0_3_25-gnu12-hpc
++libopenblas_0_3_25-gnu12-hpc-devel
+ libopenblas_pthreads-devel
+ libopenblas_serial-devel
+ libopenblas_serial0
+@@ -23616,7 +23676,6 @@
+ libpotrace0
+ libpresage-devel
+ libpresage1
+-libprocps7
+ libprotobuf-lite20
+ libprotoc20
+ libproxy-tools
+@@ -23789,6 +23848,9 @@
+ libstdc++6-gcc10
+ libstdc++6-gcc10-32bit
+ libstdc++6-gcc10-locale
++libstdc++6-gcc12
++libstdc++6-gcc12-32bit
++libstdc++6-gcc12-locale
+ libstdc++6-gcc7
+ libstdc++6-gcc7-32bit
+ libstdc++6-gcc7-locale
+@@ -23798,8 +23860,8 @@
+ libstdc++6-pp-32bit
+ libstdc++6-pp-gcc10
+ libstdc++6-pp-gcc10-32bit
+-libstdc++6-pp-gcc11
+-libstdc++6-pp-gcc11-32bit
++libstdc++6-pp-gcc12
++libstdc++6-pp-gcc12-32bit
+ libstdc++6-pp-gcc9
+ libstdc++6-pp-gcc9-32bit
+ libstoken1
+@@ -23831,6 +23893,7 @@
+ libtracker-control-2_0-0
+ libtracker-miner-2_0-0
+ libtracker-sparql-2_0-0
++libtsan2-gcc12
+ libtsm-devel
+ libtukit-devel
+ libu2f-host-doc
+@@ -23838,6 +23901,8 @@
+ libubsan1-32bit
+ libubsan1-gcc10
+ libubsan1-gcc10-32bit
++libubsan1-gcc12
++libubsan1-gcc12-32bit
+ libubsan1-gcc8
+ libubsan1-gcc8-32bit
+ libuchardet-devel
+@@ -24101,11 +24166,6 @@
+ llvm15-gold
+ llvm15-polly
+ llvm15-polly-devel
+-llvm17
+-llvm17-devel
+-llvm17-gold
+-llvm17-polly
+-llvm17-polly-devel
+ llvm9
+ llvm9-LTO-devel
+ llvm9-devel
+@@ -24151,7 +24211,6 @@
+ memkind-devel
+ memphis-devel
+ mercurial-tests
+-meson-test
+ metis
+ metis-devel
+ metis_5_1_0-gnu-hpc
+@@ -24292,19 +24351,10 @@
+ nautilus-eiciel
+ nautilus-file-roller
+ nbd
+-nbdfuse
+-nbdkit
+-nbdkit-basic-filters
+-nbdkit-basic-plugins
+-nbdkit-curl-plugin
+ nbdkit-devel
+ nbdkit-example-plugins
+ nbdkit-gzip-filter
+ nbdkit-linuxdisk-plugin
+-nbdkit-nbd-plugin
+-nbdkit-python-plugin
+-nbdkit-server
+-nbdkit-ssh-plugin
+ nbdkit-tar-filter
+ nbdkit-tmpdisk-plugin
+ nbdkit-xz-filter
+@@ -24344,6 +24394,7 @@
+ nettle
+ netty
+ newt-static
++nfsidmap
+ nftables-devel
+ nghttp2
+ noping
+@@ -24445,7 +24496,9 @@
+ openSUSE-appstream-process
+ openal-soft
+ openblas-pthreads_0_3_25-gnu-hpc-devel-static
++openblas-pthreads_0_3_25-gnu12-hpc-devel-static
+ openblas_0_3_25-gnu-hpc-devel-static
++openblas_0_3_25-gnu12-hpc-devel-static
+ openblas_openmp-devel-static
+ openblas_pthreads-devel-static
+ openblas_serial-devel-static
+@@ -24515,7 +24568,7 @@
+ opensaml-bin
+ openssh-cavs
+ openssl-1_0_0-cavs
+-openssl-1_1
++openssl3-ibmca
+ openvpn-down-root-plugin
+ openvswitch3
+ openvswitch3-devel
+@@ -24631,6 +24684,8 @@
+ pdsh-slurm
+ perf-bash-completion
+ perf-gtk
++perl-AnyEvent
++perl-Devel-CoreStack
+ perl-GraphicsMagick
+ perl-Mozilla-LDAP
+ perl-PerlIO-utf8_strict
+@@ -24869,7 +24924,9 @@
+ python3-yui
+ python311-Cython0
+ python311-Genshi
++python311-M2Crypto
+ python311-SQLAlchemy1
++python311-argon2-cffi-bindings
+ python311-asyncpg
+ python311-dbus-python
+ python311-dbus-python-devel
+@@ -24881,12 +24938,22 @@
+ python311-gmpy2
+ python311-grpcio
+ python311-lxml-devel
++python311-matplotlib
++python311-matplotlib-cairo
++python311-matplotlib-gtk-common
++python311-matplotlib-gtk3
++python311-matplotlib-gtk4
++python311-matplotlib-qt
++python311-matplotlib-testdata
++python311-matplotlib-tk
++python311-matplotlib-web
+ python311-maturin
+ python311-msgpack
+ python311-numpy-devel
+ python311-opencv
+ python311-orjson
+ python311-peewee
++python311-pendulum
+ python311-protobuf
+ python311-psycopg-c
+ python311-qt5
+@@ -24897,6 +24964,8 @@
+ python311-qt5-remoteobjects-devel
+ python311-qt5-sip
+ python311-ruamel.yaml.clib
++python311-sip4
++python311-sip4-devel
+ python311-solv
+ python311-speechd
+ python311-testsuite
+@@ -25288,8 +25357,6 @@
+ ruby2.5-rubygem-ruby-augeas-doc
+ ruby2.5-rubygem-ruby-dbus-doc
+ ruby2.5-rubygem-ruby-dbus-testsuite
+-ruby2.5-rubygem-ruby-terraform
+-ruby2.5-rubygem-ruby-terraform-doc
+ ruby2.5-rubygem-ruby_parser
+ ruby2.5-rubygem-ruby_parser-doc
+ ruby2.5-rubygem-ruby_parser-testsuite
+@@ -25351,6 +25418,8 @@
+ rust1.71
+ rust1.72
+ rust1.73
++rust1.74
++rust1.75
+ samba-test
+ sanlk-reset
+ sbc
+@@ -25481,18 +25550,6 @@
+ telepathy-glib-doc
+ telepathy-logger
+ telepathy-sipe
+-terraform
+-terraform-provider-aws
+-terraform-provider-azurerm
+-terraform-provider-external
+-terraform-provider-google
+-terraform-provider-helm
+-terraform-provider-kubernetes
+-terraform-provider-local
+-terraform-provider-null
+-terraform-provider-random
+-terraform-provider-susepubliccloud
+-terraform-provider-tls
+ texmath
+ thunderbolt-user-space
+ tidyp
