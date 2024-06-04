@@ -17,10 +17,10 @@ import osc.core
 
 from osc import oscerr
 
-OPENSUSE = 'openSUSE:Leap:15.5'
-OPENSUSE_UPDATE = 'openSUSE:Leap:15.4:Update'
-BACKPORTS = 'openSUSE:Backports:SLE-15-SP5'
-SLE = 'SUSE:SLE-15-SP5:GA'
+OPENSUSE = 'openSUSE:Leap:15.6'
+OPENSUSE_UPDATE = 'openSUSE:Leap:15.5:Update'
+BACKPORTS = 'openSUSE:Backports:SLE-15-SP6'
+SLE = 'SUSE:SLE-15-SP6:GA'
 
 makeurl = osc.core.makeurl
 http_GET = osc.core.http_GET

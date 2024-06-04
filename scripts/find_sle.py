@@ -17,11 +17,11 @@ import osc.core
 
 from osc import oscerr
 
-OPENSUSE = 'openSUSE:Leap:15.5'
-OPENSUSE_UPDATE = 'openSUSE:Leap:15.4:Update'
-BACKPORTS = 'openSUSE:Backports:SLE-15-SP5'
-SLEFORK = 'openSUSE:Backports:SLE-15-SP5:SLEFork'
-SLE = 'SUSE:SLE-15-SP5:GA'
+OPENSUSE = 'openSUSE:Leap:15.6'
+OPENSUSE_UPDATE = 'openSUSE:Leap:15.5:Update'
+BACKPORTS = 'openSUSE:Backports:SLE-15-SP6'
+SLEFORK = 'openSUSE:Backports:SLE-15-SP6:SLEFork'
+SLE = 'SUSE:SLE-15-SP6:GA'
 
 makeurl = osc.core.makeurl
 http_GET = osc.core.http_GET
@@ -97,6 +97,17 @@ class SLESync(object):
         os_pkglist = self.get_source_packages(OPENSUSE)
         slefork_pkglist = self.get_source_packages(SLEFORK)
 
+        # special handling for the python stack renaming, incident number 29613
+        for pkg in sle_pkglist:
+            if pkg.endswith('.29613') and not pkg.startswith('patchinfo'):
+                old_name = re.sub('^python3','python', pkg).replace('.29613', '')
+                if old_name in bp_pkglist and self.has_diff(SLE, pkg, BACKPORTS, old_name):
+                    print("eval \"osc copypac -e -m 'Package update from %s/%s' %s %s %s %s\"" %
+                          (SLE, pkg, SLE, pkg, BACKPORTS, old_name))
+                if old_name in os_pkglist and self.has_diff(SLE, pkg, OPENSUSE, old_name):
+                    print("eval \"osc copypac -e -m 'Package update from %s/%s' %s %s %s %s\"" %
+                          (SLE, pkg, SLE, pkg, OPENSUSE, old_name))
+
         # Backports
         for pkg in bp_pkglist:
             if pkg.startswith('patchinfo'):
@@ -105,6 +116,9 @@ class SLESync(object):
                 if self.has_diff(SLE, pkg, BACKPORTS, pkg):
                     orig_prj, orig_pkg = self.origin_metadata_get(SLE, pkg)
                     src_pkg = self.parse_package_link(orig_prj, orig_pkg)
+                    # python311 stack update
+                    if src_pkg and (src_pkg.endswith('.30661') or src_pkg.endswith('.30963')):
+                        continue
                     if self.check_slefork and (src_pkg in slefork_pkglist or orig_pkg in slefork_pkglist):
                         continue
                     if orig_prj != SLE:
@@ -116,6 +130,7 @@ class SLESync(object):
                     else:
                         print("eval \"osc copypac -e -m 'Package update from %s/%s' %s %s %s %s\"" %
                                 (SLE, pkg, SLE, pkg, BACKPORTS, pkg))
+
         # Leap
         for pkg in os_pkglist:
             if pkg.startswith('patchinfo'):
@@ -125,6 +140,9 @@ class SLESync(object):
                     orig_prj, orig_pkg = self.origin_metadata_get(SLE, pkg)
                     if orig_prj != SLE:
                         src_pkg = self.parse_package_link(orig_prj, orig_pkg)
+                        # python311 stack update
+                        if src_pkg and (src_pkg.endswith('.30661') or src_pkg.endswith('.30963')):
+                            continue
                         if src_pkg:
                             print("eval \"osc copypac -e -m 'Package update from %s/%s' %s %s %s %s\"" %
                                     (orig_prj, src_pkg, orig_prj, src_pkg, OPENSUSE, pkg))

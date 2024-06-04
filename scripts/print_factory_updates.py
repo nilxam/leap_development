@@ -19,9 +19,9 @@ from osclib.core import project_pseudometa_package
 from osc import oscerr
 from osclib.memoize import memoize
 
-BACKPORTS = 'openSUSE:Backports:SLE-15-SP5'
-OPENSUSE = 'openSUSE:Leap:15.5'
-SLE = 'SUSE:SLE-15-SP5:GA'
+BACKPORTS = 'openSUSE:Backports:SLE-15-SP6'
+OPENSUSE = 'openSUSE:Leap:15.6'
+SLE = 'SUSE:SLE-15-SP6:GA'
 REBUILD_PROJECT = '{}:FactoryCandidates'.format(BACKPORTS)
 FACTORYFORK = '{}:FactoryFork'.format(BACKPORTS)
 SUPPORTED_ARCHS = ['x86_64']

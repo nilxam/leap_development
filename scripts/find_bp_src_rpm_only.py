@@ -13,10 +13,10 @@ import osc.core
 
 from osc import oscerr
 
-OPENSUSE = 'openSUSE:Leap:15.5'
-OPENSUSE_UPDATE = 'openSUSE:Leap:15.4:Update'
-BACKPORTS = 'openSUSE:Backports:SLE-15-SP5'
-SLE = 'SUSE:SLE-15-SP5:GA'
+OPENSUSE = 'openSUSE:Leap:15.6'
+OPENSUSE_UPDATE = 'openSUSE:Leap:15.5:Update'
+BACKPORTS = 'openSUSE:Backports:SLE-15-SP6'
+SLE = 'SUSE:SLE-15-SP6:GA'
 
 makeurl = osc.core.makeurl
 http_GET = osc.core.http_GET
@@ -135,17 +135,14 @@ class FindBP(object):
             if pkg.startswith('patchinfo') or pkg.startswith('preinstallimage') or pkg.startswith('elixir') or \
                     pkg.startswith('python2'):
                 continue
-            if not pkg.startswith('python-'):
+            if not (pkg.startswith('python-') or pkg.startswith('python3-')):
                 continue
-            if pkg in sle_pkglist:
+            if pkg in sle_pkglist or pkg.replace('python3-', 'python-', 1) in sle_pkglist:
                 if self.src_rpm_only(BACKPORTS, pkg, 'standard', 'x86_64'):
                     if self.wipe:
                         self.switch_flag_in_pkg(BACKPORTS, pkg, flag='build', state='disable', repository='standard')
                         self.do_wipe_package(BACKPORTS, pkg, repository='standard')
-                    if not self.has_diff(SLE, pkg, BACKPORTS, pkg):
-                        print("Identical source compared to SLE %s" % pkg)
-                    else:
-                        print("Package exists in SLE and was produced src.rpm only in %s %s" % (BACKPORTS, pkg))
+                    print("Package exists in SLE and was produced src.rpm only in %s %s" % (BACKPORTS, pkg))
 
 
 def main(args):

@@ -17,8 +17,9 @@ import osc.core
 
 from osc import oscerr
 
-OPENSUSE = 'openSUSE:Leap:15.5'
-LEAP_NF = 'openSUSE:Leap:15.5:NonFree'
+OPENSUSE = 'openSUSE:Leap:15.6'
+LEAP_NF = 'openSUSE:Leap:15.6:NonFree'
+TEST_NF = 'home:mlin7442:rebuild_fails_156:nonfree'
 FACTORY_NF = 'openSUSE:Factory:NonFree'
 
 makeurl = osc.core.makeurl
@@ -110,10 +111,10 @@ class FindNF(object):
                     if self.is_links(FACTORY_NF, pkg):
                         continue
                     else:
-                        print("eval \"osc copypac -e -m 'Newer package in Factory NonFree' %s %s %s %s\"" % (FACTORY_NF, pkg, LEAP_NF, pkg))
+                        print("eval \"osc copypac -e -m 'Newer package in Factory NonFree' %s %s %s %s\"" % (FACTORY_NF, pkg, TEST_NF, pkg))
             else:
                 print("New package: %s" % pkg)
-                print("eval \"osc copypac -e -m 'New package in Factory NonFree' %s %s %s %s\"" % (FACTORY_NF, pkg, LEAP_NF, pkg))
+                print("eval \"osc copypac -e -m 'New package in Factory NonFree' %s %s %s %s\"" % (FACTORY_NF, pkg, TEST_NF, pkg))
 
 
 def main(args):

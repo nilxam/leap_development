@@ -18,11 +18,11 @@ import osc.core
 
 from osc import oscerr
 
-OPENSUSE = 'openSUSE:Leap:15.5'
-OPENSUSE_UPDATE = 'openSUSE:Leap:15.4:Update'
-BACKPORTS = 'openSUSE:Backports:SLE-15-SP5'
-BACKPORTS_UPDATE = 'openSUSE:Backports:SLE-15-SP4:Update'
-SLE = 'SUSE:SLE-15-SP5:GA'
+OPENSUSE = 'openSUSE:Leap:15.6'
+OPENSUSE_UPDATE = 'openSUSE:Leap:15.5:Update'
+BACKPORTS = 'openSUSE:Backports:SLE-15-SP6'
+BACKPORTS_UPDATE = 'openSUSE:Backports:SLE-15-SP5:Update'
+SLE = 'SUSE:SLE-15-SP6:GA'
 
 makeurl = osc.core.makeurl
 http_GET = osc.core.http_GET
@@ -120,19 +120,20 @@ class UpdateFinder(object):
         if package in sle_pkglist:
             logging.debug("%s exist in SLE" % package)
             return
-        if package.startswith('rubygem') or package.startswith('Leap-release'):
+        #if package.startswith('rubygem') or package.startswith('Leap-release'):
+        if package.startswith('Leap-release'):
             return
         target_pkg = self.parse_package_link(update_project, package)
         if package in cmp_pkglist:
             req_record = self.has_package_modified(project, package)
-            if req_record and (req_record[-1].actions[0].src_project != update_project and \
-                               req_record[-1].actions[0].src_package != target_pkg):
-                logging.debug("%s has got updated from other place, skip!" % package)
-                return
+            #if req_record and (req_record[-1].actions[0].src_project != update_project and \
+            #                   req_record[-1].actions[0].src_package != target_pkg):
+            #    logging.debug("%s has got updated from other place, skip!" % package)
+            #    return
             if target_pkg and not self.parse_package_link(update_project, target_pkg, True) and\
                     self.has_diff(project, package, update_project, target_pkg):
-                if self.get_request_list(project, target_pkg):
-                    logging.debug("There is a request to %s / %s already or it has been revoked, skip!" % (project, target_pkg))
+                if self.get_request_list(project, package):
+                    logging.debug("There is a request to %s / %s already or it has been revoked, skip!" % (project, package))
                 else:
                     new_ver = self.package_version(update_project, target_pkg)
                     old_ver = self.package_version(project, package)
@@ -142,6 +143,8 @@ class UpdateFinder(object):
                                     (update_project, target_pkg, project, package))
                             self.do_submit(update_project, target_pkg, project, package)
                         else:
+                            #print("eval \"osc rdiff %s %s %s %s\"" %
+                            #        (update_project, target_pkg, project, package))
                             print("eval \"osc sr -m '%s has different source in %s/%s' %s %s %s %s\"" %
                                     (package, update_project, target_pkg, update_project, target_pkg, project, package))
         else:

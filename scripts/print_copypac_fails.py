@@ -13,12 +13,12 @@ import osc.core
 
 from osc import oscerr
 
-OPENSUSE = 'openSUSE:Leap:15.5'
+OPENSUSE = 'openSUSE:Leap:15.6'
 FACTORY = 'openSUSE:Factory'
-OPENSUSE_UPDATE = 'openSUSE:Leap:15.4:Update'
-BACKPORTS = 'openSUSE:Backports:SLE-15-SP5'
-SLEFORKS = 'openSUSE:Backports:SLE-15-SP5:SLEFork'
-SLE = 'SUSE:SLE-15-SP5:GA'
+OPENSUSE_UPDATE = 'openSUSE:Leap:15.5:Update'
+BACKPORTS = 'openSUSE:Backports:SLE-15-SP6'
+SLEFORKS = 'openSUSE:Backports:SLE-15-SP6:SLEFork'
+SLE = 'SUSE:SLE-15-SP6:GA'
 
 makeurl = osc.core.makeurl
 http_GET = osc.core.http_GET
@@ -105,6 +105,7 @@ class FindSLE(object):
         bp_pkglist = self.get_source_packages(BACKPORTS)
         forks_pkglist = self.get_source_packages(SLEFORKS)
         rebuild_pkglist = self.get_source_packages(self.project)
+        haskell_pkglist = self.get_source_packages('devel:languages:haskell')
         pending_requests = \
                 [r.actions[0].tgt_package for r in osc.core.get_request_list(self.apiurl, project=BACKPORTS, req_state=('new', 'review'))]
         sle_ones = []
@@ -121,6 +122,11 @@ class FindSLE(object):
                 sle_ones.append(pkg)
             else:
                 if self.item_exists(FACTORY, pkg):
+                    if pkg in haskell_pkglist and self.has_diff(FACTORY, pkg, BACKPORTS, pkg):
+                        #if pkg not in rebuild_pkglist and pkg not in pending_requests:
+                        #    print("eval \"osc copypac -e -m 'updated package from Factory' %s %s %s %s\"" %
+                        #          (FACTORY, pkg, self.project + ':haskell', pkg))
+                        continue
                     if self.has_diff(FACTORY, pkg, BACKPORTS, pkg):
                         if pkg not in rebuild_pkglist and pkg not in pending_requests:
                             print("eval \"osc copypac -e -m 'updated package from Factory' %s %s %s %s\"" % (FACTORY, pkg, self.project, pkg))
@@ -153,6 +159,9 @@ class FindSLE(object):
         print("\nCleanup in %s:" % self.project)
         for pkg in cleanups:
             print(pkg)
+        for pkg in rebuild_pkglist:
+            if pkg not in bp_pkglist:
+                print(pkg)
 
 
 def main(args):
