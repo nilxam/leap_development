@@ -90,7 +90,7 @@ class UpdateFinder(object):
                  'opackage': package}
         u = makeurl(self.apiurl, ['source', target_prj, target_pkg], query=query)
         root = ET.parse(http_POST(u)).getroot()
-        if root:
+        if root is not None:
             # check if it has diff element
             diffs = root.findall('files/file/diff')
             if diffs:
@@ -118,8 +118,8 @@ class UpdateFinder(object):
         if package.startswith('patchinfo') or package.count('.') > 1:
             return
         if package in sle_pkglist:
-            logging.debug("%s exist in SLE" % package)
-            return
+            logging.info("%s exist in SLE" % package)
+#            return
         #if package.startswith('rubygem') or package.startswith('Leap-release'):
         if package.startswith('Leap-release'):
             return
@@ -145,8 +145,9 @@ class UpdateFinder(object):
                         else:
                             #print("eval \"osc rdiff %s %s %s %s\"" %
                             #        (update_project, target_pkg, project, package))
-                            print("eval \"osc sr -m '%s has different source in %s/%s' %s %s %s %s\"" %
-                                    (package, update_project, target_pkg, update_project, target_pkg, project, package))
+                            if int(target_pkg.split('.')[1]) > 18750:
+                                print("eval \"osc sr -m '%s has different source in %s/%s' %s %s %s %s\"" %
+                                      (package, update_project, target_pkg, update_project, target_pkg, project, package))
         else:
             if target_pkg and package not in deleted_pkglist:
                 if self.submit:
