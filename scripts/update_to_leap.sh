@@ -13,7 +13,9 @@ datestamp=$(date +"%Y%m%d")
 git-obs repo fork pool/$package_name
 git-obs repo clone $user_name/$package_name
 cd $package_name
-git checkout -b 161_branch_$datestamp origin/leap-16.1
+git checkout leap-16.1
+git pull parent leap-16.1
+git checkout -b 161_branch_$datestamp leap-16.1
 # git merge --no-commit factory
 # git merge --allow-unrelated-histories -X theirs -m "Merge branch 'factory' into 'leap-16.1'" factory
 git merge --no-ff --allow-unrelated-histories -X theirs --no-commit factory
