@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <username> <package_name>"
@@ -23,6 +24,9 @@ else
     exit 1
 fi
 
+git fetch --all
+git checkout factory
+git pull parent factory
 git checkout -B "$target_branch" "origin/$target_branch"
 git pull parent "$target_branch"
 git checkout -b "161_branch_$datestamp" "$target_branch"
@@ -35,7 +39,7 @@ git commit -m "Merge branch 'factory' into '$target_branch'"
 git push origin "161_branch_$datestamp"
 
 git-obs pr create \
-  --title "Update to Factory version" \
+  --title "Sync with Factory" \
   --description "Update to Factory version" \
   --source-owner "$user_name" \
   --source-repo "$package_name" \
